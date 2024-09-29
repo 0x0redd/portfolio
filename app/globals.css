@@ -1,0 +1,51 @@
+/* globals.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .main-content {
+    padding: 2rem;
+    min-height: 80vh;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Light theme background */
+    color: #333; /* Text color */
+    transition: background-color 0.3s, color 0.3s;
+  }
