@@ -4,10 +4,31 @@ import { Camera } from 'lucide-react';
 import { NavbarDemo } from '@/components/navbar';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import GridWC from './components/gridWC';
 import VideoPlayer from './components/video';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { InfiniteSlider } from '@/components/core/infinite-slider';
+import { ViewCount } from './components/viewTracker';
+
+// Lazy load components that are below the fold
+const GridPinned = dynamic(() => import('./components/gridPinned'), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const MarqueeDemo = dynamic(() => import('./components/comments').then(mod => ({ default: mod.MarqueeDemo })), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+    </div>
+  ),
+  ssr: false,
+});
 
 interface ProjectCardProps {
   title: string;
@@ -81,6 +102,78 @@ function ProjectCard({ title, href, image, description }: ProjectCardProps) {
   );
 }
 
+function InfiniteSliderBasic() {
+  return (
+    <InfiniteSlider gap={24} reverse>
+      <img
+        src='/Canon_wordmark.svg'
+        alt='Canon logo'
+        className='h-[120px] w-[120px]'
+      />
+      <img
+        src='/Nikon_Logo.svg'
+        alt='Nikon logo'
+        className='h-[120px] w-auto'
+      />
+      <img
+        src='/Artboard 1.png'
+        alt='csc logo'
+        className='h-[120px] w-auto'
+      />
+      <img
+        src='/2Artboard 1.svg'
+        alt='csc logo'
+        className='h-[120px] w-auto'
+      />
+    </InfiniteSlider>
+  );
+}
+
+// LazySection component that only loads content when it enters viewport
+function LazySection({ children }: { children: React.ReactNode }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !ref.current) return;
+
+    const currentRef = ref.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasLoaded) {
+            setIsVisible(true);
+            setHasLoaded(true);
+          }
+        });
+      },
+      {
+        rootMargin: '100px', // Start loading 100px before section enters viewport
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(currentRef);
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [hasLoaded]);
+
+  return (
+    <div ref={ref} className="min-h-[200px]">
+      {isVisible ? children : (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-pulse text-gray-500">Loading...</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   // Video files from /VIDEO folder
   const videos = [
@@ -131,131 +224,105 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-24 pt-20 relative z-10">
+      <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
 
-        <section className=" my-16 relative overflow-hidden">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-start">Projects</h2>
-          {/* Project Navigation */}
-          <div className="flex flex-wrap gap-4 mt-8">
-            <ProjectCard
-              title="World Cup Celebrations 22"
-              href="/WorldCup2022"
-              image="/world cup 2022/DSC_3906.jpg"
-              description="A candid street photography series capturing the raw emotions and celebrations of football fans during the 2022 World Cup."
-            />
-            <ProjectCard
-              title="FES"
-              href="/FES25"
-              image="/Fes/IMG_9399.jpg"
-              description="Documenting the streets and stories of Fes through documentary photography."
-            />
-            <ProjectCard
-              title="Meknes"
-              href="/Meknes"
-              image="/meknes/IMG_20210410_193620 (2).jpg"
-              description="Exploring the urban landscape and human stories of Meknes."
-            />
-            <ProjectCard
-              title="Street"
-              href="/Street"
-              image="/Street/IMG_20220813_190956 (2).jpg"
-              description="Street photography capturing real moments, emotions, and human stories."
-            />
-            <ProjectCard
-              title="Rabat"
-              href="/rabat"
-              image="/rabat/IMG_4941.jpg"
-              description="Street photography capturing real moments, emotions, and human stories."
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-4 mt-8">
-            <h1 className="text-gray-400 text-sm">Trusted by</h1>
-          </div>
-
-
-          {/* Ambient Blurred Spheres - Only for this section */}
-          
-          
-          <div className="max-w-6xl mx-auto px-6 relative z-10">
-            <div className="text-start space-y-8 mb-16">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 text-center">
-                World Cup 2022
-              </h2>
-              <div className="max-w-4xl mx-auto">
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-                  A candid street photography series capturing the raw emotions and celebrations 
-                  of football fans during the 2022 World Cup. These intimate moments document 
-                  the passion, joy, and unity that football brings to communities around the world.
-                </p>
-                <p className="text-base md:text-lg text-gray-400 leading-relaxed">
-                  Through candid street style photography, I captured the spontaneous celebrations 
-                  and achievements of football teams, revealing the human stories behind the beautiful game.
-                </p>
-              </div>
-            </div>
-
-            {/* Preview Images Section */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="relative group cursor-pointer">
-                <div className="relative overflow-hidden shadow-lg  transition-all duration-300">
-                  <Image
-                    src="/world cup 2022/DSC_3670.jpg"
-                    alt="World Cup 2022 Preview 1"
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-cover transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-              
-              <div className="relative group cursor-pointer">
-                <div className="relative overflow-hidden shadow-lg  transition-all duration-300">
-                  <Image
-                    src="/world cup 2022/DSC_3679.jpg"
-                    alt="World Cup 2022 Preview 2"
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-cover transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-              
-              <div className="relative group cursor-pointer">
-                <div className="relative overflow-hidden shadow-lg  transition-all duration-300">
-                  <Image
-                    src="/world cup 2022/DSC_3680.jpg"
-                    alt="World Cup 2022 Preview 3"
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-cover transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="text-center">
-              <motion.a
+        {/* Projects Section - Loads after hero */}
+        <LazySection>
+          <section id="projects" className=" my-16 relative overflow-hidden">
+            <h2 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-20 mt-10 font-bold text-white  text-start">Projects</h2>
+            {/* Project Navigation */}
+            <div  className="flex sm:flex-row flex-col justify-center items-center sm:mx-auto gap-4 mt-8 ">
+              <ProjectCard
+                title="World Cup Celebrations 22"
                 href="/WorldCup2022"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-700 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                
-              >
-                <span>View Full Gallery</span>
-              </motion.a>
+                image="/world cup 2022/DSC_3906.jpg"
+                description="A candid street photography series capturing the raw emotions and celebrations of football fans during the 2022 World Cup."
+              />
+              <ProjectCard
+                title="FES"
+                href="/FES25"
+                image="/Fes/IMG_9399.jpg"
+                description="Documenting the streets and stories of Fes through documentary photography."
+              />
+              <ProjectCard
+                title="Meknes"
+                href="/Meknes"
+                image="/meknes/IMG_20210410_193620 (2).jpg"
+                description="Exploring the urban landscape and human stories of Meknes."
+              />
+              <ProjectCard
+                title="Street"
+                href="/Street"
+                image="/Street/IMG_20220813_190956 (2).jpg"
+                description="Street photography capturing real moments, emotions, and human stories."
+              />
+              <ProjectCard
+                title="Rabat"
+                href="/rabat"
+                image="/rabat/IMG_4941.jpg"
+                description="Capturing the essence of Rabat through street and documentary photography."
+              />
+              <ProjectCard
+                title="Wedding"
+                href="/Wedding"
+                image="/candid/IMG_9219.jpg"
+                description="Candid wedding photography preserving authentic moments and emotions of your special day."
+              />
             </div>
-          </div>
-        </section>
+          </section>
+        </LazySection>
+
+        {/* Current Project Section */}
+        <LazySection>
+          <section className="mt-20 w-full">
+            <Link href="/afcon">
+              <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-lg group cursor-pointer">
+                <Image 
+                  src="/Afcon/IMG_1682.jpg" 
+                  alt="Current Project : AFCON 25" 
+                  width={2000} 
+                  height={1200} 
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm" 
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white text-center px-4 drop-shadow-lg">
+                    Current Project : AFCON 25
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          </section>
+        </LazySection>
+
+        {/* Reviews Section - Loads after projects */}
+        <LazySection>
+          <section className="mt-16 w-full">
+            <div className="mt-16 w-full">
+              <MarqueeDemo />
+            </div>
+          </section>
+        </LazySection>
+
+        {/* Pinned Works Section - Loads last */}
+        <LazySection>
+          <section className="mt-16 w-full">
+            <div className="mt-16 w-full">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-start">Pinned works and visuals</h1>
+              <GridPinned />
+            </div>
+          </section>
+        </LazySection>
 
         
 
         <footer className="py-12 border-t border-[#193977]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-            <p>© 2025 Your Name. All rights reserved.</p>
-            <div className="flex gap-8">
+            <div className="flex flex-col gap-2">
+              <p>© 2025 Othmane Ferrah. All rights reserved.</p>
+              <ViewCount />
+            </div>
+            <div className="flex gap-8 items-center">
               <a href="#" className="hover:text-[#e5fdfd] transition-colors">Instagram</a>
               <a href="#" className="hover:text-[#e5fdfd] transition-colors">Behance</a>
               <a href="#" className="hover:text-[#e5fdfd] transition-colors">Contact</a>

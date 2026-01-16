@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -19,7 +19,7 @@ interface ImageDimensions {
 }
 
 const GridStreet: React.FC = () => {
-  const images = [
+  const images = useMemo(() => [
     '/Street/04012021-DSC_9179.jpg',
     '/Street/08112020-IMG_20201108_183416.JPG',
     '/Street/20210114-DSC_9525.jpg',
@@ -154,9 +154,10 @@ const GridStreet: React.FC = () => {
     '/Street/IMG_9141.jpg',
     '/Street/Nov-01.jpg',
     '/Street/Nov-12.jpg',
-  ];
+  ], []);
 
   const [dimensions, setDimensions] = useState<ImageDimensions[]>([]);
+  const [columns, setColumns] = useState<ImageDimensions[][]>([[], [], []]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
@@ -172,6 +173,30 @@ const GridStreet: React.FC = () => {
         })
       );
       setDimensions(newDimensions);
+      
+      // Distribute images into columns based on aspect ratio to minimize gaps
+      const numColumns = 3;
+      const columnHeights = new Array(numColumns).fill(0);
+      const distributedColumns: ImageDimensions[][] = new Array(numColumns).fill(null).map(() => []);
+      
+      newDimensions.forEach((imageDim) => {
+        if (imageDim.width > 0 && imageDim.height > 0) {
+          // Calculate aspect ratio (height/width ratio)
+          const aspectRatio = imageDim.height / imageDim.width;
+          // Estimate height in a fixed width (e.g., 400px)
+          const estimatedHeight = 400 * aspectRatio;
+          
+          // Find the column with the smallest current height
+          const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+          distributedColumns[shortestColumnIndex].push(imageDim);
+          columnHeights[shortestColumnIndex] += estimatedHeight;
+        } else {
+          // If dimensions are invalid, just add to first column
+          distributedColumns[0].push(imageDim);
+        }
+      });
+      
+      setColumns(distributedColumns);
       setIsLoading(false);
     };
 
@@ -201,65 +226,72 @@ const GridStreet: React.FC = () => {
 
   return (
     <div className="px-2 sm:px-4 md:px-6 lg:px-8 container mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-        {dimensions.map((imageDim, index) => (
-          <MorphingDialog
-            key={index}
-            transition={{
-              duration: 0.4,
-              ease: 'easeInOut',
-            }}
-          >
-            <MorphingDialogTrigger>
-              <article className="relative flex items-center justify-center cursor-pointer group">
-                <div className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
-                  {imageDim.width > 0 && imageDim.height > 0 ? (
-                    <Image
-                      className="w-full h-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
-                      src={imageDim.src}
-                      alt={`Street Photo ${index + 1}`}
-                      width={imageDim.width}
-                      height={imageDim.height}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={index < 6}
-                    />
-                  ) : (
-                    <div className="w-full h-48 sm:h-64 flex items-center justify-center text-red-500 bg-gray-100 rounded-lg">
-                      <span className="text-sm">Image failed to load</span>
-                    </div>
-                  )}
-                </div>
-              </article>
-            </MorphingDialogTrigger>
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
+        {columns.map((column, colIndex) => (
+          <div key={colIndex} className="flex flex-col gap-3 sm:gap-4 md:gap-6 flex-1">
+            {column.map((imageDim, index) => {
+              const globalIndex = dimensions.findIndex(d => d.src === imageDim.src);
+              return (
+                <MorphingDialog
+                  key={`${colIndex}-${index}`}
+                  transition={{
+                    duration: 0.4,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  <MorphingDialogTrigger>
+                    <article className="relative flex items-center justify-center cursor-pointer group">
+                      <div className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                        {imageDim.width > 0 && imageDim.height > 0 ? (
+                          <Image
+                            className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                            src={imageDim.src}
+                            alt={`Street Photo ${globalIndex + 1}`}
+                            width={imageDim.width}
+                            height={imageDim.height}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            priority={globalIndex < 6}
+                          />
+                        ) : (
+                          <div className="w-full h-48 sm:h-64 flex items-center justify-center text-red-500 bg-gray-100 rounded-lg">
+                            <span className="text-sm">Image failed to load</span>
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  </MorphingDialogTrigger>
 
-            <MorphingDialogContainer>
-              <MorphingDialogContent className="relative max-w-[95vw] max-h-[95vh] sm:max-w-[90vw] sm:max-h-[90vh]">
-                <MorphingDialogImage
-                  src={imageDim.src}
-                  alt={`Street Photo ${index + 1}`}
-                  className="w-full h-full object-contain rounded-lg"
-                />
-              </MorphingDialogContent>
-              <MorphingDialogClose
-                className="fixed right-3 top-3 sm:right-6 sm:top-6 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-white/90 hover:bg-white p-1.5 sm:p-2 shadow-lg backdrop-blur-sm border border-gray-200/50"
-                variants={{
-                  initial: { opacity: 0, scale: 0.8 },
-                  animate: {
-                    opacity: 1,
-                    scale: 1,
-                    transition: { delay: 0.2, duration: 0.2 },
-                  },
-                  exit: { 
-                    opacity: 0, 
-                    scale: 0.8, 
-                    transition: { duration: 0.15 } 
-                  },
-                }}
-              >
-                <XIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 hover:text-black transition-colors" />
-              </MorphingDialogClose>
-            </MorphingDialogContainer>
-          </MorphingDialog>
+                  <MorphingDialogContainer>
+                    <MorphingDialogContent className="relative max-w-[95vw] h-[95vh] sm:max-w-[90vw] sm:h-[90vh] flex items-center justify-center">
+                      <MorphingDialogImage
+                        src={imageDim.src}
+                        alt={`Street Photo ${globalIndex + 1}`}
+                        className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                      />
+                    </MorphingDialogContent>
+                    <MorphingDialogClose
+                      className="fixed right-3 top-3 sm:right-6 sm:top-6 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-white/90 hover:bg-white p-1.5 sm:p-2 shadow-lg backdrop-blur-sm border border-gray-200/50"
+                      variants={{
+                        initial: { opacity: 0, scale: 0.8 },
+                        animate: {
+                          opacity: 1,
+                          scale: 1,
+                          transition: { delay: 0.2, duration: 0.2 },
+                        },
+                        exit: { 
+                          opacity: 0, 
+                          scale: 0.8, 
+                          transition: { duration: 0.15 } 
+                        },
+                      }}
+                    >
+                      <XIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 hover:text-black transition-colors" />
+                    </MorphingDialogClose>
+                  </MorphingDialogContainer>
+                </MorphingDialog>
+              );
+            })}
+          </div>
         ))}
       </div>
     </div>

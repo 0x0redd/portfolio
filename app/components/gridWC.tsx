@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -19,7 +19,7 @@ interface ImageDimensions {
 }
 
 const Grid: React.FC = () => {
-  const images = [
+  const images = useMemo(() => [
     '/world cup 2022/DSC_3670.jpg',
 '/world cup 2022/DSC_3679.jpg',
 '/world cup 2022/DSC_3680.jpg',
@@ -103,11 +103,13 @@ const Grid: React.FC = () => {
 '/world cup 2022/DSC_4249.jpg',
 '/world cup 2022/DSC_4257.jpg',
 '/world cup 2022/DSC_4269.jpg',
-'/world cup 2022/DSC_4296.jpg',
-'/world cup 2022/DSC_4299.jpg'
-  ];
+    '/world cup 2022/DSC_4296.jpg',
+    '/world cup 2022/DSC_4299.jpg'
+  ], []);
 
   const [dimensions, setDimensions] = useState<ImageDimensions[]>([]);
+  const [columns, setColumns] = useState<ImageDimensions[][]>([[], [], []]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     const loadImageDimensions = async () => {
@@ -116,91 +118,129 @@ const Grid: React.FC = () => {
           return new Promise<ImageDimensions>((resolve) => {
             const img = new window.Image();
             img.onload = () => resolve({ src, width: img.width, height: img.height });
-            img.onerror = () => resolve({ src, width: 0, height: 0 }); // Handle errors
+            img.onerror = () => resolve({ src, width: 0, height: 0 });
             img.src = src;
           });
         })
       );
       setDimensions(newDimensions);
+      
+      // Distribute images into columns based on aspect ratio to minimize gaps
+      const numColumns = 3;
+      const columnHeights = new Array(numColumns).fill(0);
+      const distributedColumns: ImageDimensions[][] = new Array(numColumns).fill(null).map(() => []);
+      
+      newDimensions.forEach((imageDim) => {
+        if (imageDim.width > 0 && imageDim.height > 0) {
+          const aspectRatio = imageDim.height / imageDim.width;
+          const estimatedHeight = 400 * aspectRatio;
+          
+          const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+          distributedColumns[shortestColumnIndex].push(imageDim);
+          columnHeights[shortestColumnIndex] += estimatedHeight;
+        } else {
+          distributedColumns[0].push(imageDim);
+        }
+      });
+      
+      setColumns(distributedColumns);
+      setIsLoading(false);
     };
 
     loadImageDimensions();
   }, [images]);
 
-  if (!images || images.length === 0) {
-    return <div>No images found.</div>;
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <p className="text-gray-500">Loading photos...</p>
+        </div>
+      </div>
+    );
   }
 
-  // Explicitly type the columns array
-  const columns: ImageDimensions[][] = [[], [], []];
-  
-  // Distribute images into columns
-  dimensions.forEach((imageDim, index) => {
-    columns[index % 3].push(imageDim);
-  });
+  if (!images || images.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-center">
+          <p className="text-gray-500 text-lg">No images found.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6 container mx-auto">
-      {/* Create a flex container for columns */}
-      <div className="flex flex-col md:flex-row md:space-x-6 md:justify-center ">
+    <div className="px-2 sm:px-4 md:px-6 lg:px-8 container mx-auto max-w-7xl">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
         {columns.map((column, colIndex) => (
-          <div key={colIndex} className="flex flex-col space-y-6 mb-6 md:mb-0">
-            {column.map((imageDim, index) => (
-              <MorphingDialog
-                key={index}
-                transition={{
-                  duration: 0.4,
-                  ease: 'easeInOut',
-                }}
-              >
-                <MorphingDialogTrigger>
-                  <article className="relative flex items-center justify-center cursor-pointer">
-                    <div className="relative">
-                      {imageDim.width > 0 && imageDim.height > 0 ? (
-                        <Image
-                          className="relative max-w-[400px] w-full md:w-auto md:justify-center transition-transform duration-300 ease-in-out hover:scale-[1.02]"
-                          src={imageDim.src}
-                          alt={`Image ${index + 1}`}
-                          width={imageDim.width}
-                          height={imageDim.height}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-red-500">
-                          Image failed to load
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                </MorphingDialogTrigger>
+          <div key={colIndex} className="flex flex-col gap-3 sm:gap-4 md:gap-6 flex-1">
+            {column.map((imageDim, index) => {
+              const globalIndex = dimensions.findIndex(d => d.src === imageDim.src);
+              return (
+                <MorphingDialog
+                  key={`${colIndex}-${index}`}
+                  transition={{
+                    duration: 0.4,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  <MorphingDialogTrigger>
+                    <article className="relative flex items-center justify-center cursor-pointer group">
+                      <div className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                        {imageDim.width > 0 && imageDim.height > 0 ? (
+                          <Image
+                            className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                            src={imageDim.src}
+                            alt={`World Cup 2022 Photo ${globalIndex + 1}`}
+                            width={imageDim.width}
+                            height={imageDim.height}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            priority={globalIndex < 6}
+                          />
+                        ) : (
+                          <div className="w-full h-48 sm:h-64 flex items-center justify-center text-red-500 bg-gray-100 rounded-lg">
+                            <span className="text-sm">Image failed to load</span>
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  </MorphingDialogTrigger>
 
-                <MorphingDialogContainer>
-                  <MorphingDialogContent className="relative">
-                    <MorphingDialogImage
-                      src={imageDim.src}
-                      alt={`Image ${index + 1}`}
-                      className="h-auto w-full max-w-[90vw] rounded-[6px] object-contain lg:h-[90vh]"
-                    />
-                  </MorphingDialogContent>
-                  <MorphingDialogClose
-                    className="fixed right-6 top-6 h-fit w-fit rounded-full bg-white/90 p-2 shadow-lg backdrop-blur"
-                    variants={{
-                      initial: { opacity: 0 },
-                      animate: {
-                        opacity: 1,
-                        transition: { delay: 0.2, duration: 0.1 },
-                      },
-                      exit: { opacity: 0, transition: { duration: 0 } },
-                    }}
-                  >
-                    <XIcon className="h-6 w-6 text-zinc-700 hover:text-black" />
-                  </MorphingDialogClose>
-                </MorphingDialogContainer>
-              </MorphingDialog>
-            ))}
+                  <MorphingDialogContainer>
+                    <MorphingDialogContent className="relative max-w-[95vw] h-[95vh] sm:max-w-[90vw] sm:h-[90vh] flex items-center justify-center">
+                      <MorphingDialogImage
+                        src={imageDim.src}
+                        alt={`World Cup 2022 Photo ${globalIndex + 1}`}
+                        className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                      />
+                    </MorphingDialogContent>
+                    <MorphingDialogClose
+                      className="fixed right-3 top-3 sm:right-6 sm:top-6 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-white/90 hover:bg-white p-1.5 sm:p-2 shadow-lg backdrop-blur-sm border border-gray-200/50"
+                      variants={{
+                        initial: { opacity: 0, scale: 0.8 },
+                        animate: {
+                          opacity: 1,
+                          scale: 1,
+                          transition: { delay: 0.2, duration: 0.2 },
+                        },
+                        exit: { 
+                          opacity: 0, 
+                          scale: 0.8, 
+                          transition: { duration: 0.15 } 
+                        },
+                      }}
+                    >
+                      <XIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 hover:text-black transition-colors" />
+                    </MorphingDialogClose>
+                  </MorphingDialogContainer>
+                </MorphingDialog>
+              );
+            })}
           </div>
         ))}
       </div>
-
     </div>
   );
 };
