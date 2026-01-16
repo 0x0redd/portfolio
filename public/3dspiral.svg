@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 460" width="530" height="460">
+  <defs>
+    <!-- Softer, deeper gradient -->
+    <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5af6e9"/>
+      <stop offset="50%" stop-color="#4b8aff"/>
+      <stop offset="100%" stop-color="#2222da"/>
+    </linearGradient>
+
+    <!-- Smooth pulse animation in gradient stops -->
+    <linearGradient id="animatedBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5af6e9">
+        <animate attributeName="stop-opacity" values="0.1;1;0.1" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" stop-color="#4b8aff">
+        <animate attributeName="stop-opacity" values="0.1;1;0.1" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+      </stop>
+      <stop offset="100%" stop-color="#2222da">
+        <animate attributeName="stop-opacity" values="0.1;1;0.1" dur="4s" repeatCount="indefinite" begin="1.6s"/>
+      </stop>
+    </linearGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      @keyframes drawPath {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: -2050; }
+      }
+      @keyframes beamPulse {
+        0%,100% { stroke-width: 3; opacity: 0.7; }
+        50% { stroke-width: 5; opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <!-- Base glow line -->
+  <path 
+    fill="none"
+    stroke="url(#beamGradient)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.9"
+    filter="url(#softGlow)"
+    d="M.9,313.67c94.63,15.73,192.75,37.98,192.76,65.03,0,8.28-9.19,14.41-17.57,20.01-46.29,30.9-130.63,13.72-142.17-21.46-12.75-38.87,65.65-92.69,76.52-99.92,67.45-44.86,182.54-78.53,266.91-26.47,37.72,23.28,73.45,66.25,63.5,85.6-11.75,22.84-87.36,13.11-138.9-12.23-5.34-2.62-49.4-24.9-78.8-69.48-7.27-11.02-16.81-28.2-21.73-50.27-3.94-17.66-2.67-28.32-1.7-33.72,2.02-11.27,6.3-19.71,8.66-23.85,1.45-2.55,5.36-9.07,12.51-16.35,13.68-13.93,29.8-20.98,40.25-25.1,29.42-11.6,64.17-25.29,111.4-20.84,11.45,1.08,34.61,3.46,61.23,15.84,10.71,4.98,73.09,35.35,73.13,79.2,0,4.26-.06,10.23-3.4,16.67-13.25,25.55-61.31,26.4-88.44,21.68-42.99-7.49-69.13-35.18-77.39-44.19-5.67-6.18-15.86-18.39-26.36-40.85-22.22-47.54-24.8-96.08-22.11-132.56"
+  />
+
+  <!-- Subtle translucent overlay -->
+  <path 
+    fill="none"
+    stroke="url(#animatedBeam)"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.6"
+    filter="blur(0.8px)"
+    d="M.9,313.67c94.63,15.73,192.75,37.98,192.76,65.03,0,8.28-9.19,14.41-17.57,20.01-46.29,30.9-130.63,13.72-142.17-21.46-12.75-38.87,65.65-92.69,76.52-99.92,67.45-44.86,182.54-78.53,266.91-26.47,37.72,23.28,73.45,66.25,63.5,85.6-11.75,22.84-87.36,13.11-138.9-12.23-5.34-2.62-49.4-24.9-78.8-69.48-7.27-11.02-16.81-28.2-21.73-50.27-3.94-17.66-2.67-28.32-1.7-33.72,2.02-11.27,6.3-19.71,8.66-23.85,1.45-2.55,5.36-9.07,12.51-16.35,13.68-13.93,29.8-20.98,40.25-25.1,29.42-11.6,64.17-25.29,111.4-20.84,11.45,1.08,34.61,3.46,61.23,15.84,10.71,4.98,73.09,35.35,73.13,79.2,0,4.26-.06,10.23-3.4,16.67-13.25,25.55-61.31,26.4-88.44,21.68-42.99-7.49-69.13-35.18-77.39-44.19-5.67-6.18-15.86-18.39-26.36-40.85-22.22-47.54-24.8-96.08-22.11-132.56"
+  />
+
+  <!-- Highlight beam that glides smoothly -->
+  <path
+    fill="none"
+    stroke="white"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="50 2000"
+    stroke-dashoffset="0"
+    opacity="0.8"
+    filter="drop-shadow(0 0 3px rgba(255,255,255,0.6))"
+    style="animation: drawPath 6s cubic-bezier(0.5,0,0.58,1) infinite, beamPulse 3s ease-in-out infinite;"
+    d="M.9,313.67c94.63,15.73,192.75,37.98,192.76,65.03,0,8.28-9.19,14.41-17.57,20.01-46.29,30.9-130.63,13.72-142.17-21.46-12.75-38.87,65.65-92.69,76.52-99.92,67.45-44.86,182.54-78.53,266.91-26.47,37.72,23.28,73.45,66.25,63.5,85.6-11.75,22.84-87.36,13.11-138.9-12.23-5.34-2.62-49.4-24.9-78.8-69.48-7.27-11.02-16.81-28.2-21.73-50.27-3.94-17.66-2.67-28.32-1.7-33.72,2.02-11.27,6.3-19.71,8.66-23.85,1.45-2.55,5.36-9.07,12.51-16.35,13.68-13.93,29.8-20.98,40.25-25.1,29.42-11.6,64.17-25.29,111.4-20.84,11.45,1.08,34.61,3.46,61.23,15.84,10.71,4.98,73.09,35.35,73.13,79.2,0,4.26-.06,10.23-3.4,16.67-13.25,25.55-61.31,26.4-88.44,21.68-42.99-7.49-69.13-35.18-77.39-44.19-5.67-6.18-15.86-18.39-26.36-40.85-22.22-47.54-24.8-96.08-22.11-132.56"
+  />
+</svg>
