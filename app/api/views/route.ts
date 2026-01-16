@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         spreadsheetId: TESTIMONIALS_SHEET_ID,
         range: `${VIEWS_SHEET_NAME}!A1:D1`,
       });
-      hasHeaders = headerCheck.data.values && headerCheck.data.values.length > 0;
+      hasHeaders = (headerCheck.data.values?.length ?? 0) > 0;
     } catch (error) {
       // Sheet might not exist
     }
