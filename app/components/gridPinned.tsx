@@ -16,16 +16,24 @@ interface ImageDimensions {
   src: string;
   width: number;
   height: number;
+  isVideo?: boolean;
 }
+
+const isVideoFile = (src: string): boolean => {
+  const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv'];
+  return videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
+};
 
 const GridPinned: React.FC = () => {
   const images = useMemo(() => [
+    '/VIDEO/MVI_0784_3.mp4',
     '/Pined/100_0370@3x.jpg',
     '/Pined/20241119-IMG_0246.jpg',
     '/Pined/20241215-IMG_0689.jpg',
     '/Pined/DSC_2652.jpg',
     '/Pined/DSC_3793.jpg',
     '/Pined/DSC_3821.jpg',
+    '/VIDEO/MVI_0784_Sub_04.00.mp4',
     '/Pined/DSC_3893.jpg',
     '/Pined/DSC_3900.jpg',
     '/Pined/DSC_3906.jpg',
@@ -33,12 +41,14 @@ const GridPinned: React.FC = () => {
     '/Pined/DSC_4179.jpg',
     '/Pined/DSC_4299.jpg',
     '/Pined/DSC_4909 (1).jpg',
+    '/VIDEO/MVI_0784_Sub_10.00.mp4',
     '/Pined/DSC_4927 (1).jpg',
     '/Pined/IMG_20200920_202833.jpg',
     '/Pined/IMG_20211130_170752 (2).jpg',
     '/Pined/IMG_4965.jpg',
     '/Pined/IMG_7896.jpg',
     '/Pined/IMG_7961-1.jpg',
+    '/VIDEO/MVI_0784_Sub_11.00.mp4',
     '/Pined/IMG_8263.jpg',
     '/Pined/IMG_8265.jpg',
     '/Pined/IMG_8612.jpg',
@@ -52,6 +62,7 @@ const GridPinned: React.FC = () => {
     '/Pined/IMG_9472.jpg',
     '/Pined/IMG_9476.jpg',
     '/Pined/IMG_9606.jpg',
+    '/VIDEO/MVI_0784_Sub_12.00.mp4',
     '/Pined/IMG_9631.jpg',
     '/Pined/IMG_9713.jpg',
     '/Pined/IMG_9846-Pano.jpg',
@@ -69,10 +80,28 @@ const GridPinned: React.FC = () => {
       const newDimensions: ImageDimensions[] = await Promise.all(
         images.map((src) => {
           return new Promise<ImageDimensions>((resolve) => {
-            const img = new window.Image();
-            img.onload = () => resolve({ src, width: img.width, height: img.height });
-            img.onerror = () => resolve({ src, width: 0, height: 0 });
-            img.src = src;
+            if (isVideoFile(src)) {
+              // For videos, use default dimensions or load video metadata
+              const video = document.createElement('video');
+              video.preload = 'metadata';
+              video.onloadedmetadata = () => {
+                resolve({ 
+                  src, 
+                  width: video.videoWidth || 1920, 
+                  height: video.videoHeight || 1080,
+                  isVideo: true 
+                });
+              };
+              video.onerror = () => {
+                resolve({ src, width: 1920, height: 1080, isVideo: true });
+              };
+              video.src = src;
+            } else {
+              const img = new window.Image();
+              img.onload = () => resolve({ src, width: img.width, height: img.height, isVideo: false });
+              img.onerror = () => resolve({ src, width: 0, height: 0, isVideo: false });
+              img.src = src;
+            }
           });
         })
       );
@@ -142,7 +171,18 @@ const GridPinned: React.FC = () => {
                   <MorphingDialogTrigger>
                     <article className="relative flex items-center justify-center cursor-pointer group">
                       <div className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
-                        {imageDim.width > 0 && imageDim.height > 0 ? (
+                        {imageDim.isVideo ? (
+                          <video
+                            className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                            src={imageDim.src}
+                            controls
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                          />
+                        ) : imageDim.width > 0 && imageDim.height > 0 ? (
                           <Image
                             className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                             src={imageDim.src}
@@ -163,11 +203,23 @@ const GridPinned: React.FC = () => {
 
                   <MorphingDialogContainer>
                     <MorphingDialogContent className="relative max-w-[95vw] h-[95vh] sm:max-w-[90vw] sm:h-[90vh] flex items-center justify-center">
-                      <MorphingDialogImage
-                        src={imageDim.src}
-                        alt={`Pinned work ${globalIndex + 1}`}
-                        className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
-                      />
+                      {imageDim.isVideo ? (
+                        <video
+                          src={imageDim.src}
+                          controls
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                        />
+                      ) : (
+                        <MorphingDialogImage
+                          src={imageDim.src}
+                          alt={`Pinned work ${globalIndex + 1}`}
+                          className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                        />
+                      )}
                     </MorphingDialogContent>
                     <MorphingDialogClose
                       className="fixed right-3 top-3 sm:right-6 sm:top-6 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-white/90 hover:bg-white p-1.5 sm:p-2 shadow-lg backdrop-blur-sm border border-gray-200/50"

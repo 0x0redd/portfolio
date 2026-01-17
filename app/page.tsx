@@ -1,6 +1,6 @@
 'use client';
 
-import { Camera } from 'lucide-react';
+import { Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavbarDemo } from '@/components/navbar';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -10,6 +10,8 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { InfiniteSlider } from '@/components/core/infinite-slider';
 import { ViewCount } from './components/viewTracker';
+import { AvatarLabelGroup } from '@/components/ui/avatar-label-group';
+import { ContactModal } from '@/app/components/contactModal';
 
 // Lazy load components that are below the fold
 const GridPinned = dynamic(() => import('./components/gridPinned'), {
@@ -177,15 +179,26 @@ function LazySection({ children }: { children: React.ReactNode }) {
 export default function Home() {
   // Video files from /VIDEO folder
   const videos = [
-    '/VIDEO/Sequence 01_17.webm',
-    '/VIDEO/Sequence 01_14.webm',
-    '/VIDEO/Sequence 01_12.webm',
-    '/VIDEO/Sequence 01_10.webm',
-    '/VIDEO/Sequence 01_11.webm',
     '/VIDEO/Untitled-1story_2.webm',
   ];
 
-  
+  // Ref for project cards scroll container
+  const projectsScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollProjects = (direction: 'left' | 'right'): void => {
+    if (projectsScrollRef.current) {
+      const scrollAmount = 320; // Card width (290px) + gap (16px) + some padding
+      const currentScroll = projectsScrollRef.current.scrollLeft;
+      const targetScroll = direction === 'left' 
+        ? currentScroll - scrollAmount 
+        : currentScroll + scrollAmount;
+      
+      projectsScrollRef.current.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <main className="min-h-screen bg-[#111111]">
@@ -199,84 +212,162 @@ export default function Home() {
             videos={videos}
             className="w-full h-full object-cover"
             autoPlay={true}
-            loop={false}
+            loop={true}
             muted={true}
             playsInline={true}
           />
         </div>
         
-        {/* Overlay with 50% opacity */}
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        {/* Overlay with gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10 z-10"></div>
         
         {/* Hero Content */}
-        <div className="relative z-20 space-y-6 container mx-auto px-6 md:px-12 lg:px-24">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-white leading-none">
-            Hello, I&apos;m<br />
-            <span className="text-[#fff] ">Othmane Ferrah</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-400 font-light max-w-2xl leading-relaxed">
-            Street & documentary photographer<br />
-            Focused on motion, emotion, and real human stories
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative z-20 space-y-8 container mx-auto px-6 md:px-12 lg:px-24"
+        >
+          {/* Role Label */}
+          <p className="text-xs md:text-sm tracking-[0.25em] text-white/70 uppercase">
+            Street & Documentary Photographer
           </p>
 
-          
-        </div>
+          {/* Name */}
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-white leading-none">
+            Hello, I&apos;m<br />
+            <span className="font-normal">Othmane Ferrah</span>
+          </h1>
+
+          {/* Manifesto Line */}
+          <p className="text-xl md:text-2xl text-gray-300 font-light max-w-2xl leading-relaxed">
+            Unscripted moments.<br />
+            Real people. Real stories.
+          </p>
+
+          {/* Location */}
+          <p className="text-sm md:text-base text-white/60 tracking-wide">
+            Based in Morocco — available worldwide
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Link
+              href="#projects"
+              className="px-8 py-3 bg-white text-black text-sm md:text-base tracking-wide hover:bg-gray-200 transition"
+            >
+              View Selected Work
+            </Link>
+
+            <ContactModal>
+              <button className="px-8 py-3 border border-white/40 text-white text-sm md:text-base tracking-wide hover:bg-white hover:text-black transition">
+                Contact
+              </button>
+            </ContactModal>
+          </div>
+
+          {/* Avatar Section - Moved here for better flow */}
+          <section id="about" className="pt-8 flex justify-start items-center">
+            <AvatarLabelGroup
+              size="xl"
+              src="/Pined/IMG_9846-Pano.jpg"
+              alt="Othmane Ferrah"
+              title="Othmane Ferrah"
+              subtitle="Street & Documentary Photographer"
+              verified={true}
+            />
+          </section>
+        </motion.div>
       </section>
 
-      <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
+      {/* Pinned Works Section - Loads last */}
+      <LazySection>
+          <section className="mt-16 w-full mx-3">
+            <div className="mt-16 w-full">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-start">Pinned works and visuals</h1>
+              <GridPinned />
+            </div>
+          </section>
+        </LazySection>
 
+      <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
         {/* Projects Section - Loads after hero */}
         <LazySection>
-          <section id="projects" className=" my-16 relative overflow-hidden">
-            <h2 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-20 mt-10 font-bold text-white  text-start">Projects</h2>
-            {/* Project Navigation */}
-            <div  className="flex sm:flex-row flex-col justify-center items-center sm:mx-auto gap-4 mt-8 ">
-              <ProjectCard
-                title="World Cup Celebrations 22"
-                href="/WorldCup2022"
-                image="/world cup 2022/DSC_3906.jpg"
-                description="A candid street photography series capturing the raw emotions and celebrations of football fans during the 2022 World Cup."
-              />
-              <ProjectCard
-                title="FES"
-                href="/FES25"
-                image="/Fes/IMG_9399.jpg"
-                description="Documenting the streets and stories of Fes through documentary photography."
-              />
-              <ProjectCard
-                title="Meknes"
-                href="/Meknes"
-                image="/meknes/IMG_20210410_193620 (2).jpg"
-                description="Exploring the urban landscape and human stories of Meknes."
-              />
-              <ProjectCard
-                title="Street"
-                href="/Street"
-                image="/Street/IMG_20220813_190956 (2).jpg"
-                description="Street photography capturing real moments, emotions, and human stories."
-              />
-              <ProjectCard
-                title="Rabat"
-                href="/rabat"
-                image="/rabat/IMG_4941.jpg"
-                description="Capturing the essence of Rabat through street and documentary photography."
-              />
-              <ProjectCard
-                title="Wedding"
-                href="/Wedding"
-                image="/candid/IMG_9219.jpg"
-                description="Candid wedding photography preserving authentic moments and emotions of your special day."
-              />
+          <section id="projects" className="my-16 relative w-full">
+            <div className="container mx-auto px-3 md:px-6 lg:px-12 mb-10">
+              <h2 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-10 mt-10 font-bold text-white text-start">Projects</h2>
+            </div>
+            {/* Project Navigation - Full width horizontal scroll on desktop */}
+            <div className="relative w-full">
+              {/* Navigation Buttons - Desktop only */}
+              <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-10 justify-between pointer-events-none px-4">
+                <button
+                  onClick={() => scrollProjects('left')}
+                  className="pointer-events-auto bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-200 hover:scale-110"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => scrollProjects('right')}
+                  className="pointer-events-auto bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-200 hover:scale-110"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+              <div 
+                ref={projectsScrollRef}
+                className="w-full overflow-x-auto overflow-y-visible pb-4 scrollbar-hide scroll-smooth"
+              >
+                <div className="flex flex-col sm:flex-row justify-start items-center sm:items-start gap-4 mt-8 px-3 md:px-6 lg:px-12 md:min-w-max md:flex-nowrap">
+                  <ProjectCard
+                    title="World Cup Celebrations 22"
+                    href="/WorldCup2022"
+                    image="/world cup 2022/DSC_3906.jpg"
+                    description="A candid street photography series capturing the raw emotions and celebrations of football fans during the 2022 World Cup."
+                  />
+                  <ProjectCard
+                    title="FES"
+                    href="/FES25"
+                    image="/Fes/IMG_9399.jpg"
+                    description="Documenting the streets and stories of Fes through documentary photography."
+                  />
+                  <ProjectCard
+                    title="Meknes"
+                    href="/Meknes"
+                    image="/meknes/IMG_20210410_193620 (2).jpg"
+                    description="Exploring the urban landscape and human stories of Meknes."
+                  />
+                  <ProjectCard
+                    title="Street"
+                    href="/Street"
+                    image="/Street/IMG_20220813_190956 (2).jpg"
+                    description="Street photography capturing real moments, emotions, and human stories."
+                  />
+                  <ProjectCard
+                    title="Rabat"
+                    href="/rabat"
+                    image="/rabat/IMG_4941.jpg"
+                    description="Capturing the essence of Rabat through street and documentary photography."
+                  />
+                  <ProjectCard
+                    title="Candid"
+                    href=""
+                    image="/candid/DSC_2135.jpg"
+                    description="Candid photography capturing real moments, emotions, and human stories."
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </LazySection>
 
         {/* Current Project Section */}
         <LazySection>
-          <section className="mt-20 w-full">
+          <section className="w-full">
             <Link href="/afcon">
-              <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-lg group cursor-pointer">
+              <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg group cursor-pointer">
                 <Image 
                   src="/Afcon/IMG_1682.jpg" 
                   alt="Current Project : AFCON 25" 
@@ -304,28 +395,26 @@ export default function Home() {
           </section>
         </LazySection>
 
-        {/* Pinned Works Section - Loads last */}
-        <LazySection>
-          <section className="mt-16 w-full">
-            <div className="mt-16 w-full">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-start">Pinned works and visuals</h1>
-              <GridPinned />
-            </div>
-          </section>
-        </LazySection>
-
-        
-
         <footer className="py-12 border-t border-[#193977]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
             <div className="flex flex-col gap-2">
-              <p>© 2025 Othmane Ferrah. All rights reserved.</p>
+              <p>© 2026 Othmane Ferrah. All rights reserved.</p>
               <ViewCount />
             </div>
             <div className="flex gap-8 items-center">
-              <a href="#" className="hover:text-[#e5fdfd] transition-colors">Instagram</a>
-              <a href="#" className="hover:text-[#e5fdfd] transition-colors">Behance</a>
-              <a href="#" className="hover:text-[#e5fdfd] transition-colors">Contact</a>
+              <a 
+                href="https://instagram.com/0x0red" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-[#e5fdfd] transition-colors"
+              >
+                Instagram
+              </a>
+              <ContactModal>
+                <button className="hover:text-[#e5fdfd] transition-colors">
+                  Contact
+                </button>
+              </ContactModal>
             </div>
           </div>
         </footer>

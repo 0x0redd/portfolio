@@ -10,6 +10,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { ContactModal } from "@/app/components/contactModal";
 
 export function NavbarDemo() {
   const navItems = [
@@ -23,7 +24,7 @@ export function NavbarDemo() {
     },
     {
       name: "About",
-      link: "/#about",
+      link: "/about",
     },
   ];
 
@@ -65,13 +66,15 @@ export function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Book me Now
-              </NavbarButton>
+              <ContactModal>
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Book me Now
+                </NavbarButton>
+              </ContactModal>
             </div>
           </MobileNavMenu>
         </MobileNav>
