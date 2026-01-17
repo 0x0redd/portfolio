@@ -38,3 +38,7 @@ next-env.d.ts
 # stray app directories in public folder
 public/**/my-app/
 public/**/node_modules/
+
+# Large video files (use Git LFS or host externally)
+public/VIDEO/*.mp4
+public/VIDEO/*.webm
