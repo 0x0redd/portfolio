@@ -275,6 +275,10 @@ export default function Home() {
               title="Othmane Ferrah"
               subtitle="Street & Documentary Photographer"
               verified={true}
+              instagramUrl="https://instagram.com/0x0red"
+              behanceUrl="https://www.behance.net/othmaneferrah"
+              // linkedinUrl="https://www.linkedin.com/in/0x0red"
+              unsplashUrl="https://unsplash.com/@0x0red"
             />
           </section>
         </motion.div>
