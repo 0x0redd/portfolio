@@ -357,7 +357,7 @@ export default function Home() {
                   />
                   <ProjectCard
                     title="Candid"
-                    href=""
+                    href="/candid"
                     image="/candid/DSC_2135.jpg"
                     description="Candid photography capturing real moments, emotions, and human stories."
                   />
