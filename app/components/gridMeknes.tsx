@@ -108,59 +108,27 @@ const GridMeknes: React.FC = () => {
     '/meknes/sumer 3-0527.jpg',
   ], []);
 
-  const [dimensions, setDimensions] = useState<ImageDimensions[]>([]);
-  const [columns, setColumns] = useState<ImageDimensions[][]>([[], [], []]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [dimensions, setDimensions] = useState<Record<string, ImageDimensions>>({});
+  const [mediaLoaded, setMediaLoaded] = useState<Record<string, boolean>>({});
   
   useEffect(() => {
-    const loadImageDimensions = async () => {
-      const newDimensions: ImageDimensions[] = await Promise.all(
-        images.map((src) => {
-          return new Promise<ImageDimensions>((resolve) => {
-            const img = new window.Image();
-            img.onload = () => resolve({ src, width: img.width, height: img.height });
-            img.onerror = () => resolve({ src, width: 0, height: 0 });
-            img.src = src;
-          });
-        })
-      );
-      setDimensions(newDimensions);
-      
-      // Distribute images into columns based on aspect ratio to minimize gaps
-      const numColumns = 3;
-      const columnHeights = new Array(numColumns).fill(0);
-      const distributedColumns: ImageDimensions[][] = new Array(numColumns).fill(null).map(() => []);
-      
-      newDimensions.forEach((imageDim) => {
-        if (imageDim.width > 0 && imageDim.height > 0) {
-          const aspectRatio = imageDim.height / imageDim.width;
-          const estimatedHeight = 400 * aspectRatio;
-          
-          const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-          distributedColumns[shortestColumnIndex].push(imageDim);
-          columnHeights[shortestColumnIndex] += estimatedHeight;
-        } else {
-          distributedColumns[0].push(imageDim);
-        }
-      });
-      
-      setColumns(distributedColumns);
-      setIsLoading(false);
-    };
-
-    loadImageDimensions();
+    images.forEach((src) => {
+      const img = new window.Image();
+      img.onload = () => {
+        setDimensions((prev) => ({
+          ...prev,
+          [src]: { src, width: img.width, height: img.height },
+        }));
+      };
+      img.onerror = () => {
+        setDimensions((prev) => ({
+          ...prev,
+          [src]: { src, width: 1600, height: 1200 },
+        }));
+      };
+      img.src = src;
+    });
   }, [images]);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading photos...</p>
-        </div>
-      </div>
-    );
-  }
 
   if (!images || images.length === 0) {
     return (
@@ -175,13 +143,19 @@ const GridMeknes: React.FC = () => {
   return (
     <div className="px-2 sm:px-4 md:px-6 lg:px-8 container mx-auto max-w-7xl">
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
-        {columns.map((column, colIndex) => (
+        {[0, 1, 2].map((colIndex) => (
           <div key={colIndex} className="flex flex-col gap-3 sm:gap-4 md:gap-6 flex-1">
-            {column.map((imageDim, index) => {
-              const globalIndex = dimensions.findIndex(d => d.src === imageDim.src);
+            {images.filter((_, index) => index % 3 === colIndex).map((src, indexInColumn) => {
+              const globalIndex = images.findIndex((item) => item === src);
+              const imageDim = dimensions[src];
+              const isReady = mediaLoaded[src] === true;
+              const aspectRatio =
+                imageDim && imageDim.width > 0 && imageDim.height > 0
+                  ? `${imageDim.width} / ${imageDim.height}`
+                  : '4 / 5';
               return (
                 <MorphingDialog
-                  key={`${colIndex}-${index}`}
+                  key={`${colIndex}-${indexInColumn}-${src}`}
                   transition={{
                     duration: 0.4,
                     ease: 'easeInOut',
@@ -189,22 +163,28 @@ const GridMeknes: React.FC = () => {
                 >
                   <MorphingDialogTrigger>
                     <article className="relative flex items-center justify-center cursor-pointer group">
-                      <div className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
-                        {imageDim.width > 0 && imageDim.height > 0 ? (
-                          <Image
-                            className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
-                            src={imageDim.src}
-                            alt={`Meknes Photo ${globalIndex + 1}`}
-                            width={imageDim.width}
-                            height={imageDim.height}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            priority={globalIndex < 6}
-                          />
-                        ) : (
-                          <div className="w-full h-48 sm:h-64 flex items-center justify-center text-red-500 bg-gray-100 rounded-lg">
-                            <span className="text-sm">Image failed to load</span>
-                          </div>
+                      <div
+                        className="relative w-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-300 bg-[#1d1d1d]"
+                        style={{ aspectRatio }}
+                      >
+                        {!isReady && (
+                          <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-white/10 to-white/5 z-10" />
                         )}
+                        <Image
+                          className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                          src={src}
+                          alt={`Meknes Photo ${globalIndex + 1}`}
+                          width={imageDim?.width || 1600}
+                          height={imageDim?.height || 1200}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          priority={globalIndex < 6}
+                          onLoad={() =>
+                            setMediaLoaded((prev) => ({ ...prev, [src]: true }))
+                          }
+                          onError={() =>
+                            setMediaLoaded((prev) => ({ ...prev, [src]: true }))
+                          }
+                        />
                       </div>
                     </article>
                   </MorphingDialogTrigger>
@@ -212,7 +192,7 @@ const GridMeknes: React.FC = () => {
                   <MorphingDialogContainer>
                     <MorphingDialogContent className="relative max-w-[95vw] h-[95vh] sm:max-w-[90vw] sm:h-[90vh] flex items-center justify-center">
                       <MorphingDialogImage
-                        src={imageDim.src}
+                        src={src}
                         alt={`Meknes Photo ${globalIndex + 1}`}
                         className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
                       />
