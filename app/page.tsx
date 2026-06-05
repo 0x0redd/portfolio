@@ -277,29 +277,19 @@ export default function Home() {
               verified={true}
               instagramUrl="https://instagram.com/0x0red"
               behanceUrl="https://www.behance.net/othmaneferrah"
-              // linkedinUrl="https://www.linkedin.com/in/0x0red"
+              linkedinUrl="https://www.linkedin.com/in/0x0red"
               unsplashUrl="https://unsplash.com/@0x0red"
             />
           </section>
         </motion.div>
       </section>
 
-      {/* Pinned Works Section - Loads last */}
+      {/* Projects Section - Loads after hero */}
       <LazySection>
-          <section className="mt-16 w-full mx-3">
-            <div className="mt-16 w-full">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-start">Pinned works and visuals</h1>
-              <GridPinned />
-            </div>
-          </section>
-        </LazySection>
-
-      <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
-        {/* Projects Section - Loads after hero */}
-        <LazySection>
           <section id="projects" className="my-16 relative w-full">
             <div className="container mx-auto px-3 md:px-6 lg:px-12 mb-10">
-              <h2 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-10 mt-10 font-bold text-white text-start">Projects</h2>
+              <h2 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-10 mt-10 font-medium text-white text-start">
+                Projects</h2>
             </div>
             {/* Project Navigation - Full width horizontal scroll on desktop */}
             <div className="relative w-full">
@@ -366,6 +356,22 @@ export default function Home() {
             </div>
           </section>
         </LazySection>
+
+      {/* Pinned Works Section - Loads last */}
+      <LazySection>
+          <section className="mt-16 w-full mx-3">
+            <div className="container mx-auto px-3 md:px-6 lg:px-12 mb-10">
+              <h1 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-10 mt-10 font-medium text-white text-start">
+                Pinned works and visuals</h1>
+            </div>
+            <div className='mx-2 md:mx-6 lg:mx-12'>
+              <GridPinned />
+            </div>  
+          </section>
+        </LazySection>
+
+      <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
+        
 
         {/* Current Project Section */}
         <LazySection>

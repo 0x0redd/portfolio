@@ -64,7 +64,7 @@ const ReviewCard = ({
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15] "
+        "dark:border-gray-50/[.5] dark:bg-gray-50/[.15] dark:hover:bg-gray-50/[.20] "
       )}
     >
       <div className="flex flex-row items-center gap-2">
@@ -171,13 +171,13 @@ export function MarqueeDemo() {
 
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden ">
-      <div className="mb-12 flex w-full flex-col items-center gap-4">
+      <div className="mb-5 flex w-full flex-col items-center gap-4">
         <h2 className="text-3xl md:text-4xl font-light tracking-tight text-center">
-          The Word on the Street
+          The Word on the Streets
         </h2>
         <p className="text-sm md:text-base text-muted-foreground text-center max-w-2xl">
           What fellow photographers and creatives are saying
-        </p>
+        </p>  
       </div>
       <div className="mb-8 flex w-full justify-center">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
