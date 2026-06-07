@@ -12,6 +12,8 @@ import { InfiniteSlider } from '@/components/core/infinite-slider';
 import { ViewCount } from './components/viewTracker';
 import { AvatarLabelGroup } from '@/components/ui/avatar-label-group';
 import { ContactModal } from '@/app/components/contactModal';
+import { ProjectCard } from '@/components/project-card';
+import { projects } from '@/lib/projects';
 
 // Lazy load components that are below the fold
 const GridPinned = dynamic(() => import('./components/gridPinned'), {
@@ -31,78 +33,6 @@ const MarqueeDemo = dynamic(() => import('./components/comments').then(mod => ({
   ),
   ssr: false,
 });
-
-interface ProjectCardProps {
-  title: string;
-  href: string;
-  image: string;
-  description: string;
-}
-
-function ProjectCard({ title, href, image, description }: ProjectCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const imageVariants = {
-    collapsed: { scale: 1, filter: 'blur(0px)' },
-    expanded: { scale: 1.1, filter: 'blur(3px)' },
-  };
-
-  const contentVariants = {
-    collapsed: { opacity: 0, y: 10 },
-    expanded: { opacity: 1, y: 0 },
-  };
-
-  const transition = {
-    type: 'spring' as const,
-    stiffness: 26.7,
-    damping: 4.1,
-    mass: 0.2,
-  };
-
-  return (
-    <Link
-      href={href}
-      className='relative h-[350px] w-[290px] overflow-hidden rounded-xl block group'
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.div
-        className="h-full w-full"
-        animate={isHovered ? 'expanded' : 'collapsed'}
-        variants={imageVariants}
-        transition={transition}
-      >
-        <Image
-          src={image}
-          alt={title}
-          width={290}
-          height={350}
-          className='h-full w-full object-cover select-none'
-        />
-      </motion.div>
-      <div className='absolute bottom-0 left-0 right-0 rounded-xl bg-gray-900/50 backdrop-blur-sm px-4 pt-2'>
-        <div className='w-full pb-2 text-left text-[16px] font-bold text-white'>
-          {title}
-        </div>
-        {isHovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={transition}
-            className='flex flex-col pb-4 text-[13px] text-zinc-300'
-          >
-            <p className='line-clamp-3 mb-3'>
-              {description}
-            </p>
-            <div className='w-full rounded-[4px] border border-zinc-700 bg-zinc-900 px-4 py-1 text-zinc-50 text-center transition-colors duration-300 hover:bg-zinc-800'>
-              View Project
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </Link>
-  );
-}
 
 function InfiniteSliderBasic() {
   return (
@@ -315,42 +245,11 @@ export default function Home() {
                 className="w-full overflow-x-auto overflow-y-visible pb-4 scrollbar-hide scroll-smooth"
               >
                 <div className="flex flex-col sm:flex-row justify-start items-center sm:items-start gap-4 mt-8 px-3 md:px-6 lg:px-12 md:min-w-max md:flex-nowrap">
-                  <ProjectCard
-                    title="World Cup Celebrations 22"
-                    href="/WorldCup2022"
-                    image="/world cup 2022/DSC_3906.jpg"
-                    description="A candid street photography series capturing the raw emotions and celebrations of football fans during the 2022 World Cup."
-                  />
-                  <ProjectCard
-                    title="FES"
-                    href="/FES25"
-                    image="/Fes/IMG_9399.jpg"
-                    description="Documenting the streets and stories of Fes through documentary photography."
-                  />
-                  <ProjectCard
-                    title="Meknes"
-                    href="/Meknes"
-                    image="/meknes/IMG_20210410_193620 (2).jpg"
-                    description="Exploring the urban landscape and human stories of Meknes."
-                  />
-                  <ProjectCard
-                    title="Street"
-                    href="/Street"
-                    image="/Street/IMG_20220813_190956 (2).jpg"
-                    description="Street photography capturing real moments, emotions, and human stories."
-                  />
-                  <ProjectCard
-                    title="Rabat"
-                    href="/rabat"
-                    image="/rabat/IMG_4941.jpg"
-                    description="Capturing the essence of Rabat through street and documentary photography."
-                  />
-                  <ProjectCard
-                    title="Candid"
-                    href="/candid"
-                    image="/candid/DSC_2135.jpg"
-                    description="Candid photography capturing real moments, emotions, and human stories."
-                  />
+                  {projects
+                    .filter((project) => !project.featured)
+                    .map((project) => (
+                      <ProjectCard key={project.href} {...project} />
+                    ))}
                 </div>
               </div>
             </div>
@@ -365,6 +264,7 @@ export default function Home() {
                 Pinned works and visuals</h1>
             </div>
             <div className='mx-2 md:mx-6 lg:mx-12'>
+
               <GridPinned />
             </div>  
           </section>

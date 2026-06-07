@@ -3,10 +3,9 @@
 import React from 'react'
 import { NavbarDemo } from '@/components/navbar'
 import GridFES from '../components/gridFES25'
-import VideoPlayer from '../components/video'
+import { ScrollHorizontalVideos } from '../components/scrollHorizontalVideos'
 
-export default function WorldCup2022() {
-  // Video files from /VIDEO folder
+export default function FES25() {
   const videos = [
     '/VIDEO/Sequence 01_9.webm',
     '/VIDEO/Sequence 01_10.webm',
@@ -38,26 +37,7 @@ export default function WorldCup2022() {
               </div>
         </div>
 
-        {/* videos - side by side */}
-        <div className="w-full mb-16 overflow-x-auto overflow-y-visible pb-4 scrollbar-hide scroll-smooth">
-          <div className="flex gap-4 px-3 md:px-6 lg:px-12 min-w-max">
-            {videos.map((video, index) => (
-              <div 
-                key={index} 
-                className="relative flex-shrink-0 w-[300px] md:w-[400px] lg:w-[500px] aspect-[4/3] overflow-hidden rounded-lg"
-              >
-                <video
-                  src={video}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <ScrollHorizontalVideos videos={videos} />
 
         <GridFES />
 

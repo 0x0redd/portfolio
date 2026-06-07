@@ -1,85 +1,199 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { NavbarDemo } from '@/components/navbar';
-import { AvatarLabelGroup } from '@/components/ui/avatar-label-group';
-import Image from 'next/image';
+import { NavbarDemo } from "@/components/navbar";
+import { Avatar } from "@/components/ui/avatar-enhanced";
+import { Badge } from "@/components/ui/badge";
+import { TableOfContents } from "@/components/about/TableOfContents";
+import { SocialLinks } from "@/components/about/SocialLinks";
+import { about, person } from "@/lib/about-content";
+import { Globe } from "lucide-react";
 
 export default function About() {
+  const structure = [
+    {
+      title: about.intro.title,
+      display: about.intro.display,
+      items: [],
+    },
+    {
+      title: about.work.title,
+      display: about.work.display,
+      items: about.work.experiences.map((experience) => experience.company),
+    },
+    {
+      title: about.studies.title,
+      display: about.studies.display,
+      items: about.studies.institutions.map((institution) => institution.name),
+    },
+    {
+      title: about.technical.title,
+      display: about.technical.display,
+      items: about.technical.skills.map((skill) => skill.title),
+    },
+  ];
+
   return (
-    <main className="min-h-screen bg-[#141414]">
+    <main className="min-h-screen bg-[#141414] text-white">
       <NavbarDemo />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-24 pt-20 pb-20">
-        {/* Hero Section */}
-        <section className="mb-20">
-          <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-            <div className="flex-shrink-0">
-              <AvatarLabelGroup
+      <div className="relative mx-auto max-w-5xl px-6 pb-24 pt-24 md:px-12 lg:px-16">
+        <TableOfContents structure={structure} />
+
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-12">
+          {about.avatar.display && (
+            <aside className="flex w-full flex-col items-center gap-4 md:sticky md:top-24 md:w-44 md:shrink-0 md:self-start">
+              <Avatar
                 size="2xl"
-                src="/Pined/IMG_9846-Pano.jpg"
-                alt="Othmane Ferrah"
-                title="Othmane Ferrah"
-                subtitle="Street & Documentary Photographer"
-                verified={true}
+                src={person.avatar}
+                alt={person.name}
+                verified
+                className="!w-28 !h-28 md:!w-32 md:!h-32"
               />
-            </div>
-            <div className="flex-1">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white mb-6">
-                About Me
+              <div className="flex items-center gap-2 text-sm text-white/60">
+                <Globe className="h-4 w-4" aria-hidden="true" />
+                <span>{person.location}</span>
+              </div>
+              {person.languages.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-2">
+                  {person.languages.map((language) => (
+                    <Badge
+                      key={language}
+                      variant="outline"
+                      className="border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+                    >
+                      {language}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </aside>
+          )}
+
+          <div className="min-w-0 flex-1">
+            <section
+              id={about.intro.title}
+              className="mb-12 flex min-h-40 flex-col justify-center text-center md:mb-16 md:text-left"
+            >
+              <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+                {person.name}
               </h1>
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-                I&apos;m a street and documentary photographer based in Morocco, 
-                dedicated to capturing unscripted moments and real human stories. 
-                My work explores the intersection of culture, emotion, and everyday life.
-              </p>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed">
-                Through my lens, I document the authentic moments that define our shared 
-                human experience—from celebrations to quiet reflections, from ancient 
-                traditions to modern expressions.
-              </p>
-            </div>
-          </div>
-        </section>
+              <p className="mt-3 text-lg text-white/55 md:text-xl">{person.role}</p>
+              <SocialLinks />
+            </section>
 
-        {/* Approach Section */}
-        <section className="mb-20">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
-            My Approach
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-2xl font-light text-white mb-4">Documentary Storytelling</h3>
-              <p className="text-gray-300 leading-relaxed">
-                I believe in the power of authentic storytelling. Each project is an exploration 
-                of place, people, and culture—captured with respect and genuine curiosity.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-light text-white mb-4">Street Photography</h3>
-              <p className="text-gray-300 leading-relaxed">
-                The streets are my canvas. I capture the spontaneous moments, emotions, and 
-                interactions that happen in the everyday spaces we share.
-              </p>
-            </div>
-          </div>
-        </section>
+            {about.intro.display && (
+              <section className="mb-14 md:mb-16">
+                <p className="text-base leading-relaxed text-white/75 md:text-lg">
+                  {about.intro.description}
+                </p>
+              </section>
+            )}
 
-        {/* Location & Availability */}
-        <section className="mb-20">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
-            Location & Availability
-          </h2>
-          <p className="text-lg text-gray-300 leading-relaxed mb-4">
-            Based in Morocco — available for assignments worldwide.
-          </p>
-          <p className="text-base text-gray-400 leading-relaxed">
-            I work with brands, publications, and organizations that value authentic 
-            storytelling and cultural documentation. Whether it&apos;s editorial work, 
-            commercial projects, or personal documentary series, I bring a unique 
-            perspective to every assignment.
-          </p>
-        </section>
+            {about.work.display && (
+              <section className="mb-14 md:mb-16">
+                <h2
+                  id={about.work.title}
+                  className="mb-6 text-2xl font-semibold tracking-tight text-white md:text-3xl"
+                >
+                  {about.work.title}
+                </h2>
+                <div className="flex flex-col gap-10">
+                  {about.work.experiences.map((experience) => (
+                    <article key={experience.company} className="space-y-3">
+                      <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                        <h3
+                          id={experience.company}
+                          className="text-xl font-semibold text-white md:text-2xl"
+                        >
+                          {experience.company}
+                        </h3>
+                        <p className="text-sm text-white/45">{experience.timeframe}</p>
+                      </div>
+                      <p className="text-sm font-medium text-[#e5fdfd]/80 md:text-base">
+                        {experience.role}
+                      </p>
+                      <ul className="space-y-3 pl-0">
+                        {experience.achievements.map((achievement) => (
+                          <li
+                            key={achievement}
+                            className="text-sm leading-relaxed text-white/70 md:text-base"
+                          >
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {about.studies.display && (
+              <section className="mb-14 md:mb-16">
+                <h2
+                  id={about.studies.title}
+                  className="mb-6 text-2xl font-semibold tracking-tight text-white md:text-3xl"
+                >
+                  {about.studies.title}
+                </h2>
+                <div className="flex flex-col gap-8">
+                  {about.studies.institutions.map((institution) => (
+                    <article key={institution.name} className="space-y-2">
+                      <h3
+                        id={institution.name}
+                        className="text-xl font-semibold text-white md:text-2xl"
+                      >
+                        {institution.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-white/55 md:text-base">
+                        {institution.description}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {about.technical.display && (
+              <section>
+                <h2
+                  id={about.technical.title}
+                  className="mb-8 text-2xl font-semibold tracking-tight text-white md:text-3xl"
+                >
+                  {about.technical.title}
+                </h2>
+                <div className="flex flex-col gap-10">
+                  {about.technical.skills.map((skill) => (
+                    <article key={skill.title} className="space-y-3">
+                      <h3
+                        id={skill.title}
+                        className="text-xl font-semibold text-white md:text-2xl"
+                      >
+                        {skill.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-white/55 md:text-base">
+                        {skill.description}
+                      </p>
+                      {skill.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {skill.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              variant="outline"
+                              className="border-white/15 bg-white/5 px-3 py-1 text-sm text-white/75"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        </div>
       </div>
     </main>
   );
