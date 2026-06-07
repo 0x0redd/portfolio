@@ -12,18 +12,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { BorderBeam } from "@/components/ui/border-beam"
+
+const modalContentClassName =
+  "gap-0 overflow-hidden rounded-2xl border border-white/10 bg-[#141414]/85 p-0 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:max-w-[440px] [&>button]:right-4 [&>button]:top-4 [&>button]:flex [&>button]:h-8 [&>button]:w-8 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/10 [&>button]:bg-white/5 [&>button]:text-white/70 [&>button]:opacity-100 [&>button]:transition-colors hover:[&>button]:bg-white/10 hover:[&>button]:text-white"
+
+const fieldClassName =
+  "border-white/10 bg-white/[0.04] text-white placeholder:text-white/35 focus-visible:ring-white/20"
 
 interface Review {
   name: string
@@ -60,23 +57,40 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.5] dark:bg-gray-50/[.15] dark:hover:bg-gray-50/[.20] "
+        "group relative h-full w-80 cursor-pointer overflow-hidden rounded-sm border border-white/10 p-4",
+        "bg-[#141414]/40 shadow-[0_4px_24px_rgba(0,0,0,0.25)] backdrop-blur-md",
+        "transition-all duration-300 hover:border-white/20 hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
       )}
     >
-      <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#e5fdfd]/10 via-white/[0.04] to-purple-500/5 opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#141414]/90 via-transparent to-white/[0.02]"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10">
+        <div className="flex flex-row items-center gap-2">
+          <img
+            className="rounded-full ring-1 ring-white/15"
+            width="32"
+            height="32"
+            alt=""
+            src={img}
+          />
+          <div className="flex flex-col">
+            <figcaption className="text-sm font-medium text-white">
+              {name}
+            </figcaption>
+            <p className="text-xs font-medium text-white/45">{username}</p>
+          </div>
         </div>
+        <blockquote className="mt-3 text-sm leading-relaxed text-white/75">
+          {body}
+        </blockquote>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
     </figure>
   )
 }
@@ -182,58 +196,70 @@ export function MarqueeDemo() {
       <div className="mb-8 flex w-full justify-center">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button>Add a Comment</Button>
+            <Button className="rounded-full border border-white/10 bg-white/5 px-6 text-white backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/10">
+              Add a Comment
+            </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px] p-0">
-            <Card className="relative w-full overflow-hidden">
-              <CardHeader>
-                <CardTitle>Add a Comment</CardTitle>
-                <CardDescription>
-                  Share your thoughts about this portfolio.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit}>
-                  <div className="grid w-full items-center gap-4">
-                    {submitSuccess && (
-                      <div className="rounded-md bg-green-50 dark:bg-green-900/20 p-3 text-sm text-green-800 dark:text-green-200">
-                        Comment submitted successfully!
-                      </div>
-                    )}
-                    {submitError && (
-                      <div className="rounded-md bg-red-50 dark:bg-red-900/20 p-3 text-sm text-red-800 dark:text-red-200">
-                        {submitError}
-                      </div>
-                    )}
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Enter your name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        disabled={isSubmitting}
-                      />
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="comment">Comment</Label>
-                      <Textarea
-                        id="comment"
-                        placeholder="Enter your comment"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        required
-                        rows={4}
-                        disabled={isSubmitting}
-                      />
-                    </div>
+          <DialogContent
+            overlayClassName="bg-black/50 backdrop-blur-md"
+            className={modalContentClassName}
+          >
+            <DialogHeader className="space-y-2 border-b border-white/10 px-6 py-6 text-left">
+              <DialogTitle className="text-2xl font-semibold tracking-tight text-white">
+                Add a Comment
+              </DialogTitle>
+              <DialogDescription className="text-sm leading-relaxed text-white/50">
+                Share your thoughts about this portfolio.
+              </DialogDescription>
+            </DialogHeader>
+
+            <form onSubmit={handleSubmit} className="flex flex-col">
+              <div className="grid w-full gap-4 px-6 py-5">
+                {submitSuccess && (
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm text-emerald-200">
+                    Comment submitted successfully!
                   </div>
-                </form>
-              </CardContent>
-              <CardFooter className="flex justify-end gap-2">
+                )}
+                {submitError && (
+                  <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-200">
+                    {submitError}
+                  </div>
+                )}
+                <div className="flex flex-col space-y-2">
+                  <Label htmlFor="name" className="text-white/70">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    disabled={isSubmitting}
+                    className={fieldClassName}
+                  />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <Label htmlFor="comment" className="text-white/70">
+                    Comment
+                  </Label>
+                  <Textarea
+                    id="comment"
+                    placeholder="Enter your comment"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    required
+                    rows={4}
+                    disabled={isSubmitting}
+                    className={cn(fieldClassName, "resize-none")}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-2 border-t border-white/10 px-6 py-4">
                 <Button
+                  type="button"
                   variant="outline"
                   onClick={() => {
                     setIsOpen(false)
@@ -241,15 +267,19 @@ export function MarqueeDemo() {
                     setSubmitSuccess(false)
                   }}
                   disabled={isSubmitting}
+                  className="rounded-full border-white/10 bg-transparent text-white/70 hover:border-white/20 hover:bg-white/5 hover:text-white"
                 >
                   Cancel
                 </Button>
-                <Button onClick={handleSubmit} disabled={isSubmitting}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="rounded-full border border-white/10 bg-white text-black hover:bg-white/90"
+                >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
-              </CardFooter>
-              <BorderBeam duration={8} size={100} />
-            </Card>
+              </div>
+            </form>
           </DialogContent>
         </Dialog>
       </div>
