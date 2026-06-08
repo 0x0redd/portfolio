@@ -236,7 +236,7 @@ export default function Home() {
 
       {/* Pinned Works Section - Loads last */}
       <LazySection>
-          <section className="mt-16 w-full mx-3">
+          <section className="mt-16 w-full">
             <div className="container mx-auto px-3 md:px-6 lg:px-12 mb-10">
               <h1 className="text-8xl md:text-8xl lg:text-7xl text-center mx-auto mb-10 mt-10 font-medium text-white text-start">
                 Pinned works and visuals</h1>
