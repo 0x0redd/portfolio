@@ -8,12 +8,11 @@ import VideoPlayer from './components/video';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { InfiniteSlider } from '@/components/core/infinite-slider';
-import { ViewCount } from './components/viewTracker';
 import { AvatarLabelGroup } from '@/components/ui/avatar-label-group';
 import { ContactModal } from '@/app/components/contactModal';
 import { ProjectCard } from '@/components/project-card';
 import { projects } from '@/lib/projects';
+import { AnimatedCarousel } from './components/animated-carousel';
 
 // Lazy load components that are below the fold
 const GridPinned = dynamic(() => import('./components/gridPinned'), {
@@ -33,33 +32,6 @@ const MarqueeDemo = dynamic(() => import('./components/comments').then(mod => ({
   ),
   ssr: false,
 });
-
-function InfiniteSliderBasic() {
-  return (
-    <InfiniteSlider gap={24} reverse>
-      <img
-        src='/Canon_wordmark.svg'
-        alt='Canon logo'
-        className='h-[120px] w-[120px]'
-      />
-      <img
-        src='/Nikon_Logo.svg'
-        alt='Nikon logo'
-        className='h-[120px] w-auto'
-      />
-      <img
-        src='/Artboard 1.png'
-        alt='csc logo'
-        className='h-[120px] w-auto'
-      />
-      <img
-        src='/2Artboard 1.svg'
-        alt='csc logo'
-        className='h-[120px] w-auto'
-      />
-    </InfiniteSlider>
-  );
-}
 
 // LazySection component that only loads content when it enters viewport
 function LazySection({ children }: { children: React.ReactNode }) {
@@ -256,6 +228,12 @@ export default function Home() {
           </section>
         </LazySection>
 
+        {/* <LazySection>
+          <section className="mt-16 w-full">
+            <AnimatedCarousel title="Trusted by" padding="py-6 lg:py-10" />
+          </section>
+        </LazySection> */}
+
       {/* Pinned Works Section - Loads last */}
       <LazySection>
           <section className="mt-16 w-full mx-3">
@@ -296,6 +274,12 @@ export default function Home() {
           </section>
         </LazySection>
 
+        <LazySection>
+          <section className="mt-16 w-full">
+            <AnimatedCarousel title="Trusted by" padding="py-6 lg:py-10" />
+          </section>
+        </LazySection>
+
         {/* Reviews Section - Loads after projects */}
         <LazySection>
           <section className="mt-16 w-full">
@@ -309,7 +293,6 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
             <div className="flex flex-col gap-2">
               <p>© 2026 Othmane Ferrah. All rights reserved.</p>
-              <ViewCount />
             </div>
             <div className="flex gap-8 items-center">
               <a 

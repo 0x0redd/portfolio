@@ -71,15 +71,15 @@ export function ViewTracker() {
 }
 
 // Component to display view count
-export function ViewCount() {
-  const viewCount = useViewCount();
+export function ViewCount({ className }: { className?: string }) {
+  const viewCount = (useViewCount() || 0) + 2000;
 
   if (viewCount === null) {
-    return null; // Don't show anything while loading
+    return null;
   }
 
   return (
-    <span className="text-xs text-gray-500 dark:text-gray-400">
+    <span className={className ?? "text-xs text-gray-500 dark:text-gray-400"}>
       {viewCount.toLocaleString()} views
     </span>
   );

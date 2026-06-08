@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Home, LayoutGrid, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { display, headerPerson, nav, routes } from "@/lib/nav-content";
+import { ViewCount } from "@/app/components/viewTracker";
 import styles from "./Header.module.css";
 
 function TimeDisplay({ timeZone, locale = "en-GB" }: { timeZone: string; locale?: string }) {
@@ -130,8 +131,10 @@ export function Header() {
             </nav>
           </div>
 
-          <div className="hidden flex-1 items-center justify-end pr-3 text-sm tabular-nums text-white/60 md:flex">
+          <div className="hidden flex-1 items-center justify-end gap-3 pr-3 text-sm tabular-nums text-white/60 md:flex">
+            
             {display.time && <TimeDisplay timeZone={headerPerson.timeZone} />}
+            <ViewCount className="text-sm text-white/60" /> 
           </div>
         </div>
       </header>

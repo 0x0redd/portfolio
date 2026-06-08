@@ -186,7 +186,7 @@ export function MarqueeDemo() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden ">
       <div className="mb-5 flex w-full flex-col items-center gap-4">
-        <h2 className="text-3xl md:text-4xl font-light tracking-tight text-center">
+        <h2 className="text-3xl md:text-6xl font-medium tracking-tight text-center">
           The Word on the Streets
         </h2>
         <p className="text-sm md:text-base text-muted-foreground text-center max-w-2xl">
