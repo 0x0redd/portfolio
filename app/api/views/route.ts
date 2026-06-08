@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 
 const TESTIMONIALS_SHEET_ID = "17PT7eF7NbNythiSCyRyYeE6UDVtuPGXzGQu1JVbaO0E";
 const VIEWS_SHEET_NAME = "views";
+const VIEW_COUNT_CELL = `${VIEWS_SHEET_NAME}!H2`;
 
 // Helper function to get Google Sheets client
 async function getSheetsClient() {
@@ -30,15 +31,17 @@ export async function GET() {
   try {
     const sheets = await getSheetsClient();
 
-    // Get total view count from the views sheet
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: TESTIMONIALS_SHEET_ID,
-      range: `${VIEWS_SHEET_NAME}!A:A`,
+      range: VIEW_COUNT_CELL,
+      valueRenderOption: "UNFORMATTED_VALUE",
     });
 
-    const rows = response.data.values || [];
-    // Subtract 1 for header row, count all rows as views
-    const viewCount = rows.length > 1 ? rows.length - 1 : 0;
+    const rawValue = response.data.values?.[0]?.[0];
+    const viewCount =
+      typeof rawValue === "number"
+        ? rawValue
+        : Number.parseInt(String(rawValue ?? "0"), 10) || 0;
 
     return NextResponse.json({ viewCount });
   } catch (error: any) {
