@@ -145,7 +145,7 @@ export function ScrollHorizontalVideos({ videos, children }: ScrollHorizontalVid
           </div>
         )}
 
-        <div className="flex w-full flex-shrink-0 items-end overflow-hidden pb-32 md:pb-24 lg:pb-32">
+        <div className="flex w-full flex-shrink-0 items-end overflow-hidden pb-48 md:pb-24 lg:pb-32">
           <motion.div
             ref={trackRef}
             style={{ x }}

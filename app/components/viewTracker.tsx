@@ -72,15 +72,22 @@ export function ViewTracker() {
 
 // Component to display view count
 export function ViewCount({ className }: { className?: string }) {
-  const viewCount = (useViewCount() || 0) + 2000;
+  const rawCount = useViewCount();
+  const [mounted, setMounted] = useState(false);
 
-  if (viewCount === null) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || rawCount === null) {
     return null;
   }
 
+  const viewCount = rawCount + 2000;
+
   return (
     <span className={className ?? "text-xs text-gray-500 dark:text-gray-400"}>
-      {viewCount.toLocaleString()} views
+      {viewCount.toLocaleString("en-US")} views
     </span>
   );
 }
