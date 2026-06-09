@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavbarDemo } from '@/components/navbar'
-
+import GridCandid from '../components/gridcandid'
 
 export default function Candid() {
   return (
@@ -21,7 +21,7 @@ export default function Candid() {
               </div>
         </div>
 
-        
+        <GridCandid />
 
     </main>
   )

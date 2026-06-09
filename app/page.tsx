@@ -131,8 +131,8 @@ export default function Home() {
           className="relative z-20 space-y-8 container mx-auto px-6 md:px-12 lg:px-24"
         >
           {/* Role Label */}
-          <p className="text-xs md:text-sm tracking-[0.25em] text-white/70 uppercase">
-            Street & Documentary Photographer
+          <p className="max-w-2xl text-xs leading-relaxed tracking-[0.18em] text-white/70 uppercase md:text-sm md:tracking-[0.22em]">
+            Photography · Graphic Design · Web Dev · MSc AI & Data Science
           </p>
 
           {/* Name */}
@@ -143,8 +143,8 @@ export default function Home() {
 
           {/* Manifesto Line */}
           <p className="text-xl md:text-2xl text-gray-300 font-light max-w-2xl leading-relaxed">
-            Unscripted moments.<br />
-            Real people. Real stories.
+            Stories through images, design, and code.<br />
+            MSc student in AI & Data Science.
           </p>
 
           {/* Location */}
@@ -175,12 +175,13 @@ export default function Home() {
               src="/Pined/IMG_9846-Pano.jpg"
               alt="Othmane Ferrah"
               title="Othmane Ferrah"
-              subtitle="Street & Documentary Photographer"
+              subtitle="Photographer · Designer · Developer · AI & Data Science"
               verified={true}
               instagramUrl="https://instagram.com/0x0red"
               behanceUrl="https://www.behance.net/othmaneferrah"
               linkedinUrl="https://www.linkedin.com/in/0x0red"
               unsplashUrl="https://unsplash.com/@0x0red"
+              githubUrl="https://github.com/0x0red"
             />
           </section>
         </motion.div>

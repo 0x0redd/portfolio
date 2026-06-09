@@ -2,7 +2,7 @@
 
 import { Avatar, type AvatarSize } from "./avatar-enhanced";
 import { cn } from "@/lib/utils";
-import { Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram, Github } from "lucide-react";
 import { siBehance, siUnsplash } from "simple-icons";
 import type { ReactNode } from "react";
 
@@ -19,6 +19,7 @@ export interface AvatarLabelGroupProps {
   behanceUrl?: string;
   linkedinUrl?: string;
   unsplashUrl?: string;
+  githubUrl?: string;
 }
 
 export const AvatarLabelGroup = ({
@@ -34,6 +35,7 @@ export const AvatarLabelGroup = ({
   behanceUrl,
   linkedinUrl,
   unsplashUrl,
+  githubUrl,
 }: AvatarLabelGroupProps) => {
   const socialIconSizeClass =
     size === "xxs" || size === "xs"
@@ -83,7 +85,7 @@ export const AvatarLabelGroup = ({
           </span>
         )}
 
-        {(instagramUrl || behanceUrl || linkedinUrl || unsplashUrl) && (
+        {(instagramUrl || behanceUrl || linkedinUrl || unsplashUrl || githubUrl) && (
           <div className="mt-2 flex items-center gap-3">
             {instagramUrl && (
               <SocialIconLink
@@ -125,6 +127,11 @@ export const AvatarLabelGroup = ({
                 >
                   <path d={siUnsplash.path} />
                 </svg>
+              </SocialIconLink>
+            )}
+            {githubUrl && (
+              <SocialIconLink href={githubUrl} label="GitHub">
+                <Github className={socialIconSizeClass} aria-hidden="true" />
               </SocialIconLink>
             )}
           </div>

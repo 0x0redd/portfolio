@@ -8,6 +8,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Computer science club",
+    href: "/CSC",
+    image: "/CSC/IMG_9006-15.jpg",
+    description:
+      "Event photography for the computer science club at the university of moulay ismail.",
+  },
+  {
     title: "AFCON 25",
     href: "/afcon",
     image: "/Afcon/IMG_1682.jpg",
