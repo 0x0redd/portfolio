@@ -17,12 +17,16 @@ export function ProjectCard({
   description,
   featured,
   className,
+  available = true,
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const imageVariants = {
     collapsed: { scale: 1, filter: "blur(0px)" },
-    expanded: { scale: 1.1, filter: "blur(3px)" },
+    expanded: {
+      scale: available ? 1.1 : 1,
+      filter: available ? "blur(3px)" : "blur(10px)",
+    },
   };
 
   const transition = {
@@ -32,13 +36,12 @@ export function ProjectCard({
     mass: 0.2,
   };
 
-  return (
-    <Link
-      href={href}
-      className={`relative block h-[350px] w-full max-w-[290px] overflow-hidden rounded-xl group ${className ?? ""}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+  const cardClassName = `relative block h-[350px] w-full max-w-[290px] overflow-hidden rounded-xl group ${
+    available ? "" : "cursor-not-allowed"
+  } ${className ?? ""}`;
+
+  const cardContent = (
+    <>
       {featured && (
         <span className="absolute left-3 top-3 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
           Current
@@ -58,11 +61,25 @@ export function ProjectCard({
           className="h-full w-full select-none object-cover"
         />
       </motion.div>
+
+      {!available && isHovered && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={transition}
+          className="absolute inset-0 z-20 flex items-center justify-center bg-black/50 backdrop-blur-md"
+        >
+          <span className="rounded-full border border-white/20 bg-black/40 px-5 py-2 text-sm font-medium uppercase tracking-[0.2em] text-white">
+            Unavailable
+          </span>
+        </motion.div>
+      )}
+
       <div className="absolute bottom-0 left-0 right-0 rounded-xl bg-gray-900/50 px-4 pt-2 backdrop-blur-sm">
         <div className="w-full pb-2 text-left text-[16px] font-bold text-white">
           {title}
         </div>
-        {isHovered && (
+        {available && isHovered && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,6 +93,30 @@ export function ProjectCard({
           </motion.div>
         )}
       </div>
+    </>
+  );
+
+  if (!available) {
+    return (
+      <div
+        className={cardClassName}
+        aria-disabled="true"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {cardContent}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      className={cardClassName}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {cardContent}
     </Link>
   );
 }

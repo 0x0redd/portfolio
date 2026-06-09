@@ -4,6 +4,7 @@ export interface Project {
   image: string;
   description: string;
   featured?: boolean;
+  available?: boolean;
 }
 
 export const projects: Project[] = [
@@ -53,9 +54,10 @@ export const projects: Project[] = [
   {
     title: "Candid",
     href: "/candid",
-    image: "/candid/IMG_3685.jpg",
+    image: "/candid/IMG_0736.jpg",
     description:
       "Unposed coverage for weddings, events, and portraits that feel natural and true to the moment.",
+    available: false,
   },
   {
     title: "Computer science club",
@@ -63,5 +65,6 @@ export const projects: Project[] = [
     image: "/CSC/IMG_9006-15.jpg",
     description:
       "Event photography for the computer science club at the university of moulay ismail.",
+
   },
 ];
