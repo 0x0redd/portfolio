@@ -229,6 +229,29 @@ export default function Home() {
           </section>
         </LazySection>
 
+        {/* Current Project Section */}
+        <LazySection>
+          <section className=" px-5 md:px-10 lg:px-12">
+            <Link href="/afcon">
+              <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg group cursor-pointer">
+                <Image 
+                  src="/Afcon/IMG_1682.jpg" 
+                  alt="Current Project : AFCON 25" 
+                  width={2000} 
+                  height={1200} 
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm" 
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white text-center px-4 drop-shadow-lg">
+                    Current Project : AFCON 25
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          </section>
+        </LazySection>
+
         {/* <LazySection>
           <section className="mt-16 w-full">
             <AnimatedCarousel title="Trusted by" padding="py-6 lg:py-10" />
@@ -250,31 +273,6 @@ export default function Home() {
         </LazySection>
 
       <div className="container mx-auto px-3 md:px-6 lg:px-12 pt-10 relative z-10">
-        
-
-        {/* Current Project Section */}
-        <LazySection>
-          <section className="w-full">
-            <Link href="/afcon">
-              <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg group cursor-pointer">
-                <Image 
-                  src="/Afcon/IMG_1682.jpg" 
-                  alt="Current Project : AFCON 25" 
-                  width={2000} 
-                  height={1200} 
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm" 
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white text-center px-4 drop-shadow-lg">
-                    Current Project : AFCON 25
-                  </h3>
-                </div>
-              </div>
-            </Link>
-          </section>
-        </LazySection>
-
         <LazySection>
           <section className="mt-16 w-full">
             <AnimatedCarousel title="Trusted by" padding="py-6 lg:py-10" />
