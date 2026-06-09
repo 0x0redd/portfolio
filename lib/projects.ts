@@ -53,14 +53,14 @@ export const projects: Project[] = [
   {
     title: "Candid",
     href: "/candid",
-    image: "/candid/DSC_2135.jpg",
+    image: "/candid/IMG_3685.jpg",
     description:
       "Unposed coverage for weddings, events, and portraits that feel natural and true to the moment.",
   },
   {
     title: "Computer science club",
     href: "/CSC",
-    image: "/CSC/IMG_3685.jpg",
+    image: "/CSC/IMG_9006-15.jpg",
     description:
       "Event photography for the computer science club at the university of moulay ismail.",
   },
