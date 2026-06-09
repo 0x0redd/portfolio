@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ExternalLink, Instagram } from "lucide-react";
 import { NavbarDemo } from "@/components/navbar";
 import GridCSC from "../components/gridCSC";
+import { InstaFeed } from "../components/insta-feed";
 
 export default function CSC() {
   return (
@@ -50,6 +51,14 @@ export default function CSC() {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="container mx-auto mb-16 px-6 md:px-12 lg:px-24">
+        <InstaFeed
+          title="Latest from CSC"
+          profileUrl="https://www.instagram.com/csc.fsm/"
+          profileHandle="@csc.fsm"
+        />
       </div>
 
       <GridCSC />
