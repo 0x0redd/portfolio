@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { AvatarLabelGroup } from '@/components/ui/avatar-label-group';
 import { ContactModal } from '@/app/components/contactModal';
 import { ProjectCard } from '@/components/project-card';
+import { NumbersSection } from '@/components/numbers-section';
 import { projects } from '@/lib/projects';
 import { AnimatedCarousel } from './components/animated-carousel';
 
@@ -252,11 +253,9 @@ export default function Home() {
           </section>
         </LazySection>
 
-        {/* <LazySection>
-          <section className="mt-16 w-full">
-            <AnimatedCarousel title="Trusted by" padding="py-6 lg:py-10" />
-          </section>
-        </LazySection> */}
+        <LazySection>
+          <NumbersSection />
+        </LazySection>
 
       {/* Pinned Works Section - Loads last */}
       <LazySection>
