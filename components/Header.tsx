@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Home, LayoutGrid, User } from "lucide-react";
+import { Home, LayoutGrid, Palette, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { display, headerPerson, nav, routes } from "@/lib/nav-content";
 import { ViewCount } from "@/app/components/viewTracker";
@@ -69,6 +69,8 @@ export function Header() {
   const isHomeSelected = pathname === "/";
   const isAboutSelected = pathname === "/about";
   const isProjectsSelected = pathname === "/projects";
+  const isDesignSelected = pathname === "/design";
+
 
   return (
     <>
@@ -127,6 +129,16 @@ export function Header() {
                     icon={<LayoutGrid className="h-4 w-4" aria-hidden="true" />}
                   />
                 )}
+
+                {routes["/design"] && (
+                  <NavToggle
+                    href={nav.design.href}
+                    label={nav.design.label}
+                    selected={isDesignSelected}
+                    icon={<Palette className="h-4 w-4" aria-hidden="true" />}
+                  />
+                )}
+                
               </div>
             </nav>
           </div>

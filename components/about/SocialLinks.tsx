@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Linkedin, Mail } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import { siBehance, siUnsplash } from "simple-icons";
 import { social } from "@/lib/about-content";
 
 const iconMap = {
   Instagram,
   LinkedIn: Linkedin,
+  GitHub: Github,
   Email: Mail,
 } as const;
 

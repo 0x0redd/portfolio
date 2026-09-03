@@ -1,7 +1,10 @@
+const path = require("path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  allowedDevOrigins: ["192.168.1.5"],
+  turbopack: {
+    root: path.join(__dirname),
   },
   images: {
     unoptimized: true,
