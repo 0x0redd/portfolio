@@ -1,0 +1,16 @@
+# Keep Vercel deployments small — excluded files stay in git/local but aren't shipped.
+
+# Local tooling
+public/compress.py
+**/my-app/
+**/node_modules/
+
+# Unused / oversized video not referenced by the app
+public/VIDEO/Sequence 01_23.mp4
+public/VIDEO/Untitled
+
+# Source / editor junk
+**/*.psd
+**/*.CR2
+**/*.NEF
+**/*.ARW

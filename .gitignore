@@ -39,5 +39,10 @@ next-env.d.ts
 public/**/my-app/
 public/**/node_modules/
 
-# Large video files (use Git LFS or host externally)
+# Large video files (host externally for production; keep local for dev)
 public/VIDEO/*.mp4
+public/VIDEO/Untitled
+public/compress.py
+
+.vercel
+.env*.local
