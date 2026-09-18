@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-// Hook to get view count
 export function useViewCount() {
   const [viewCount, setViewCount] = useState<number | null>(null);
 
@@ -26,51 +25,78 @@ export function useViewCount() {
   return viewCount;
 }
 
-// Component to track views (silent, no UI)
+function collectClientDeviceInfo() {
+  const nav = navigator as Navigator & {
+    deviceMemory?: number;
+    connection?: {
+      effectiveType?: string;
+      downlink?: number;
+      rtt?: number;
+    };
+  };
+
+  const connection = nav.connection;
+
+  return {
+    userAgent: nav.userAgent || "Unknown",
+    timestamp: new Date().toISOString(),
+    screenWidth: window.screen?.width,
+    screenHeight: window.screen?.height,
+    viewportWidth: window.innerWidth,
+    viewportHeight: window.innerHeight,
+    devicePixelRatio: window.devicePixelRatio,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    language: nav.language,
+    languages: Array.from(nav.languages || []),
+    platform: nav.platform,
+    hardwareConcurrency: nav.hardwareConcurrency,
+    deviceMemory: nav.deviceMemory,
+    connectionType: connection?.effectiveType,
+    connectionDownlink: connection?.downlink,
+    connectionRtt: connection?.rtt,
+    touchSupport:
+      "ontouchstart" in window ||
+      (nav.maxTouchPoints != null && nav.maxTouchPoints > 0),
+    colorScheme: window.matchMedia?.("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
+    referrer: document.referrer || undefined,
+  };
+}
+
 export function ViewTracker() {
   const pathname = usePathname();
   const [hasTracked, setHasTracked] = useState(false);
 
   useEffect(() => {
-    // Track view only once per page load
     if (hasTracked) return;
 
     const trackView = async () => {
       try {
-        // Get user agent
-        const userAgent = navigator.userAgent || "Unknown";
-        const timestamp = new Date().toISOString();
-        const page = pathname || "/";
-
-        // Track the view
         await fetch("/api/views", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userAgent,
-            timestamp,
-            page,
+            ...collectClientDeviceInfo(),
+            page: pathname || "/",
           }),
         });
 
         setHasTracked(true);
       } catch (error) {
         console.error("Error tracking view:", error);
-        // Silently fail - don't break the user experience
       }
     };
 
-    // Small delay to ensure page is fully loaded
     const timer = setTimeout(trackView, 1000);
     return () => clearTimeout(timer);
   }, [pathname, hasTracked]);
 
-  return null; // Silent tracker, no UI
+  return null;
 }
 
-// Component to display view count
 export function ViewCount({ className }: { className?: string }) {
   const rawCount = useViewCount();
   const [mounted, setMounted] = useState(false);
