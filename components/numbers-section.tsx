@@ -62,24 +62,25 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
   return content;
 }
 
+type StatsPayload = UnsplashProfilePayload & { siteViews?: number };
+
 export function NumbersSection() {
-  const [profile, setProfile] = useState<UnsplashProfilePayload | null>(null);
+  const [profile, setProfile] = useState<StatsPayload | null>(null);
   const [siteViews, setSiteViews] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("/api/unsplash")
+    fetch("/api/stats")
       .then((res) => res.json())
-      .then((data: UnsplashProfilePayload) => setProfile(data))
-      .catch(() => setProfile(null));
-
-    fetch("/api/views")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.viewCount !== undefined) {
-          setSiteViews(data.viewCount + 2000);
+      .then((data: StatsPayload) => {
+        setProfile(data);
+        if (typeof data.siteViews === "number") {
+          setSiteViews(data.siteViews);
         }
       })
-      .catch(() => setSiteViews(null));
+      .catch(() => {
+        setProfile(null);
+        setSiteViews(null);
+      });
   }, []);
 
   const profileUrl = profile?.profileUrl;

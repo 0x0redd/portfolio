@@ -5,14 +5,15 @@ import { NavbarDemo } from '@/components/navbar'
 import GridFES from '../components/gridFES25'
 import { ScrollHorizontalVideos } from '../components/scrollHorizontalVideos'
 import { injectVideoPreloadHints, startVideoPreload } from '@/lib/video-cache'
+import { mediaUrl } from '@/lib/media'
 
 const videos = [
-  '/VIDEO/Sequence 01_9.webm',
-  '/VIDEO/Sequence 01_10.webm',
-  '/VIDEO/Sequence 01_11.webm',
-  '/VIDEO/Sequence 01_12.webm',
-  '/VIDEO/Sequence 01_14.webm',
-  '/VIDEO/Sequence 01_17.webm',
+  mediaUrl('/VIDEO/Sequence 01_9.webm'),
+  mediaUrl('/VIDEO/Sequence 01_10.webm'),
+  mediaUrl('/VIDEO/Sequence 01_11.webm'),
+  mediaUrl('/VIDEO/Sequence 01_12.webm'),
+  mediaUrl('/VIDEO/Sequence 01_14.webm'),
+  mediaUrl('/VIDEO/Sequence 01_17.webm'),
 ];
 
 export default function FES25() {

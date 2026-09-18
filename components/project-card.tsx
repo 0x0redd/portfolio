@@ -48,7 +48,7 @@ export function ProjectCard({
         </span>
       )}
       <motion.div
-        className="h-full w-full"
+        className="relative h-full w-full"
         animate={isHovered ? "expanded" : "collapsed"}
         variants={imageVariants}
         transition={transition}
@@ -56,9 +56,9 @@ export function ProjectCard({
         <Image
           src={image}
           alt={title}
-          width={290}
-          height={350}
-          className="h-full w-full select-none object-cover"
+          fill
+          sizes="290px"
+          className="select-none object-cover"
         />
       </motion.div>
 

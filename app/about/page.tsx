@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/about/TableOfContents";
 import { SocialLinks } from "@/components/about/SocialLinks";
 import { about, person } from "@/lib/about-content";
+import { mediaUrl } from "@/lib/media";
 import { Globe, Mail, Phone } from "lucide-react";
 
 export default function About() {
@@ -69,7 +70,7 @@ export default function About() {
             <aside className="flex w-full flex-col items-center gap-4 md:sticky md:top-24 md:w-44 md:shrink-0 md:self-start">
               <Avatar
                 size="2xl"
-                src={person.avatar}
+                src={mediaUrl(person.avatar)}
                 alt={person.name}
                 verified
                 className="!h-28 !w-28 md:!h-32 md:!w-32"

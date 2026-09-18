@@ -14,6 +14,7 @@ import { ProjectCard } from '@/components/project-card';
 import { NumbersSection } from '@/components/numbers-section';
 import { projects } from '@/lib/projects';
 import { AnimatedCarousel } from './components/animated-carousel';
+import { mediaUrl } from '@/lib/media';
 
 // Lazy load components that are below the fold
 const GridPinned = dynamic(() => import('./components/gridPinned'), {
@@ -82,7 +83,7 @@ function LazySection({ children }: { children: React.ReactNode }) {
 export default function Home() {
   // Video files from /VIDEO folder
   const videos = [
-    '/VIDEO/Untitled-1story_2.webm',
+    mediaUrl('/VIDEO/Untitled-1story_2.webm'),
   ];
 
   // Ref for project cards scroll container
@@ -173,7 +174,7 @@ export default function Home() {
           <section id="about" className="pt-8 flex justify-start items-center">
             <AvatarLabelGroup
               size="xl"
-              src="/Pined/IMG_9846-Pano.jpg"
+              src={mediaUrl("/Pined/IMG_9846-Pano.jpg")}
               alt="Othmane Ferrah"
               title="Othmane Ferrah"
               subtitle="Photographer · Designer · Developer · AI & Data Science"
@@ -236,11 +237,11 @@ export default function Home() {
             <Link href="/afcon">
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg group cursor-pointer">
                 <Image 
-                  src="/Afcon/IMG_1682.jpg" 
+                  src={mediaUrl("/Afcon/IMG_1682.jpg")} 
                   alt="Current Project : AFCON 25" 
-                  width={2000} 
-                  height={1200} 
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm" 
+                  fill
+                  sizes="100vw"
+                  className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm" 
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
                 <div className="absolute inset-0 flex items-center justify-center">

@@ -44,5 +44,5 @@ public/VIDEO/*.mp4
 public/VIDEO/Untitled
 public/compress.py
 
-.vercel
-.env*.local
+# Local static export (do not commit)
+/out/

@@ -1,53 +1,34 @@
 import { NextResponse } from "next/server";
-import { google } from "googleapis";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export const dynamic = 'force-dynamic';
-
-const TESTIMONIALS_SHEET_ID = "17PT7eF7NbNythiSCyRyYeE6UDVtuPGXzGQu1JVbaO0E";
-const VIEWS_SHEET_NAME = "views";
-const VIEW_COUNT_CELL = `${VIEWS_SHEET_NAME}!H2`;
-
-// Helper function to get Google Sheets client
-async function getSheetsClient() {
-  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
-
-  if (!clientEmail || !privateKey) {
-    throw new Error("Missing Google credentials");
-  }
-
-  const auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: clientEmail,
-      private_key: privateKey,
-    },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  return google.sheets({ version: "v4", auth });
-}
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const sheets = await getSheetsClient();
+    const supabase = createSupabaseServerClient();
 
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: TESTIMONIALS_SHEET_ID,
-      range: VIEW_COUNT_CELL,
-      valueRenderOption: "UNFORMATTED_VALUE",
-    });
+    const { count, error: countError } = await supabase
+      .from("page_views")
+      .select("*", { count: "exact", head: true });
 
-    const rawValue = response.data.values?.[0]?.[0];
-    const viewCount =
-      typeof rawValue === "number"
-        ? rawValue
-        : Number.parseInt(String(rawValue ?? "0"), 10) || 0;
+    if (countError) throw countError;
 
-    return NextResponse.json({ viewCount });
-  } catch (error: any) {
-    console.error("Error fetching view count:", error);
+    const { data: offsetRow } = await supabase
+      .from("stats")
+      .select("value")
+      .eq("key", "site_views_offset")
+      .maybeSingle();
+
+    const offset = Number(offsetRow?.value ?? 0);
+    const viewCount = (count ?? 0) + offset;
+
+    return NextResponse.json({ viewCount, rawCount: count ?? 0, offset });
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Failed to fetch view count";
+    console.error("Error fetching view count:", message);
     return NextResponse.json(
-      { error: error.message || "Failed to fetch view count", viewCount: 0 },
+      { error: message, viewCount: 0 },
       { status: 500 }
     );
   }
@@ -55,60 +36,37 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { ip, userAgent, timestamp, page } = await request.json();
+    const body = await request.json().catch(() => ({}));
+    const { ip, userAgent, timestamp, page } = body as {
+      ip?: string;
+      userAgent?: string;
+      timestamp?: string;
+      page?: string;
+    };
 
-    const sheets = await getSheetsClient();
-
-    // Get client IP from request headers
     const forwarded = request.headers.get("x-forwarded-for");
     const realIp = request.headers.get("x-real-ip");
-    const clientIp = forwarded?.split(",")[0] || realIp || ip || "Unknown";
+    const clientIp = forwarded?.split(",")[0]?.trim() || realIp || ip || null;
 
-    // Check if views sheet has headers, if not add them
-    let hasHeaders = false;
-    try {
-      const headerCheck = await sheets.spreadsheets.values.get({
-        spreadsheetId: TESTIMONIALS_SHEET_ID,
-        range: `${VIEWS_SHEET_NAME}!A1:D1`,
-      });
-      hasHeaders = (headerCheck.data.values?.length ?? 0) > 0;
-    } catch (error) {
-      // Sheet might not exist
-    }
-
-    // Add headers if they don't exist
-    if (!hasHeaders) {
-      await sheets.spreadsheets.values.update({
-        spreadsheetId: TESTIMONIALS_SHEET_ID,
-        range: `${VIEWS_SHEET_NAME}!A1:D1`,
-        valueInputOption: "USER_ENTERED",
-        requestBody: {
-          values: [["Timestamp", "IP Address", "User Agent", "Page"]],
-        },
-      });
-    }
-
-    // Append the new view
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: TESTIMONIALS_SHEET_ID,
-      range: `${VIEWS_SHEET_NAME}!A:D`,
-      valueInputOption: "USER_ENTERED",
-      requestBody: {
-        values: [[
-          timestamp || new Date().toISOString(),
-          clientIp,
-          userAgent || request.headers.get("user-agent") || "Unknown",
-          page || "/",
-        ]],
-      },
+    const supabase = createSupabaseServerClient();
+    const { error } = await supabase.from("page_views").insert({
+      ip: clientIp,
+      user_agent:
+        userAgent || request.headers.get("user-agent") || "Unknown",
+      page: page || "/",
+      created_at: timestamp || new Date().toISOString(),
     });
 
-    return NextResponse.json({ success: true, message: "View tracked successfully" });
-  } catch (error: any) {
-    console.error("Error tracking view:", error);
-    return NextResponse.json(
-      { error: error.message || "Failed to track view" },
-      { status: 500 }
-    );
+    if (error) throw error;
+
+    return NextResponse.json({
+      success: true,
+      message: "View tracked successfully",
+    });
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Failed to track view";
+    console.error("Error tracking view:", message);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

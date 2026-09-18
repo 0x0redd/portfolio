@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "upload:media": "node scripts/upload-public-to-supabase.mjs",
+    "db:setup": "node scripts/setup-supabase-db.mjs",
+    "db:seed": "node scripts/seed-supabase-db.mjs",
+    "db:migrate-comments": "node scripts/migrate-comments-from-sheets.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

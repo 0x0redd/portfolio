@@ -83,11 +83,9 @@ export function ViewCount({ className }: { className?: string }) {
     return null;
   }
 
-  const viewCount = rawCount + 2000;
-
   return (
     <span className={className ?? "text-xs text-gray-500 dark:text-gray-400"}>
-      {viewCount.toLocaleString("en-US")} views
+      {rawCount.toLocaleString("en-US")} views
     </span>
   );
 }
