@@ -66,6 +66,7 @@ export const about = {
   studies: {
     display: true,
     title: "Education",
+    logo: "/about/logos/umi.png",
     institutions: [
       {
         name: "Université Moulay Ismaïl — Faculté des Sciences, Meknès",
@@ -195,6 +196,75 @@ export const about = {
           "LoRA",
         ],
         tags: ["Computer Vision", "VLM", "LoRA", "Medical AI"],
+        documents: [
+          {
+            label: "Project Report",
+            kind: "report" as const,
+            href: "/projects/brain-tumor/report.pdf",
+            preview: "/projects/brain-tumor/report-preview.png",
+            pages: 59,
+          },
+        ],
+      },
+      {
+        title: "Sign Language Recognition & Action Classification",
+        timeframe: "Apr 2025 – Jul 2025",
+        summary:
+          "An AI system that detects and classifies hand/body gestures in real time from video for accessibility and HCI.",
+        highlights: [
+          "Real-time landmark extraction with MediaPipe (hand, pose, body).",
+          "Person/region localization with YOLO.",
+          "Temporal sequence modeling with LSTM networks for dynamic gestures.",
+        ],
+        tech: [
+          "Python",
+          "YOLO",
+          "MediaPipe",
+          "TensorFlow/Keras",
+          "LSTM",
+          "OpenCV",
+        ],
+        tags: ["Computer Vision", "Deep Learning"],
+        documents: [
+          {
+            label: "Project Presentation",
+            kind: "presentation" as const,
+            href: "/projects/sign-language/presentation.pdf",
+            preview: "/projects/sign-language/presentation-preview.png",
+            pages: 31,
+          },
+        ],
+      },
+      {
+        title: "Social-Graph Community Detection (Louvain, Leiden & GNN)",
+        timeframe: "May 2026 – Jul 2026 · Université Moulay Ismaïl",
+        summary:
+          "A complete graph-analytics pipeline for detecting densely connected communities in large-scale social networks.",
+        highlights: [
+          "Built and preprocessed large social-network datasets (Pokec, YouTube).",
+          "Implemented and compared Louvain and Leiden algorithms.",
+          "Developed a GNN-based approach for node representations and community discovery.",
+          "Designed a community-driven recommender for friend/content suggestions.",
+        ],
+        tech: [
+          "Python",
+          "NetworkX",
+          "Louvain",
+          "Leidenalg",
+          "PyTorch",
+          "PyTorch Geometric",
+          "Scikit-learn",
+        ],
+        tags: ["Graph ML", "GNN"],
+        documents: [
+          {
+            label: "Project Report",
+            kind: "report" as const,
+            href: "/projects/social-graph/report.pdf",
+            preview: "/projects/social-graph/report-preview.png",
+            pages: 42,
+          },
+        ],
       },
       {
         title: "Real-Estate Recommendation Chatbot (RAG)",
@@ -218,48 +288,6 @@ export const about = {
         tags: ["LLM", "RAG", "Full-Stack"],
       },
       {
-        title: "Sign Language Recognition & Action Classification",
-        timeframe: "Apr 2025 – Jul 2025",
-        summary:
-          "An AI system that detects and classifies hand/body gestures in real time from video for accessibility and HCI.",
-        highlights: [
-          "Real-time landmark extraction with MediaPipe (hand, pose, body).",
-          "Person/region localization with YOLO.",
-          "Temporal sequence modeling with LSTM networks for dynamic gestures.",
-        ],
-        tech: [
-          "Python",
-          "YOLO",
-          "MediaPipe",
-          "TensorFlow/Keras",
-          "LSTM",
-          "OpenCV",
-        ],
-        tags: ["Computer Vision", "Deep Learning"],
-      },
-      {
-        title: "Social-Graph Community Detection (Louvain, Leiden & GNN)",
-        timeframe: "May 2026 – Jul 2026 · Université Moulay Ismaïl",
-        summary:
-          "A complete graph-analytics pipeline for detecting densely connected communities in large-scale social networks.",
-        highlights: [
-          "Built and preprocessed large social-network datasets (Pokec, YouTube).",
-          "Implemented and compared Louvain and Leiden algorithms.",
-          "Developed a GNN-based approach for node representations and community discovery.",
-          "Designed a community-driven recommender for friend/content suggestions.",
-        ],
-        tech: [
-          "Python",
-          "NetworkX",
-          "Louvain",
-          "Leidenalg",
-          "PyTorch",
-          "PyTorch Geometric",
-          "Scikit-learn",
-        ],
-        tags: ["Graph ML", "GNN"],
-      },
-      {
         title: "Asteroid Sprint — Arcade Game with AI Hand-Gesture Controls",
         timeframe: "Feb 2025 – Jul 2025 · Computer Science Club (FSM)",
         summary:
@@ -271,6 +299,18 @@ export const about = {
         ],
         tech: ["Python", "MediaPipe", "OpenCV", "pygame-ce", "ModernGL"],
         tags: ["Computer Vision", "Game Dev", "Shipped"],
+      },
+      {
+        title: "Solar System VR — Interactive Space Exploration",
+        timeframe: "Jan 2025 – Aug 2025 · Computer Science Club (FSM)",
+        summary:
+          "An immersive VR experience for exploring the solar system and interacting with celestial bodies in real time.",
+        highlights: [
+          "Interactive 3D environment with planetary rotation and orbital mechanics.",
+          "Showcased at the Moroccan Gaming Expo representing Université Moulay Ismaïl.",
+        ],
+        tech: ["VR", "3D", "Game Development"],
+        tags: ["VR", "Game Dev"],
       },
       {
         title: "Intelligent Agriculture System",
@@ -297,18 +337,6 @@ export const about = {
         ],
         tech: ["Arduino", "C/C++", "Control Systems", "Sensor Fusion"],
         tags: ["Embedded", "Control Systems"],
-      },
-      {
-        title: "Solar System VR — Interactive Space Exploration",
-        timeframe: "Jan 2025 – Aug 2025 · Computer Science Club (FSM)",
-        summary:
-          "An immersive VR experience for exploring the solar system and interacting with celestial bodies in real time.",
-        highlights: [
-          "Interactive 3D environment with planetary rotation and orbital mechanics.",
-          "Showcased at the Moroccan Gaming Expo representing Université Moulay Ismaïl.",
-        ],
-        tech: ["VR", "3D", "Game Development"],
-        tags: ["VR", "Game Dev"],
       },
       {
         title: "GestMag — Store Management Application",
@@ -343,7 +371,18 @@ export const about = {
     title: "Professional Experience",
     experiences: [
       {
+        company: "Sihati",
+        logo: "/about/logos/sihati.png",
+        timeframe: "Sep 2025 – Present · Fès-Meknès, Morocco",
+        role: "Data Extraction Developer & Graphic Designer",
+        achievements: [
+          "Data Extraction: Built scripts and workflows to extract and structure raw sources into clean, usable datasets for the product.",
+          "Design & Video: Produced brand visuals and video content for the health platform.",
+        ],
+      },
+      {
         company: "NebrasAI",
+        logo: "/about/logos/nebrasai.png",
         timeframe: "Sep 2024 – Present · Meknès, Morocco",
         role: "Co-Founder & Creative Director",
         achievements: [
@@ -351,16 +390,8 @@ export const about = {
         ],
       },
       {
-        company: "Sihati",
-        timeframe: "Sep 2025 – Present · Fès-Meknès, Morocco",
-        role: "Data Extraction Developer & Graphic Designer",
-        achievements: [
-          "Built scripts and workflows to extract and structure raw sources into clean, usable datasets for the product.",
-          "Produced brand visuals and video content for the health platform.",
-        ],
-      },
-      {
         company: "MowajihAI",
+        logo: "/about/logos/mowajihai.png",
         timeframe: "Jan 2023 – Sep 2024 · Meknès, Morocco",
         role: "Lead Designer (Co-Founder)",
         achievements: [
@@ -369,6 +400,7 @@ export const about = {
       },
       {
         company: "Twareg Esports",
+        logo: "/about/logos/twareg-esports.png",
         timeframe: "Aug 2025 – Jan 2026 · Remote",
         role: "Graphic Designer",
         achievements: [
@@ -377,6 +409,7 @@ export const about = {
       },
       {
         company: "RAWD Newton",
+        logo: "/about/logos/rawd-newton.png",
         timeframe: "Jan 2025 – Feb 2025 · Freelance",
         role: "Graphic Designer (Logo Design)",
         achievements: [
@@ -390,12 +423,81 @@ export const about = {
     title: "Leadership & Community",
     items: [
       {
-        org: "Computer Science Club — FSM, Université Moulay Ismaïl",
-        timeframe: "Jul 2022 – Present · Meknès, Morocco",
+        org: "Computer Science Club — FSM (UMI)",
+        logo: "/about/logos/cs-club.png",
+        location: "Meknès, Morocco",
+        timeframe: "Jul 2022 – Oct 2026",
+        headline:
+          "President • Lead Designer • Former Communications Manager • Photographer",
         roles: [
-          "President (since Nov 2024): lead the club's strategy, events, and community growth; drove AI/computer-vision project teams to the Moroccan Gaming Expo.",
-          "Lead Designer (since Jul 2022): own the club's visual identity and event branding.",
-          "Communications Manager (Nov 2023 – Nov 2024): managed communications and outreach.",
+          {
+            title: "President",
+            period: "since Nov 2024",
+            summary:
+              "Lead a 21-person board and 460 active members, setting the club's direction and running its events end to end.",
+            bullets: [
+              "Run planning, delegation, and follow-through across events, workshops, and competitions.",
+              "Represent the club with faculty, sponsors, and other student organizations.",
+              "Drove AI / computer-vision project teams to the Moroccan Gaming Expo.",
+            ],
+          },
+          {
+            title: "Lead Designer",
+            period: "since Jul 2022",
+            summary:
+              "Own the club's visual identity and keep it consistent across every platform we publish on.",
+            bullets: [
+              "Build and maintain the logo, color system, typography, and layout rules.",
+              "Design posters, social posts, event branding, and certificates.",
+              "Adapt the identity per platform (Instagram, LinkedIn, print, web).",
+            ],
+          },
+          {
+            title: "Communications Manager",
+            period: "Nov 2023 – Nov 2024",
+            summary:
+              "Ran the club's content pipeline and built the tools behind it — WhatsApp bot, website, and email campaigns.",
+            bullets: [
+              "Owned the posting workflow: calendar, copywriting, scheduling, and publishing.",
+              "Built a WhatsApp chatbot to automate announcements and member questions.",
+              "Built and maintained the club website.",
+            ],
+          },
+          {
+            title: "Photographer",
+            period: "Jul 2022 – Oct 2026",
+            summary:
+              "Documented the club from day one — events, workshops, competitions, and community moments that became the visual memory of the CS Club.",
+            bullets: [
+              "Shot and edited coverage for major events, including the Moroccan Gaming Expo.",
+              "Built a reusable photo library used across social, posters, and the club website.",
+              "Trained members on framing, lighting, and a consistent visual style.",
+            ],
+          },
+        ],
+        gallery: [
+          { src: "/CSC/20241211-IMG_0578-Pano.jpg", width: 1920, height: 918 },
+          { src: "/CSC/2S6A4912-Pano.jpg", width: 1920, height: 600 },
+          { src: "/CSC/2S6A5092.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/2S6A5115.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/2S6A5134.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/2S6A5181.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/DSC_5927-Pano.jpg", width: 1920, height: 1101 },
+          { src: "/CSC/DSC_5990-Pano.jpg", width: 1920, height: 787 },
+          { src: "/CSC/IMG_0730-Pano-2.jpg", width: 1920, height: 1023 },
+          { src: "/CSC/IMG_0973.jpg", width: 1920, height: 2880 },
+          { src: "/CSC/IMG_1006.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/IMG_3252-Pano.jpg", width: 1920, height: 993 },
+          { src: "/CSC/IMG_3298-Pano.jpg", width: 1920, height: 1145 },
+          { src: "/CSC/IMG_3763-Pano.jpg", width: 1920, height: 1259 },
+          { src: "/CSC/IMG_4018.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/IMG_4174-Pano.jpg", width: 1920, height: 897 },
+          { src: "/CSC/IMG_4189-Pano.jpg", width: 1920, height: 857 },
+          { src: "/CSC/IMG_4813-Pano.jpg", width: 1920, height: 1080 },
+          { src: "/CSC/IMG_4844.jpg", width: 1920, height: 1280 },
+          { src: "/CSC/IMG_5132-Pano.jpg", width: 1920, height: 938 },
+          { src: "/CSC/IMG_6073-Pano-2.jpg", width: 1920, height: 808 },
+          { src: "/CSC/IMG_9006-15.jpg", width: 1920, height: 1280 },
         ],
       },
     ],

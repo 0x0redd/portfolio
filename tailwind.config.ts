@@ -9,6 +9,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['var(--font-poppins)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        ios: '0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
+        'ios-lg': '0 20px 50px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -20,6 +27,17 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        ios: {
+          bg: '#F2F2F7',
+          card: '#FFFFFF',
+          label: '#1C1C1E',
+          secondary: '#8E8E93',
+          tertiary: '#C7C7CC',
+          blue: '#007AFF',
+          fill: '#E5E5EA',
+          dark: '#1C1C1E',
+          darkCard: '#2C2C2E',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

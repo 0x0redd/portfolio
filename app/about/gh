@@ -1,0 +1,2810 @@
+.Artboard_2 {
+  position: absolute;
+  left: 2020px;
+  top: 0px;
+  width: 1920px;
+  height: 4325px;
+  z-index: 371;
+}
+.I_m_looking_for_my_next_AI___Data_Science_inter {
+  font-size: 18px;
+  font-family: "Poppins";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 954.141px;
+  top: 4003.325px;
+  width: 379px;
+  height: 104px;
+  z-index: 368;
+}
+.Bubbles {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 367;
+}
+.Speech_Bubble {
+  background-color: rgb(199, 199, 204);
+  position: absolute;
+  left: 2945px;
+  top: 3988px;
+  width: 485px;
+  height: 143px;
+  z-index: 366;
+}
+.Let_s_build_something_together_ {
+  font-size: 18px;
+  font-family: "Poppins";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 1083.562px;
+  top: 3938.231px;
+  width: 282px;
+  height: 20px;
+  z-index: 364;
+}
+.Shape_1 {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 1066px;
+  top: 3927px;
+  width: 344px;
+  height: 49px;
+  z-index: 363;
+}
+.Projects {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 361;
+}
+.Pj7 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 360;
+}
+.Intelligent_Agriculture_System_—_Weather_Statio {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.671px;
+  top: 3817.021px;
+  width: 653px;
+  height: 16px;
+  z-index: 359;
+}
+.Built_an_IoT___ML_pipeline_that_forecasts_refer {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2917.648px;
+  top: 3845.549px;
+  width: 572px;
+  height: 38px;
+  z-index: 358;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3800px;
+  width: 717px;
+  height: 106px;
+  z-index: 357;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3793px;
+  width: 14px;
+  height: 14px;
+  z-index: 356;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3785px;
+  width: 29px;
+  height: 29px;
+  z-index: 355;
+}
+.pj6 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 353;
+}
+.Solar_System_VR_—_Interactive_Space_Exploration {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.376px;
+  top: 3693.021px;
+  width: 395px;
+  height: 16px;
+  z-index: 352;
+}
+.Immersive_VR_experience_for_exploring_planets_a {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2918px;
+  top: 3721.67px;
+  width: 574px;
+  height: 38px;
+  z-index: 351;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3676px;
+  width: 717px;
+  height: 106px;
+  z-index: 350;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3669px;
+  width: 14px;
+  height: 14px;
+  z-index: 349;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3661px;
+  width: 29px;
+  height: 29px;
+  z-index: 348;
+}
+.pj5 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 346;
+}
+.Asteroid_Sprint_—_Arcade_Game_with_AI_Hand_Gest {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2907px;
+  top: 3568.053px;
+  width: 504px;
+  height: 16px;
+  z-index: 342;
+}
+.Shipped_a_webcam_controlled_arcade_game_using_M {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2917.571px;
+  top: 3596.67px;
+  width: 580px;
+  height: 38px;
+  z-index: 341;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3551px;
+  width: 717px;
+  height: 106px;
+  z-index: 340;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3544px;
+  width: 14px;
+  height: 14px;
+  z-index: 339;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3536px;
+  width: 29px;
+  height: 29px;
+  z-index: 338;
+}
+.Pj4 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 336;
+}
+.Social_Graph_Community_Detection__Louvain__Leid {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.376px;
+  top: 3444.053px;
+  width: 483px;
+  height: 16px;
+  z-index: 335;
+}
+.Compared_modularity_based_algorithms_with_a_Gra {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2918px;
+  top: 3472.67px;
+  width: 584px;
+  height: 38px;
+  z-index: 334;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3427px;
+  width: 717px;
+  height: 106px;
+  z-index: 333;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3420px;
+  width: 14px;
+  height: 14px;
+  z-index: 332;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3412px;
+  width: 29px;
+  height: 29px;
+  z-index: 331;
+}
+.Pj3 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 329;
+}
+.Sign_Language_Recognition_System {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.376px;
+  top: 3319.021px;
+  width: 282px;
+  height: 16px;
+  z-index: 328;
+}
+.Real_time_gesture_and_action_recognition_pipeli {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2918.208px;
+  top: 3347.67px;
+  width: 563px;
+  height: 38px;
+  z-index: 327;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3302px;
+  width: 717px;
+  height: 106px;
+  z-index: 326;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3295px;
+  width: 14px;
+  height: 14px;
+  z-index: 325;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3287px;
+  width: 29px;
+  height: 29px;
+  z-index: 324;
+}
+.pj2 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 322;
+}
+.Real_Estate_Recommendation_Chatbot__RAG_ {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.735px;
+  top: 3195.053px;
+  width: 356px;
+  height: 16px;
+  z-index: 321;
+}
+.Built_a_full_stack_property_platform_with_a_RAG {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2917.945px;
+  top: 3223.67px;
+  width: 586px;
+  height: 38px;
+  z-index: 320;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 3178px;
+  width: 717px;
+  height: 106px;
+  z-index: 319;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 3171px;
+  width: 14px;
+  height: 14px;
+  z-index: 318;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 3163px;
+  width: 29px;
+  height: 29px;
+  z-index: 317;
+}
+.pj1 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 315;
+}
+.Group_38 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 314;
+}
+.Rectangle_16_copy_5 {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 3477px;
+  top: 3010px;
+  width: 118px;
+  height: 149px;
+  z-index: 312;
+}
+.descriptor_demo {
+  background-image: url("descriptor_demo.png");
+  position: absolute;
+  left: 3221px;
+  top: 2950px;
+  width: 244px;
+  height: 199px;
+  z-index: 311;
+}
+.Rectangle_17_copy {
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 3220px;
+  top: 3010px;
+  width: 245px;
+  height: 149px;
+  z-index: 310;
+}
+.Rectangle_17 {
+  border-radius: 30px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 2966px;
+  top: 3010px;
+  width: 245px;
+  height: 149px;
+  z-index: 308;
+}
+.Brain_Tumor_MRI_Classification_—_ML___DL___Visi {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2906.735px;
+  top: 2911.053px;
+  width: 552px;
+  height: 16px;
+  z-index: 306;
+}
+.Built_an_end_to_end_MRI_brain_tumor_classifier: {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2917.329px;
+  top: 2939.67px;
+  width: 559px;
+  height: 38px;
+  z-index: 305;
+}
+.Rectangle_14_copy_3 {
+  border-radius: 29px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 2894px;
+  width: 717px;
+  height: 106px;
+  z-index: 304;
+}
+.icons8_cancel_150_copy {
+  background-image: url("icons8-cancel-150 copy.png");
+  position: absolute;
+  left: 3613px;
+  top: 2887px;
+  width: 14px;
+  height: 14px;
+  z-index: 303;
+}
+.Ellipse_1_copy {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 2879px;
+  width: 29px;
+  height: 29px;
+  z-index: 302;
+}
+.Projects {
+  font-size: 24px;
+  font-family: "Helvetica Neue";
+  color: rgb(2, 118, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2880.152px;
+  top: 2839.786px;
+  width: 99px;
+  height: 23px;
+  z-index: 300;
+}
+.Leadership___Community {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 298;
+}
+.Group_37 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 297;
+}
+.Rectangle_16_copy_4 {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 3459px;
+  top: 2644px;
+  width: 139px;
+  height: 175px;
+  z-index: 295;
+}
+.Rectangle_16_copy_3 {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 3315px;
+  top: 2644px;
+  width: 139px;
+  height: 175px;
+  z-index: 293;
+}
+.Rectangle_16_copy_2 {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 3169px;
+  top: 2644px;
+  width: 139px;
+  height: 175px;
+  z-index: 291;
+}
+.Rectangle_16_copy {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 3025px;
+  top: 2644px;
+  width: 139px;
+  height: 175px;
+  z-index: 289;
+}
+.Rectangle_16 {
+  border-radius: 24px;
+  background-color: rgb(1, 122, 255);
+  position: absolute;
+  left: 2880px;
+  top: 2644px;
+  width: 140px;
+  height: 175px;
+  z-index: 287;
+}
+.mpwajihai_copy {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 285;
+}
+.Group_35 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 284;
+}
+.Run_planning__delegation__and_follow_through_ac {
+  font-size: 10px;
+  font-family: "Helvetica Neue";
+  color: rgb(85, 85, 85);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.28px;
+  top: 2302.666px;
+  width: 393px;
+  height: 35px;
+  z-index: 282;
+}
+.Lead_a_21person_board_and_460_active_members__s {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.252px;
+  top: 2272.516px;
+  width: 430px;
+  height: 25px;
+  z-index: 281;
+}
+.President__since_Nov_2024_: {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3006.087px;
+  top: 2253.626px;
+  width: 149px;
+  height: 11px;
+  z-index: 280;
+}
+.Group_34 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 278;
+}
+.Built_and_maintain_the_club_s_visual_identity:_ {
+  font-size: 10px;
+  font-family: "Helvetica Neue";
+  color: rgb(85, 85, 85);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.28px;
+  top: 2419.646px;
+  width: 441px;
+  height: 47px;
+  z-index: 277;
+}
+.Own_the_club_s_visual_identity_and_keep_it_cons {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.615px;
+  top: 2388.67px;
+  width: 413px;
+  height: 25px;
+  z-index: 276;
+}
+.Lead_Designer__since_Jul_2022_ {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3006.12px;
+  top: 2370.626px;
+  width: 167px;
+  height: 12px;
+  z-index: 275;
+}
+.Layer_7_copy_2 {
+  background-image: url("Layer 7 copy 2.png");
+  position: absolute;
+  left: 2959px;
+  top: 2254px;
+  width: 29px;
+  height: 16px;
+  z-index: 274;
+}
+.Layer_7 {
+  background-image: url("Layer 7.png");
+  position: absolute;
+  left: 2960px;
+  top: 2371px;
+  width: 29px;
+  height: 16px;
+  z-index: 273;
+}
+.Group_33 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 271;
+}
+.Owned_the_posting_workflow:_calendar__copywriti {
+  font-size: 10px;
+  font-family: "Helvetica Neue";
+  color: rgb(85, 85, 85);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.28px;
+  top: 2549.786px;
+  width: 439px;
+  height: 45px;
+  z-index: 270;
+}
+.Ran_the_club_s_content_pipeline_and_built_the_t {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3005.648px;
+  top: 2518.516px;
+  width: 444px;
+  height: 25px;
+  z-index: 269;
+}
+.Responsable_communications___Nov_2023___Nov_2024_ {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3006.131px;
+  top: 2498.626px;
+  width: 294px;
+  height: 12px;
+  z-index: 268;
+}
+.Layer_7_copy {
+  background-image: url("Layer 7 copy.png");
+  position: absolute;
+  left: 2960px;
+  top: 2499px;
+  width: 29px;
+  height: 16px;
+  z-index: 267;
+}
+.Group_36 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 265;
+}
+.Jul_2022–_Oct_2026 {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3442.27px;
+  top: 2199.67px;
+  width: 103px;
+  height: 9px;
+  z-index: 264;
+}
+.Meknes__Morocco {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3441.478px;
+  top: 2185.483px;
+  width: 92px;
+  height: 11px;
+  z-index: 263;
+}
+.President_•_Lead_Designer_•_Former_Communicatio {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2963.077px;
+  top: 2218.531px;
+  width: 384px;
+  height: 12px;
+  z-index: 262;
+}
+.Computer_Science_Club_—_FSM__UMI_ {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2963.244px;
+  top: 2192.808px;
+  width: 344px;
+  height: 18px;
+  z-index: 261;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 260;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2902px;
+  top: 2187px;
+  width: 51px;
+  height: 51px;
+  z-index: 258;
+}
+.Rectangle_14 {
+  border-radius: 42px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2880px;
+  top: 2168px;
+  width: 717px;
+  height: 461px;
+  z-index: 255;
+}
+.icons8_cancel_150 {
+  background-image: url("icons8-cancel-150.png");
+  position: absolute;
+  left: 3614px;
+  top: 2161px;
+  width: 14px;
+  height: 14px;
+  z-index: 254;
+}
+.Ellipse_1 {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3607px;
+  top: 2154px;
+  width: 28px;
+  height: 28px;
+  z-index: 253;
+}
+.Leadership___Community {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(2, 118, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2884.446px;
+  top: 2121.435px;
+  width: 268px;
+  height: 21px;
+  z-index: 251;
+}
+.CAREER_JOURNEY {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 249;
+}
+.freelanse {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 248;
+}
+.Delivered_brand_assets__logo__and_visual_identi {
+  font-size: 14px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3259.552px;
+  top: 2029.116px;
+  width: 307px;
+  height: 45px;
+  z-index: 247;
+}
+.Delivered_brand_assets__logo__and_visual_identi {
+  font-size: 14px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2904.552px;
+  top: 2029.116px;
+  width: 307px;
+  height: 45px;
+  z-index: 246;
+}
+.Jan_2023_–_Sep_2024 {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  -moz-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -webkit-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -ms-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  position: absolute;
+  left: 3466.563px;
+  top: 1992.632px;
+  width: 112.135px;
+  height: 10.033px;
+  z-index: 245;
+}
+.Meknes__Morocco_copy {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  -moz-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -webkit-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -ms-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  position: absolute;
+  left: 3465.449px;
+  top: 1980.363px;
+  width: 91.059px;
+  height: 9.241px;
+  z-index: 244;
+}
+.Aug_2025_–_Jan_2026 {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  -moz-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -webkit-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -ms-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  position: absolute;
+  left: 3099.943px;
+  top: 1992.494px;
+  width: 111.937px;
+  height: 9.978px;
+  z-index: 243;
+}
+.Meknes__Morocco {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  -moz-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -webkit-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  -ms-transform: matrix( 0.89999997615814,0,0,0.89999999999999,0,0);
+  position: absolute;
+  left: 3098.449px;
+  top: 1980.363px;
+  width: 91.059px;
+  height: 9.241px;
+  z-index: 242;
+}
+.Group_32_copy {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 241;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 240;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 3256px;
+  top: 1979px;
+  width: 38px;
+  height: 38px;
+  z-index: 238;
+}
+.Freelance_Graphic_Designer {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  -moz-transform: matrix( 0.75,0,0,0.75,0,0);
+  -webkit-transform: matrix( 0.75,0,0,0.75,0,0);
+  -ms-transform: matrix( 0.75,0,0,0.75,0,0);
+  position: absolute;
+  left: 3277.261px;
+  top: 2000.954px;
+  width: 169.678px;
+  height: 11.13px;
+  z-index: 236;
+}
+.Twareg_Esports {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  -moz-transform: matrix( 0.75,0,0,0.75,0,0);
+  -webkit-transform: matrix( 0.75,0,0,0.75,0,0);
+  -ms-transform: matrix( 0.75,0,0,0.75,0,0);
+  position: absolute;
+  left: 3281.074px;
+  top: 1980.801px;
+  width: 140.601px;
+  height: 16.439px;
+  z-index: 235;
+}
+.Group_32 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 233;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 232;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2900px;
+  top: 1979px;
+  width: 38px;
+  height: 38px;
+  z-index: 229;
+}
+.Freelance_Graphic_Designer {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  -moz-transform: matrix( 0.75,0,0,0.75,0,0);
+  -webkit-transform: matrix( 0.75,0,0,0.75,0,0);
+  -ms-transform: matrix( 0.75,0,0,0.75,0,0);
+  position: absolute;
+  left: 2921.261px;
+  top: 2000.954px;
+  width: 169.678px;
+  height: 11.13px;
+  z-index: 227;
+}
+.Twareg_Esports {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  -moz-transform: matrix( 0.75,0,0,0.75,0,0);
+  -webkit-transform: matrix( 0.75,0,0,0.75,0,0);
+  -ms-transform: matrix( 0.75,0,0,0.75,0,0);
+  position: absolute;
+  left: 2925.074px;
+  top: 1980.801px;
+  width: 140.601px;
+  height: 16.439px;
+  z-index: 226;
+}
+.icons8_cancel_150 {
+  background-image: url("icons8-cancel-150.png");
+  position: absolute;
+  left: 3613px;
+  top: 1950px;
+  width: 14px;
+  height: 14px;
+  z-index: 224;
+}
+.Ellipse_1 {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 1942px;
+  width: 29px;
+  height: 29px;
+  z-index: 223;
+}
+.Rectangle_14_copy {
+  border-radius: 28px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3245px;
+  top: 1960px;
+  width: 351px;
+  height: 139px;
+  z-index: 222;
+}
+.Rectangle_14 {
+  border-radius: 28px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2885px;
+  top: 1960px;
+  width: 345px;
+  height: 139px;
+  z-index: 220;
+}
+.mpwajihai {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 218;
+}
+.Co_founded_an_AI_driven_student_orientation_pla {
+  font-size: 14px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2960.552px;
+  top: 1872.312px;
+  width: 547px;
+  height: 31px;
+  z-index: 217;
+}
+.Jan_2023–_Sep_2024 {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.968px;
+  top: 1815.648px;
+  width: 109px;
+  height: 11px;
+  z-index: 216;
+}
+.Meknes__Morocco {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.478px;
+  top: 1801.483px;
+  width: 92px;
+  height: 10px;
+  z-index: 215;
+}
+.Lead_Designer__Co_Founder_ {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2962.112px;
+  top: 1834.531px;
+  width: 173px;
+  height: 12px;
+  z-index: 214;
+}
+.MowajihAI_ {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2961.65px;
+  top: 1808.592px;
+  width: 93px;
+  height: 18px;
+  z-index: 213;
+}
+.icons8_cancel_150 {
+  background-image: url("icons8-cancel-150.png");
+  position: absolute;
+  left: 3613px;
+  top: 1777px;
+  width: 14px;
+  height: 14px;
+  z-index: 212;
+}
+.Ellipse_1 {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 1769px;
+  width: 29px;
+  height: 29px;
+  z-index: 211;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 210;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2901px;
+  top: 1803px;
+  width: 51px;
+  height: 51px;
+  z-index: 208;
+}
+.Rectangle_14 {
+  border-radius: 42px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2878px;
+  top: 1783px;
+  width: 718px;
+  height: 155px;
+  z-index: 206;
+}
+.nebrasAI {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 204;
+}
+.Co_founded_an_AI_startup__shaped_product_direct {
+  font-size: 14px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2960.468px;
+  top: 1692.312px;
+  width: 544px;
+  height: 31px;
+  z-index: 203;
+}
+.Sep_2024–_Present {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.98px;
+  top: 1641.648px;
+  width: 100px;
+  height: 11px;
+  z-index: 202;
+}
+.Meknes__Morocco {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.478px;
+  top: 1627.483px;
+  width: 92px;
+  height: 10px;
+  z-index: 201;
+}
+.Co_Founder___Creative_Director_ {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2961.496px;
+  top: 1660.531px;
+  width: 194px;
+  height: 10px;
+  z-index: 200;
+}
+.NebrasAI_ {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2961.686px;
+  top: 1634.538px;
+  width: 82px;
+  height: 14px;
+  z-index: 199;
+}
+.icons8_cancel_150 {
+  background-image: url("icons8-cancel-150.png");
+  position: absolute;
+  left: 3613px;
+  top: 1603px;
+  width: 14px;
+  height: 14px;
+  z-index: 198;
+}
+.Ellipse_1 {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3605px;
+  top: 1595px;
+  width: 29px;
+  height: 29px;
+  z-index: 197;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 196;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2901px;
+  top: 1629px;
+  width: 51px;
+  height: 51px;
+  z-index: 194;
+}
+.Rectangle_14 {
+  border-radius: 42px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2878px;
+  top: 1609px;
+  width: 718px;
+  height: 155px;
+  z-index: 192;
+}
+.sihati {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 190;
+}
+.Data_Extraction:_Built_scripts_and_workflows_to {
+  font-size: 14px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2961.146px;
+  top: 1510.116px;
+  width: 568px;
+  height: 47px;
+  z-index: 189;
+}
+.Sep_2025–_Present {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.98px;
+  top: 1465.648px;
+  width: 100px;
+  height: 11px;
+  z-index: 188;
+}
+.Mekn_es__Morocco {
+  font-size: 11px;
+  font-family: "Helvetica Neue";
+  color: rgb(161, 161, 161);
+  line-height: 1.2;
+  text-align: right;
+  position: absolute;
+  left: 3440.92px;
+  top: 1451.747px;
+  width: 95px;
+  height: 11px;
+  z-index: 187;
+}
+.Data_Extraction_Developer___Graphic_Designer {
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2962.1px;
+  top: 1484.519px;
+  width: 226px;
+  height: 12px;
+  z-index: 186;
+}
+.Sihati_ {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(59, 59, 59);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2962.424px;
+  top: 1458.772px;
+  width: 50px;
+  height: 15px;
+  z-index: 185;
+}
+.icons8_cancel_150 {
+  background-image: url("icons8-cancel-150.png");
+  position: absolute;
+  left: 3613px;
+  top: 1427px;
+  width: 14px;
+  height: 14px;
+  z-index: 184;
+}
+.Ellipse_1 {
+  border-radius: 50%;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 3606px;
+  top: 1420px;
+  width: 28px;
+  height: 28px;
+  z-index: 183;
+}
+.Group_31 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 182;
+}
+.Rectangle_15 {
+  border-radius: 13px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2902px;
+  top: 1454px;
+  width: 51px;
+  height: 50px;
+  z-index: 180;
+}
+.Rectangle_14 {
+  border-radius: 42px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2879px;
+  top: 1434px;
+  width: 717px;
+  height: 154px;
+  z-index: 178;
+}
+.CAREER_JOURNEY {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(2, 118, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2883.118px;
+  top: 1383.456px;
+  width: 206px;
+  height: 17px;
+  z-index: 176;
+}
+.LEFT_SIDE {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 174;
+}
+.Text_field {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 173;
+}
+._0x0red_me_gmail_com {
+  font-size: 18px;
+  font-family: "Poppins";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2977.922px;
+  top: 4179.786px;
+  z-index: 172;
+}
+.Send {
+  border-radius: 50%;
+  background-color: rgb(0, 122, 255);
+  position: absolute;
+  left: 3391px;
+  top: 4167px;
+  width: 47px;
+  height: 47px;
+  z-index: 171;
+}
+.Siri_Mic {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 170;
+}
+.Camera {
+  background-color: rgb(133, 142, 153);
+  position: absolute;
+  left: 2902px;
+  top: 4176px;
+  width: 39px;
+  height: 29px;
+  z-index: 168;
+}
+.cursor {
+  background-color: rgb(105, 138, 244);
+  position: absolute;
+  left: 3199px;
+  top: 4177px;
+  width: 4px;
+  height: 30px;
+  z-index: 167;
+}
+.Text_input_field {
+  border-width: 1px;
+  border-color: rgb(200, 200, 205);
+  border-style: solid;
+  border-radius: 10px;
+  background-color: rgb(250, 250, 250);
+  position: absolute;
+  left: 2963px;
+  top: 4171px;
+  width: 402px;
+  height: 41px;
+  z-index: 166;
+}
+.Line {
+  background-color: rgb(173, 173, 173);
+  position: absolute;
+  left: 2880px;
+  top: 4159px;
+  width: 572px;
+  height: 2px;
+  z-index: 165;
+}
+.Title_background {
+  background-color: rgb(248, 248, 248);
+  position: absolute;
+  left: 2880px;
+  top: 4159px;
+  width: 572px;
+  height: 66px;
+  z-index: 164;
+}
+.Select___Select_All {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 162;
+}
+.Start_a_Project {
+  font-size: 20.279px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.578;
+  text-align: center;
+  -moz-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -webkit-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -ms-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  position: absolute;
+  left: 2668.02px;
+  top: 4041.756px;
+  z-index: 161;
+}
+.Bring_Me_on_Bord {
+  font-size: 20.279px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.578;
+  text-align: center;
+  -moz-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -webkit-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -ms-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  position: absolute;
+  left: 2487.357px;
+  top: 4042.114px;
+  z-index: 160;
+}
+.Hire_Me {
+  font-size: 20.279px;
+  font-family: "Helvetica Neue";
+  color: rgb(1, 122, 255);
+  line-height: 1.578;
+  text-align: center;
+  -moz-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -webkit-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  -ms-transform: matrix( 0.78899788042077,-1.51078854115103e-15,1.27738019911928e-15,0.78899788042075,0,0);
+  position: absolute;
+  left: 2372.93px;
+  top: 4010.5px;
+  z-index: 159;
+}
+.Line_4 {
+  background-color: rgb(174, 174, 174);
+  position: absolute;
+  left: 2489px;
+  top: 3997px;
+  width: 1px;
+  height: 58px;
+  z-index: 158;
+}
+.Line_4_copy {
+  background-color: rgb(174, 174, 174);
+  position: absolute;
+  left: 2672px;
+  top: 3997px;
+  width: 1px;
+  height: 58px;
+  z-index: 157;
+}
+.Group_29 {
+  background-image: url("Group 29.png");
+  position: absolute;
+  left: 2340px;
+  top: 3984px;
+  width: 475px;
+  height: 71px;
+  z-index: 156;
+}
+.Line_3_copy_2 {
+  background-color: rgb(166, 166, 166);
+  position: absolute;
+  left: 2365px;
+  top: 3325px;
+  width: 438px;
+  height: 11px;
+  z-index: 154;
+}
+.See_my_track_record {
+  font-size: 20px;
+  font-family: "Helvetica Neue";
+  color: rgb(255, 96, 89);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2386.22px;
+  top: 3408.283px;
+  width: 187px;
+  height: 19px;
+  z-index: 151;
+}
+.My_Work__online_ {
+  font-size: 20px;
+  font-family: "Helvetica Neue";
+  color: rgb(63, 63, 63);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2386.4px;
+  top: 3352.003px;
+  width: 152px;
+  height: 19px;
+  z-index: 150;
+}
+._0x0red_me {
+  font-size: 20px;
+  font-family: "Helvetica Neue";
+  color: rgb(63, 63, 63);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2387.28px;
+  top: 3286.003px;
+  width: 100px;
+  height: 16px;
+  z-index: 149;
+}
+.Line_3_copy_3 {
+  background-color: rgb(226, 226, 225);
+  position: absolute;
+  left: 2368px;
+  top: 3390px;
+  width: 435px;
+  height: 1px;
+  z-index: 148;
+}
+.Line_3_copy {
+  background-color: rgb(226, 226, 225);
+  position: absolute;
+  left: 2367px;
+  top: 3270px;
+  width: 435px;
+  height: 1px;
+  z-index: 147;
+}
+.Line_3 {
+  background-color: rgb(226, 226, 225);
+  position: absolute;
+  left: 2367px;
+  top: 3214px;
+  width: 435px;
+  height: 1px;
+  z-index: 146;
+}
+.Rectangle_12 {
+  border-radius: 22px;
+  background-color: rgb(242, 242, 242);
+  opacity: 0.2;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.58);
+  position: absolute;
+  left: 2365px;
+  top: 3158px;
+  width: 438px;
+  height: 291px;
+  z-index: 144;
+}
+.Rectangle_13 {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: -4px 6.928px 20px 0px rgba(82, 82, 82, 0.5);
+  position: absolute;
+  left: 2367px;
+  top: 3042px;
+  width: 89px;
+  height: 89px;
+  z-index: 142;
+}
+.Where_I_m_Based_ {
+  font-size: 22px;
+  font-family: "Helvetica Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2573.692px;
+  top: 2815.289px;
+  width: 187px;
+  height: 17px;
+  z-index: 141;
+}
+.Speech_Bubble {
+  background-color: rgb(1, 122, 255);
+  box-shadow: -4.925px 6.304px 20px 0px rgba(0, 0, 0, 0.21);
+  position: absolute;
+  left: 2553px;
+  top: 2803px;
+  width: 229px;
+  height: 49px;
+  z-index: 140;
+}
+.Morocco {
+  font-size: 17px;
+  font-family: "Helvetica Neue";
+  color: rgb(63, 63, 63);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2350.725px;
+  top: 2957.999px;
+  width: 71px;
+  height: 13px;
+  z-index: 139;
+}
+.Meknes {
+  font-size: 17px;
+  font-family: "Helvetica Neue";
+  color: rgb(63, 63, 63);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2350.725px;
+  top: 2935.999px;
+  width: 63px;
+  height: 13px;
+  z-index: 138;
+}
+.Layer_5 {
+  background-image: url("Layer 5.png");
+  position: absolute;
+  left: 2263px;
+  top: 2633px;
+  width: 470px;
+  height: 514px;
+  z-index: 137;
+}
+.Rectangle_11 {
+  border-radius: 32px;
+  background-image: -moz-linear-gradient( 91deg, rgba(10,50,1,0) 0%, rgb(2,9,2) 100%);
+  background-image: -webkit-linear-gradient( 91deg, rgba(10,50,1,0) 0%, rgb(2,9,2) 100%);
+  background-image: -ms-linear-gradient( 91deg, rgba(10,50,1,0) 0%, rgb(2,9,2) 100%);
+  box-shadow: -4px 6.928px 20px 0px rgba(76, 76, 76, 0.3);
+  position: absolute;
+  left: 2329px;
+  top: 2788px;
+  width: 204px;
+  height: 204px;
+  z-index: 136;
+}
+.Layer_4 {
+  background-image: url("Layer 4.png");
+  position: absolute;
+  left: 2384px;
+  top: 2517px;
+  width: 399px;
+  height: 183px;
+  z-index: 135;
+}
+.Rectangle_10 {
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2367px;
+  top: 2507px;
+  width: 433px;
+  height: 202px;
+  z-index: 134;
+}
+.Core_Expertise {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2412.118px;
+  top: 1713.435px;
+  width: 148px;
+  height: 20px;
+  z-index: 133;
+}
+.Building_intelligent_systems_from_data_to_deplo {
+  font-size: 19px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2411.278px;
+  top: 1755.471px;
+  width: 273px;
+  height: 42px;
+  z-index: 132;
+}
+.AI_Systems___Deployment {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(231, 97, 63);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.657px;
+  top: 2372.256px;
+  width: 217px;
+  height: 18px;
+  z-index: 131;
+}
+.Rectangle_9_copy_7 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 2355px;
+  width: 346px;
+  height: 60px;
+  z-index: 130;
+}
+.Time_Series_Forecasting {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.799px;
+  top: 2299.256px;
+  width: 203px;
+  height: 18px;
+  z-index: 129;
+}
+.Rectangle_9_copy_6 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 2282px;
+  width: 346px;
+  height: 60px;
+  z-index: 128;
+}
+.RAG___AI_Applications {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2447.034px;
+  top: 2225.274px;
+  width: 185px;
+  height: 18px;
+  z-index: 127;
+}
+.Rectangle_9_copy_5 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 2208px;
+  width: 346px;
+  height: 60px;
+  z-index: 126;
+}
+.Data_Analysis___Visualization {
+  font-size: 18px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.792px;
+  top: 2152.076px;
+  width: 130px;
+  height: 18px;
+  z-index: 125;
+}
+.Rectangle_9_copy_4 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 2135px;
+  width: 346px;
+  height: 60px;
+  z-index: 124;
+}
+.LLMs__VLMs___Generative_AI {
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.986px;
+  top: 2079.245px;
+  width: 210px;
+  height: 15px;
+  z-index: 123;
+}
+.Rectangle_9_copy_3 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 2062px;
+  width: 346px;
+  height: 60px;
+  z-index: 122;
+}
+.Computer_Vision {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2447.028px;
+  top: 2006.333px;
+  width: 160px;
+  height: 21px;
+  z-index: 121;
+}
+.Rectangle_9_copy_2 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 1989px;
+  width: 346px;
+  height: 60px;
+  z-index: 120;
+}
+.Deep_Learning {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.528px;
+  top: 1932.997px;
+  width: 140px;
+  height: 20px;
+  z-index: 119;
+}
+.Rectangle_9_copy {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 1915px;
+  width: 346px;
+  height: 60px;
+  z-index: 118;
+}
+.Machine_Learning___Predictive_Modeling {
+  font-size: 21px;
+  font-family: "Helvetica Neue";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2446.264px;
+  top: 1847.081px;
+  width: 194px;
+  height: 46px;
+  z-index: 117;
+}
+.Rectangle_9 {
+  background-color: rgb(223, 223, 223);
+  position: absolute;
+  left: 2402px;
+  top: 1842px;
+  width: 346px;
+  height: 60px;
+  z-index: 116;
+}
+.Rectangle_8 {
+  border-radius: 39px;
+  background-color: rgb(244, 244, 244);
+  position: absolute;
+  left: 2386px;
+  top: 1687px;
+  width: 381px;
+  height: 762px;
+  z-index: 115;
+}
+.TOP_PAGE {
+  position: absolute;
+  left: -2020px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 111;
+}
+._3_DOTS {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 110;
+}
+.Ellipse_8 {
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 2992px;
+  top: 1321px;
+  width: 8px;
+  height: 8px;
+  z-index: 109;
+}
+.Ellipse_8 {
+  border-radius: 50%;
+  background-color: rgb(241, 241, 241);
+  position: absolute;
+  left: 2976px;
+  top: 1321px;
+  width: 8px;
+  height: 8px;
+  z-index: 108;
+}
+.Ellipse_8 {
+  border-radius: 50%;
+  background-color: rgb(229, 229, 229);
+  position: absolute;
+  left: 2960px;
+  top: 1321px;
+  width: 8px;
+  height: 8px;
+  z-index: 107;
+}
+.APS_logos {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 105;
+}
+.Group_9_copy {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 104;
+}
+.Rectangle_7_copy_9 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 3459px;
+  top: 1207px;
+  width: 72px;
+  height: 70px;
+  z-index: 102;
+}
+.Group_9 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 100;
+}
+.Rectangle_7_copy_9 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 3356px;
+  top: 1207px;
+  width: 72px;
+  height: 70px;
+  z-index: 98;
+}
+.Group_10 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 96;
+}
+.Rectangle_7_copy_8 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 3254px;
+  top: 1209px;
+  width: 71px;
+  height: 70px;
+  z-index: 94;
+}
+.Group_11 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 92;
+}
+.Rectangle_7_copy_7 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 3150px;
+  top: 1207px;
+  width: 72px;
+  height: 70px;
+  z-index: 90;
+}
+.Group_12 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 88;
+}
+.Rectangle_7_copy_6 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 3048px;
+  top: 1207px;
+  width: 71px;
+  height: 70px;
+  z-index: 86;
+}
+.Group_13 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 84;
+}
+.Rectangle_7_copy_5 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2945px;
+  top: 1208px;
+  width: 71px;
+  height: 70px;
+  z-index: 82;
+}
+.Group_14 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 80;
+}
+.Rectangle_7_copy_4 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2842px;
+  top: 1207px;
+  width: 71px;
+  height: 70px;
+  z-index: 78;
+}
+.Group_5 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 76;
+}
+.Rectangle_7_copy_3 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2739px;
+  top: 1207px;
+  width: 71px;
+  height: 70px;
+  z-index: 74;
+}
+.Group_6 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 72;
+}
+.Rectangle_7_copy_2 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2636px;
+  top: 1207px;
+  width: 72px;
+  height: 70px;
+  z-index: 70;
+}
+.Group_7 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 68;
+}
+.Rectangle_7_copy {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2533px;
+  top: 1207px;
+  width: 71px;
+  height: 70px;
+  z-index: 66;
+}
+.Group_8 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 64;
+}
+.Rectangle_7 {
+  border-radius: 18px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 2430px;
+  top: 1207px;
+  width: 71px;
+  height: 70px;
+  z-index: 62;
+}
+.Rectangle_6 {
+  border-radius: 35px;
+  background-color: rgb(242, 242, 242);
+  position: absolute;
+  left: 2402px;
+  top: 1183px;
+  width: 1156px;
+  height: 120px;
+  z-index: 60;
+}
+.website {
+  background-image: url("website.png");
+  position: absolute;
+  left: 2991px;
+  top: 1035px;
+  width: 375px;
+  height: 71px;
+  z-index: 58;
+}
+.Group_4 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 57;
+}
+.Group_3 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 56;
+}
+.Othmane_FERRAH {
+  font-size: 20px;
+  font-family: "Helvetica Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2483.24px;
+  top: 879.583px;
+  width: 175px;
+  height: 16px;
+  z-index: 54;
+}
+.Layer_1 {
+  background-image: url("Layer 1.png");
+  position: absolute;
+  left: 2816px;
+  top: 883px;
+  width: 46px;
+  height: 45px;
+  z-index: 52;
+}
+.Layer_2 {
+  background-image: url("Layer 2.png");
+  position: absolute;
+  left: 2752px;
+  top: 886px;
+  width: 46px;
+  height: 46px;
+  z-index: 51;
+}
+.Rectangle_4 {
+  background-image: -moz-linear-gradient( 0deg, rgb(48,48,48) 0%, rgb(28,28,28) 100%);
+  background-image: -webkit-linear-gradient( 0deg, rgb(48,48,48) 0%, rgb(28,28,28) 100%);
+  background-image: -ms-linear-gradient( 0deg, rgb(48,48,48) 0%, rgb(28,28,28) 100%);
+  position: absolute;
+  left: 2384px;
+  top: 847px;
+  width: 499px;
+  height: 120px;
+  z-index: 48;
+}
+.AI_Builder__Researcher__Creator_I_m_an_AI___Dat {
+  font-size: 20px;
+  font-family: "Poppins";
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  line-height: 1.35;
+  text-align: center;
+  position: absolute;
+  left: 2393.562px;
+  top: 524.966px;
+  width: 387px;
+  height: 158px;
+  z-index: 46;
+}
+.ChatGPT_Image_13_sept__2026__23_12_51_copy_2 {
+  background-image: url("ChatGPT Image 13 sept. 2026, 23_12_51 copy 2.png");
+  opacity: 0.922;
+  position: absolute;
+  left: 2794px;
+  top: 380px;
+  width: 395px;
+  height: 743px;
+  z-index: 45;
+}
+.Group_2 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 44;
+}
+.Hire_Me {
+  font-size: 22px;
+  font-family: "Clash Display Variable";
+  color: rgb(2, 118, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 2547.906px;
+  top: 682.364px;
+  width: 80px;
+  height: 16px;
+  z-index: 43;
+}
+.Line_2 {
+  background-color: rgb(173, 173, 173);
+  position: absolute;
+  left: 2372px;
+  top: 665px;
+  width: 435px;
+  height: 2px;
+  z-index: 42;
+}
+.ChatGPT_Image_13_sept__2026__23_12_51_copy_3 {
+  background-image: url("ChatGPT Image 13 sept. 2026, 23_12_51 copy 3.png");
+  opacity: 0.102;
+  position: absolute;
+  left: 2372px;
+  top: 356px;
+  width: 1100px;
+  height: 802px;
+  z-index: 41;
+}
+.Rectangle_3 {
+  border-radius: 19px;
+  background-color: rgb(238, 238, 238);
+  opacity: 0.961;
+  position: absolute;
+  left: 2373px;
+  top: 480px;
+  width: 434px;
+  height: 242px;
+  z-index: 40;
+}
+.Group_1 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 38;
+}
+.End_to_End_AI_Systems {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.398px;
+  top: 967.754px;
+  width: 197px;
+  height: 18px;
+  z-index: 37;
+}
+.Line_1_copy_6 {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 953px;
+  width: 307px;
+  height: 1px;
+  z-index: 35;
+}
+.Generative_AI___RAG_ {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.082px;
+  top: 920.294px;
+  width: 176px;
+  height: 17px;
+  z-index: 34;
+}
+.Line_1_copy_4 {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 905px;
+  width: 307px;
+  height: 1px;
+  z-index: 32;
+}
+.LLMs___VLMs {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.398px;
+  top: 871.43px;
+  width: 109px;
+  height: 14px;
+  z-index: 31;
+}
+.Line_1_copy_3 {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 856px;
+  width: 307px;
+  height: 1px;
+  z-index: 29;
+}
+.Data_Science {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.398px;
+  top: 823.502px;
+  width: 118px;
+  height: 14px;
+  z-index: 28;
+}
+.Line_1_copy_2 {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 808px;
+  width: 307px;
+  height: 1px;
+  z-index: 26;
+}
+.Computer_Vision {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.082px;
+  top: 774.502px;
+  width: 148px;
+  height: 17px;
+  z-index: 25;
+}
+.Line_1_copy {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 759px;
+  width: 307px;
+  height: 1px;
+  z-index: 23;
+}
+.Deep_Learning {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.398px;
+  top: 726.502px;
+  width: 128px;
+  height: 17px;
+  z-index: 22;
+}
+.Line_1 {
+  background-color: rgb(130, 130, 130);
+  position: absolute;
+  left: 3314px;
+  top: 711px;
+  width: 307px;
+  height: 1px;
+  z-index: 20;
+}
+.Machine_Learning {
+  font-size: 18px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 3336.398px;
+  top: 676.754px;
+  width: 157px;
+  height: 18px;
+  z-index: 19;
+}
+.skills {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 3940px;
+  height: 4325px;
+  z-index: 15;
+}
+.Rectangle_2 {
+  border-radius: 25px;
+  background-color: rgb(108, 107, 106);
+  position: absolute;
+  left: 3314px;
+  top: 659px;
+  width: 307px;
+  height: 346px;
+  z-index: 14;
+}
+.ChatGPT_Image_13_sept__2026__23_12_51 {
+  background-image: url("ChatGPT Image 13 sept. 2026, 23_12_51.png");
+  opacity: 0.961;
+  position: absolute;
+  left: 2376px;
+  top: 269px;
+  width: 1073px;
+  height: 876px;
+  z-index: 12;
+}
+.skills {
+  font-size: 30px;
+  font-family: "Neulis Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: center;
+  -moz-transform: matrix( 0.89999997615814,0,0,0.9,0,0);
+  -webkit-transform: matrix( 0.89999997615814,0,0,0.9,0,0);
+  -ms-transform: matrix( 0.89999997615814,0,0,0.9,0,0);
+  position: absolute;
+  left: 3245.075px;
+  top: 584.77px;
+  width: 62.85px;
+  height: 21.96px;
+  z-index: 11;
+}
+.Rectangle_1 {
+  border-radius: 27px;
+  background-color: rgb(28, 28, 29);
+  position: absolute;
+  left: 3233px;
+  top: 573px;
+  width: 121px;
+  height: 57px;
+  z-index: 10;
+}
+.DATA_SCIENTIST {
+  font-size: 120px;
+  font-family: "Helvetica Neue";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2339.22px;
+  top: 302.477px;
+  width: 994px;
+  height: 90px;
+  z-index: 9;
+}
+._ {
+  font-size: 50px;
+  font-family: "Poppins";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2613.226px;
+  top: 257.122px;
+  width: 37px;
+  height: 37px;
+  z-index: 8;
+}
+.ARTIFICIAL_INTELLIGENCE {
+  font-size: 51px;
+  font-family: "Helvetica Neue";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 2612.513px;
+  top: 195.826px;
+  width: 631px;
+  height: 39px;
+  z-index: 7;
+}
+.Layer_0 {
+  background-image: url("Layer 0.png");
+  position: absolute;
+  left: -194px;
+  top: 0px;
+  width: 2228px;
+  height: 4325px;
+  z-index: 5;
+}

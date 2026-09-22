@@ -39,6 +39,10 @@ next-env.d.ts
 public/**/my-app/
 public/**/node_modules/
 
+# Design sources (PSD/PDF exports). Run scripts/build-cv-pdfs.mjs to regenerate
+# the web-ready copies in public/cv.
+/design-src/
+
 # Large video files (host externally for production; keep local for dev)
 public/VIDEO/*.mp4
 public/VIDEO/Untitled
