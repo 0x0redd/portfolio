@@ -18,14 +18,17 @@ export default function About() {
 
       <div className="mx-auto max-w-6xl px-4 pb-28 pt-12 md:px-8 md:pb-20 md:pt-16">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
-          <div className="order-2 lg:order-1 lg:col-span-4 lg:sticky lg:top-10 lg:self-start">
+          <div className="hidden lg:order-1 lg:col-span-4 lg:block lg:sticky lg:top-10 lg:self-start">
             <AboutSidebar />
           </div>
 
-          <div className="order-1 flex flex-col gap-10 lg:order-2 lg:col-span-8">
+          <div className="flex flex-col gap-10 lg:order-2 lg:col-span-8">
             <CareerJourney />
             <AboutLeadership />
             <AboutProjects />
+            <div className="lg:hidden">
+              <AboutSidebar />
+            </div>
             <AboutCta />
           </div>
         </div>

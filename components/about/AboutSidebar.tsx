@@ -7,6 +7,7 @@ import { ContactModal } from "@/app/components/contactModal";
 import { about, person, social } from "@/lib/about-content";
 import { IosCard, IosSectionTitle } from "@/components/about/AboutShell";
 import { StillLifeImage } from "@/components/about/TechStrip";
+import FolderFloat from "@/components/about/FolderFloat";
 
 const EXPERTISE = [
   "Machine Learning & Predictive Modeling",
@@ -30,18 +31,39 @@ export function AboutSidebar() {
         priority
       />
 
-      <IosCard>
+      <IosCard className="overflow-visible">
         <IosSectionTitle>Core Expertise</IosSectionTitle>
-        <ul className="flex flex-col gap-2">
-          {EXPERTISE.map((item) => (
-            <li
-              key={item}
-              className="rounded-xl bg-ios-fill px-4 py-2.5 text-sm font-medium text-ios-label"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+        <div className="flex justify-center overflow-visible py-6">
+          <FolderFloat
+            items={EXPERTISE}
+            label="Core Expertise"
+            sublabel={`${EXPERTISE.length} skills`}
+            trigger="click"
+            closeOnSelect={false}
+            physics
+            drift={0.001}
+            folderColor="#007AFF"
+            frontColor="#0A84FF"
+            paperColor="#F2F2F7"
+            itemColor="#FFFFFF"
+            itemTextColor="#1C1C1E"
+            labelColor="#FFFFFF"
+            width={200}
+            height={148}
+            radius={14}
+            spread={200}
+            lift={28}
+            tilt={8}
+            flapAngle={34}
+            restAngle={16}
+            openDuration={520}
+            stagger={45}
+            bounce={0.3}
+          />
+        </div>
+        <p className="text-center text-[11px] text-ios-secondary">
+          Tap the folder to explore skills
+        </p>
       </IosCard>
 
       {/* Stats rings inspired by the design */}

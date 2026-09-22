@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArrowUpRight, Instagram, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactModalProps {
@@ -61,22 +61,10 @@ export function ContactModal({ children }: ContactModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const email = "0x0red.me@gmail.com";
-  const instagram = "0x0red";
-  const whatsapp = "212636851343";
 
   const handleEmailClick = () => {
     setIsOpen(false);
     window.location.href = `mailto:${email}`;
-  };
-
-  const handleInstagramClick = () => {
-    setIsOpen(false);
-    window.open(`https://instagram.com/${instagram}`, "_blank");
-  };
-
-  const handleWhatsAppClick = () => {
-    setIsOpen(false);
-    window.open(`https://wa.me/${whatsapp}`, "_blank");
   };
 
   return (
@@ -91,8 +79,7 @@ export function ContactModal({ children }: ContactModalProps) {
             Get in Touch
           </DialogTitle>
           <DialogDescription className="text-sm leading-relaxed text-white/50">
-            Let&apos;s collaborate on your next project — reach out through any
-            channel below.
+            Let&apos;s collaborate on your next project — reach out by email.
           </DialogDescription>
         </DialogHeader>
 
@@ -102,20 +89,6 @@ export function ContactModal({ children }: ContactModalProps) {
             value={email}
             icon={<Mail className="h-5 w-5" aria-hidden="true" />}
             onClick={handleEmailClick}
-          />
-          <ContactOption
-            label="Instagram"
-            value={`@${instagram}`}
-            icon={<Instagram className="h-5 w-5" aria-hidden="true" />}
-            iconClassName="border-purple-500/20 bg-purple-500/10 text-purple-200"
-            onClick={handleInstagramClick}
-          />
-          <ContactOption
-            label="WhatsApp"
-            value="Send a message"
-            icon={<MessageCircle className="h-5 w-5" aria-hidden="true" />}
-            iconClassName="border-emerald-500/20 bg-emerald-500/10 text-emerald-200"
-            onClick={handleWhatsAppClick}
           />
         </div>
 
