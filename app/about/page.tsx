@@ -8,6 +8,7 @@ import { CareerJourney } from "@/components/about/CareerJourney";
 import { AboutLeadership } from "@/components/about/AboutLeadership";
 import { AboutProjects } from "@/components/about/AboutProjects";
 import { AboutCta } from "@/components/about/AboutCta";
+import { MobilePcTipToast } from "@/components/about/MobilePcTipToast";
 
 export default function About() {
   return (
@@ -33,6 +34,8 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <MobilePcTipToast />
     </AboutShell>
   );
 }
