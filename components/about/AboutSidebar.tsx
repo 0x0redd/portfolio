@@ -23,7 +23,7 @@ const EXPERTISE = [
 
 export function AboutSidebar() {
   return (
-    <aside className="flex flex-col gap-6">
+      <aside className="flex w-full max-w-full flex-col gap-6 overflow-x-clip">
       <StillLifeImage
         src="/about/still-typewriter.png"
         alt="Creative tools — typewriter, tablet, coffee"
@@ -31,9 +31,9 @@ export function AboutSidebar() {
         priority
       />
 
-      <IosCard className="overflow-visible">
+      <IosCard className="relative overflow-x-clip overflow-y-visible">
         <IosSectionTitle>Core Expertise</IosSectionTitle>
-        <div className="flex justify-center overflow-visible py-6">
+        <div className="relative flex justify-center overflow-x-clip overflow-y-visible py-6">
           <FolderFloat
             items={EXPERTISE}
             label="Core Expertise"
@@ -48,17 +48,18 @@ export function AboutSidebar() {
             itemColor="#FFFFFF"
             itemTextColor="#1C1C1E"
             labelColor="#FFFFFF"
-            width={200}
-            height={148}
+            width={180}
+            height={140}
             radius={14}
-            spread={200}
-            lift={28}
+            spread={140}
+            lift={24}
             tilt={8}
             flapAngle={34}
             restAngle={16}
             openDuration={520}
             stagger={45}
             bounce={0.3}
+            className="max-w-full"
           />
         </div>
         <p className="text-center text-[11px] text-ios-secondary">

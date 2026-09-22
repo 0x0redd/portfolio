@@ -37,7 +37,9 @@ function AboutThemeToggle() {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className={cn(
-        "fixed bottom-6 right-5 z-[80] flex h-14 w-14 items-center justify-center rounded-full shadow-ios-lg transition-all duration-300 md:bottom-8 md:right-8",
+        // Sit above the mobile bottom nav; desktop stays in the corner
+        "fixed bottom-24 right-4 z-[80] flex h-12 w-12 items-center justify-center rounded-full shadow-ios-lg transition-all duration-300",
+        "md:bottom-8 md:right-8 md:h-14 md:w-14",
         "border border-black/5 bg-white/90 text-ios-label backdrop-blur-xl",
         "hover:-translate-y-1 hover:scale-105 active:scale-95",
         "dark:border-white/15 dark:bg-[#2C2C2E]/90 dark:text-white"
@@ -98,7 +100,7 @@ export function AboutShell({
     <AboutThemeContext.Provider value={{ theme, toggle }}>
       <div
         className={cn(
-          "about-ios min-h-screen bg-ios-bg text-ios-label transition-colors duration-300",
+          "about-ios relative min-h-screen max-w-[100vw] overflow-x-hidden bg-ios-bg text-ios-label transition-colors duration-300",
           theme === "dark" && "dark",
           className
         )}

@@ -525,7 +525,8 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
         className="pointer-events-none absolute left-1/2 z-0 -translate-x-1/2 opacity-70 transition-opacity duration-500 group-data-[open]:opacity-100"
         style={{
           top: "calc(var(--ff-tab) - 140px)",
-          width: "calc(var(--ff-spread) * 2 + 100px)",
+          width: "min(100vw, calc(var(--ff-spread) * 2 + 100px))",
+          maxWidth: "100%",
           height: "calc(var(--ff-lift) + 200px)",
           background: `
             radial-gradient(ellipse 70% 60% at 50% 85%, color-mix(in srgb, var(--ff-front) 55%, transparent) 0%, transparent 72%),

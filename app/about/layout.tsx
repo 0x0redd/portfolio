@@ -13,6 +13,8 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${poppins.variable} font-poppins antialiased`}>{children}</div>
+    <div className={`${poppins.variable} font-poppins max-w-[100vw] overflow-x-hidden antialiased`}>
+      {children}
+    </div>
   );
 }
