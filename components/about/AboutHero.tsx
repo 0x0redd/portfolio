@@ -25,11 +25,11 @@ export function AboutHero() {
     <section className="relative overflow-hidden pb-10 pt-10 md:pb-12 md:pt-28">
       {/* Studio backdrop — light gray wash fading into the page background */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#9CA1A6] via-[#C3C7CA] to-[#F2F2F7]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#9CA1A6] via-[#C3C7CA] to-ios-bg transition-colors duration-300 dark:from-[#0A0A0C] dark:via-[#121214] dark:to-ios-bg"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[70%] bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.45),transparent_65%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[70%] bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.45),transparent_65%)] dark:bg-[radial-gradient(ellipse_at_50%_-10%,rgba(10,132,255,0.22),transparent_60%)]"
         aria-hidden
       />
 
@@ -62,7 +62,7 @@ export function AboutHero() {
           </div>
 
           {/* Intro card */}
-          <div className="order-2 z-30 w-full max-w-sm rounded-2xl bg-white/90 p-4 shadow-ios backdrop-blur-xl md:absolute md:left-0 md:top-[8%] md:order-none md:w-[250px] lg:w-[278px]">
+          <div className="order-2 z-30 w-full max-w-sm rounded-2xl bg-white/90 p-4 shadow-ios backdrop-blur-xl dark:bg-[#1C1C1E]/90 md:absolute md:left-0 md:top-[8%] md:order-none md:w-[250px] lg:w-[278px]">
             <h2 className="text-center text-[15px] font-bold tracking-tight text-ios-label md:text-base">
               AI Builder, Researcher, Creator
             </h2>
@@ -160,7 +160,7 @@ export function AboutHero() {
           </div>
 
           {/* Safari address bar — desktop only */}
-          <div className="order-5 z-30 hidden w-full max-w-xs items-center gap-2 rounded-xl bg-white/90 px-3 py-2 shadow-ios backdrop-blur-xl md:absolute md:bottom-[7%] md:left-1/2 md:flex md:w-[292px] md:-translate-x-1/2">
+          <div className="order-5 z-30 hidden w-full max-w-xs items-center gap-2 rounded-xl bg-white/90 px-3 py-2 shadow-ios backdrop-blur-xl dark:bg-[#1C1C1E]/90 md:absolute md:bottom-[7%] md:left-1/2 md:flex md:w-[292px] md:-translate-x-1/2">
             <span className="text-[11px] font-medium text-ios-secondary">
               aA
             </span>

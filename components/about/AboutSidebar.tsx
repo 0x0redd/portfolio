@@ -57,10 +57,10 @@ export function AboutSidebar() {
               <div
                 className="relative flex h-16 w-16 items-center justify-center rounded-full"
                 style={{
-                  background: `conic-gradient(#007AFF ${stat.value}%, #E5E5EA 0)`,
+                  background: `conic-gradient(var(--ios-blue) ${stat.value}%, var(--ios-fill) 0)`,
                 }}
               >
-                <div className="absolute inset-1.5 flex items-center justify-center rounded-full bg-white text-sm font-semibold">
+                <div className="absolute inset-1.5 flex items-center justify-center rounded-full bg-white text-sm font-semibold text-[#1C1C1E]">
                   {stat.value}%
                 </div>
               </div>
@@ -130,7 +130,7 @@ export function AboutSidebar() {
         <ContactModal>
           <button
             type="button"
-            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-blue shadow-ios transition hover:bg-ios-blue hover:text-white"
+            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-blue shadow-ios transition hover:bg-ios-blue hover:text-white dark:bg-ios-fill dark:hover:bg-ios-blue"
           >
             Hire Me
           </button>
@@ -138,7 +138,7 @@ export function AboutSidebar() {
         <ContactModal>
           <button
             type="button"
-            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-label shadow-ios transition hover:bg-ios-fill"
+            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-label shadow-ios transition hover:bg-ios-fill dark:bg-ios-fill dark:hover:bg-[#3A3A3C]"
           >
             Bring Me on Board
           </button>
@@ -146,7 +146,7 @@ export function AboutSidebar() {
         <ContactModal>
           <button
             type="button"
-            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-label shadow-ios transition hover:bg-ios-fill"
+            className="w-full rounded-2xl bg-white px-4 py-3.5 text-center text-base font-semibold text-ios-label shadow-ios transition hover:bg-ios-fill dark:bg-ios-fill dark:hover:bg-[#3A3A3C]"
           >
             Start a Project
           </button>
