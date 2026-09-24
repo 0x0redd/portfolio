@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, Lock, Phone, PhoneOff, Star, User, X } from "lucide-react";
 import { CvModal } from "@/components/about/CvModal";
+import { ContactModal } from "@/app/components/contactModal";
 import { person } from "@/lib/about-content";
 import { TechStrip } from "@/components/about/TechStrip";
 import { cn } from "@/lib/utils";
@@ -101,13 +102,23 @@ export function AboutHero() {
             >
               <PhoneOff className="h-[18px] w-[18px] text-white" />
             </span>
-            <a
-              // href={`tel:${person.phone.replace(/\s/g, "")}`}
-              aria-label={`Call ${person.name}`}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#30D158] transition hover:brightness-110"
-            >
-              <Phone className="h-[18px] w-[18px] fill-white text-white" />
-            </a>
+            <ContactModal>
+              <button
+                type="button"
+                aria-label={`Call ${person.name}`}
+                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#30D158] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30D158]/60"
+              >
+                <span
+                  className="pointer-events-none absolute inset-0 animate-ping rounded-full bg-[#30D158]/55"
+                  aria-hidden
+                />
+                <span
+                  className="pointer-events-none absolute -inset-1 animate-pulse rounded-full bg-[#30D158]/35 blur-md"
+                  aria-hidden
+                />
+                <Phone className="relative z-10 h-[18px] w-[18px] fill-white text-white" />
+              </button>
+            </ContactModal>
           </div>
 
           {/* Skills panel — collapsed by default on phone; tap "skills" to toggle */}
