@@ -1,16 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Mail, ArrowUpRight, Camera } from "lucide-react";
+import { Mail, ArrowUpRight, Camera, ChevronDown } from "lucide-react";
 import { ContactModal } from "@/app/components/contactModal";
 import { about, person, social } from "@/lib/about-content";
 import { IosCard, IosSectionTitle } from "@/components/about/AboutShell";
 import { StillLifeImage } from "@/components/about/TechStrip";
 import FolderFloat from "@/components/about/FolderFloat";
+import { cn } from "@/lib/utils";
 
 const EXPERTISE = [
-  "Machine Learning & Predictive Modeling",
+  "Machine Learning",
   "Deep Learning",
   "Computer Vision",
   "Natural Language Processing",
@@ -21,9 +23,34 @@ const EXPERTISE = [
   "RAG & AI Applications",
 ];
 
+const PERSONAL_PICKS = [
+  {
+    src: "/rabat/IMG_4941.jpg",
+    alt: "Rainy night street, Hotel Malta neon, Rabat",
+  },
+  {
+    src: "/meknes/IMG_9981.jpg",
+    alt: "Street scene with Meknes bus, black and white",
+  },
+  {
+    src: "/Fes/IMG_9606.jpg",
+    alt: "Moroccan football jerseys in a Fes medina alley",
+  },
+  {
+    src: "/Pined/DSC_2652.jpg",
+    alt: "Person walking under stadium lights, black and white",
+  },
+  {
+    src: "/Pined/IMG_20211130_170752%20(2).jpg",
+    alt: "Coastal sunset through foliage",
+  },
+];
+
 export function AboutSidebar() {
+  const [picksOpen, setPicksOpen] = useState(false);
+
   return (
-      <aside className="flex w-full max-w-full flex-col gap-6 overflow-x-clip">
+      <aside className="flex w-full max-w-full flex-col gap-6 overflow-visible">
       <StillLifeImage
         src="/about/still-typewriter.png"
         alt="Creative tools — typewriter, tablet, coffee"
@@ -31,9 +58,9 @@ export function AboutSidebar() {
         priority
       />
 
-      <IosCard className="relative overflow-x-clip overflow-y-visible">
+      <IosCard className="relative overflow-x-clip overflow-visible">
         <IosSectionTitle>Core Expertise</IosSectionTitle>
-        <div className="relative flex justify-center overflow-x-clip overflow-y-visible py-6">
+        <div className="relative flex justify-center  overflow-visible py-6">
           <FolderFloat
             items={EXPERTISE}
             label="Core Expertise"
@@ -199,6 +226,55 @@ export function AboutSidebar() {
           </Link>
         </IosCard>
       )}
+
+      <IosCard className="overflow-hidden !p-0">
+        <button
+          type="button"
+          onClick={() => setPicksOpen((v) => !v)}
+          aria-expanded={picksOpen}
+          className="flex w-full cursor-pointer items-center gap-3 px-5 py-5 text-left transition hover:bg-black/[0.02] dark:hover:bg-white/[0.03] md:px-6"
+        >
+          <div className="min-w-0 flex-1">
+            <IosSectionTitle>Personal pick</IosSectionTitle>
+            <p className="mt-1 text-sm text-ios-secondary">
+              A few frames I keep coming back to.
+            </p>
+          </div>
+          <ChevronDown
+            className={cn(
+              "h-5 w-5 shrink-0 text-ios-blue transition-transform duration-300",
+              picksOpen && "rotate-180"
+            )}
+            aria-hidden
+          />
+        </button>
+
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-300 ease-out",
+            picksOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          )}
+        >
+          <div className="overflow-hidden">
+            <div className="flex flex-col gap-3 px-3 pb-3 md:px-4 md:pb-4">
+              {PERSONAL_PICKS.map((photo) => (
+                <div
+                  key={photo.src}
+                  className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-ios-fill"
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </IosCard>
     </aside>
   );
 }

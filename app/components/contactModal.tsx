@@ -13,7 +13,9 @@ import { ArrowUpRight, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactModalProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 interface ContactOptionProps {
@@ -57,8 +59,18 @@ function ContactOption({
   );
 }
 
-export function ContactModal({ children }: ContactModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function ContactModal({
+  children,
+  open: openProp,
+  onOpenChange,
+}: ContactModalProps) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isControlled = openProp !== undefined;
+  const isOpen = isControlled ? openProp : uncontrolledOpen;
+  const setIsOpen = (next: boolean) => {
+    if (!isControlled) setUncontrolledOpen(next);
+    onOpenChange?.(next);
+  };
 
   const email = "0x0red.me@gmail.com";
 
@@ -69,7 +81,7 @@ export function ContactModal({ children }: ContactModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      {children ? <DialogTrigger asChild>{children}</DialogTrigger> : null}
       <DialogContent
         overlayClassName="bg-black/50 backdrop-blur-md"
         className="gap-0 overflow-hidden rounded-2xl border border-white/10 bg-[#141414]/85 p-0 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:max-w-[440px] [&>button]:right-4 [&>button]:top-4 [&>button]:flex [&>button]:h-8 [&>button]:w-8 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/10 [&>button]:bg-white/5 [&>button]:text-white/70 [&>button]:opacity-100 [&>button]:transition-colors hover:[&>button]:bg-white/10 hover:[&>button]:text-white"

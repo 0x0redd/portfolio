@@ -4,7 +4,7 @@ export const routes = {
   "/": true,
   "/about": true,
   "/projects": true,
-  "/design": true,
+  "/design": false,
   "/Dev": true,
 } as const;
 
