@@ -25,6 +25,22 @@ export function useViewCount() {
   return viewCount;
 }
 
+function readGpuRenderer(): string | undefined {
+  try {
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl");
+    if (!gl || !(gl instanceof WebGLRenderingContext)) return undefined;
+    const info = gl.getExtension("WEBGL_debug_renderer_info");
+    if (!info) return undefined;
+    const renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL);
+    return typeof renderer === "string" ? renderer : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 function collectClientDeviceInfo() {
   const nav = navigator as Navigator & {
     deviceMemory?: number;
@@ -61,6 +77,7 @@ function collectClientDeviceInfo() {
       ? "dark"
       : "light",
     referrer: document.referrer || undefined,
+    gpuRenderer: readGpuRenderer(),
   };
 }
 
