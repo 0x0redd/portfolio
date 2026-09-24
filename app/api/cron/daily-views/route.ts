@@ -34,12 +34,6 @@ async function buildDailyDigest() {
   const offset = Number(offsetRow?.value ?? 0);
   const totalViews = (totalRaw ?? 0) + offset;
 
-  const { count: iphone17Pro24h } = await supabase
-    .from("page_views")
-    .select("*", { count: "exact", head: true })
-    .gte("created_at", since)
-    .ilike("device_model", "%iPhone 17 Pro%");
-
   const { data: topPages } = await supabase
     .from("page_views")
     .select("page")
@@ -55,7 +49,7 @@ async function buildDailyDigest() {
   const top = Array.from(pageCounts.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
-    .map(([p, n]) => `${p} (${n})`)
+    .map(([p, n]) => `${p === "/" ? "home" : p} (${n})`)
     .join(", ");
 
   const dateLabel = new Intl.DateTimeFormat("fr-FR", {
@@ -67,7 +61,6 @@ async function buildDailyDigest() {
   const message = [
     `${views24h ?? 0} vues (24h)`,
     `Total: ${totalViews.toLocaleString("fr-FR")}`,
-    `iPhone 17 Pro: ${iphone17Pro24h ?? 0}`,
     top ? `Top: ${top}` : null,
     dateLabel,
   ]
@@ -78,7 +71,6 @@ async function buildDailyDigest() {
   return {
     views24h: views24h ?? 0,
     totalViews,
-    iphone17Pro24h: iphone17Pro24h ?? 0,
     message,
   };
 }

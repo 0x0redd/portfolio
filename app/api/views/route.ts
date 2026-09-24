@@ -1,61 +1,51 @@
 import { NextResponse, userAgent } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { detectIPhone17Pro } from "@/lib/iphone-17-pro";
 import { sendWebhooky } from "@/lib/webhooky";
 
 export const dynamic = "force-dynamic";
 
-async function alreadyNotifiedIPhone17Pro(
-  ip: string | null
-): Promise<boolean> {
-  if (!ip) return false;
-  const supabase = createSupabaseServerClient();
-  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-
-  const { count, error } = await supabase
-    .from("page_views")
-    .select("*", { count: "exact", head: true })
-    .eq("ip", ip)
-    .ilike("device_model", "%iPhone 17 Pro%")
-    .gte("created_at", since);
-
-  if (error) {
-    console.warn("iPhone 17 Pro dedupe check failed:", error.message);
-    return false;
-  }
-  // After insert, count includes this visit — notify only on the first one.
-  return (count ?? 0) > 1;
+function formatPageLabel(page: string): string {
+  const path = (page || "/").trim() || "/";
+  if (path === "/") return "home";
+  return path;
 }
 
-async function notifyIPhone17ProView(opts: {
-  page: string;
-  ip: string | null;
-  confidence: "high" | "medium";
-  label: string;
-  reason: string | null;
-  timezone?: string | null;
-  language?: string | null;
-}) {
-  const confLabel =
-    opts.confidence === "high" ? "confirmed" : "likely (screen match)";
-  const bits = [
-    `Page: ${opts.page}`,
-    opts.ip ? `IP: ${opts.ip}` : null,
-    opts.timezone ? `TZ: ${opts.timezone}` : null,
-    opts.language ? `Lang: ${opts.language}` : null,
-    opts.reason ? opts.reason : null,
-    `Confidence: ${confLabel}`,
-  ].filter(Boolean);
+function formatDeviceLabel(ua: ReturnType<typeof userAgent>): string {
+  const type = ua.device.type || "desktop";
+  const vendor = ua.device.vendor;
+  const model = ua.device.model;
+  const os = [ua.os.name, ua.os.version].filter(Boolean).join(" ");
 
+  const hardware = [vendor, model].filter(Boolean).join(" ");
+  if (hardware && os) return `${type} · ${hardware} · ${os}`;
+  if (hardware) return `${type} · ${hardware}`;
+  if (os) return `${type} · ${os}`;
+  return type;
+}
+
+function formatBrowserLabel(ua: ReturnType<typeof userAgent>): string {
+  const name = ua.browser.name || "Unknown";
+  return ua.browser.version ? `${name} ${ua.browser.version}` : name;
+}
+
+async function notifyNewView(opts: {
+  page: string;
+  device: string;
+  browser: string;
+}) {
+  const pageLabel = formatPageLabel(opts.page);
   const result = await sendWebhooky({
-    title: `${opts.label} viewed your site`,
-    message: bits.join(" · ").slice(0, 500),
-    sound: "level_up_1",
+    title: "New portfolio view",
+    message: `Page: ${pageLabel} · Device: ${opts.device} · Browser: ${opts.browser}`.slice(
+      0,
+      500
+    ),
+    sound: "notification_1",
     vibrate: true,
   });
 
   if (!result.ok && !result.skipped) {
-    console.warn("Webhooky iPhone alert failed:", result.error);
+    console.warn("Webhooky view alert failed:", result.error);
   }
 }
 
@@ -116,7 +106,6 @@ export async function POST(request: Request) {
       touchSupport,
       colorScheme,
       referrer: clientReferrer,
-      gpuRenderer,
     } = body as {
       ip?: string;
       userAgent?: string;
@@ -139,7 +128,6 @@ export async function POST(request: Request) {
       touchSupport?: boolean;
       colorScheme?: string;
       referrer?: string;
-      gpuRenderer?: string;
     };
 
     const headers = request.headers;
@@ -151,7 +139,15 @@ export async function POST(request: Request) {
       forwarded?.split(",")[0]?.trim() || realIp || cfIp || ip || null;
 
     const rawUserAgent = clientUA || headers.get("user-agent") || "Unknown";
-    const ua = userAgent(request);
+
+    // Prefer client-reported UA for parsing (matches stored user_agent).
+    const uaRequest =
+      clientUA && clientUA !== headers.get("user-agent")
+        ? new Request(request.url, {
+            headers: { "user-agent": clientUA },
+          })
+        : request;
+    const ua = userAgent(uaRequest);
 
     const chUa = headers.get("sec-ch-ua");
     const chUaMobile = headers.get("sec-ch-ua-mobile");
@@ -170,26 +166,16 @@ export async function POST(request: Request) {
     const acceptLanguage = headers.get("accept-language");
     const acceptEncoding = headers.get("accept-encoding");
 
-    const detection = detectIPhone17Pro({
-      userAgent: rawUserAgent,
-      screenWidth,
-      screenHeight,
-      devicePixelRatio,
-      gpuRenderer,
-      touchSupport,
-    });
-
-    const deviceModel =
-      detection.match && detection.label
-        ? detection.label
-        : (ua.device.model ?? null);
+    const pagePath = page || "/";
+    const deviceLabel = formatDeviceLabel(ua);
+    const browserLabel = formatBrowserLabel(ua);
 
     const supabase = createSupabaseServerClient();
 
     const { error } = await supabase.from("page_views").insert({
       ip: clientIp,
       user_agent: rawUserAgent,
-      page: page || "/",
+      page: pagePath,
       created_at: timestamp || new Date().toISOString(),
 
       browser_name: ua.browser.name ?? null,
@@ -198,7 +184,7 @@ export async function POST(request: Request) {
       os_version: ua.os.version ?? null,
       device_type: ua.device.type ?? "desktop",
       device_vendor: ua.device.vendor ?? null,
-      device_model: deviceModel,
+      device_model: ua.device.model ?? null,
       engine_name: ua.engine.name ?? null,
       engine_version: ua.engine.version ?? null,
       is_bot: ua.isBot ?? false,
@@ -236,28 +222,17 @@ export async function POST(request: Request) {
 
     if (error) throw error;
 
-    if (detection.match && detection.label && !ua.isBot) {
-      const duplicate = await alreadyNotifiedIPhone17Pro(clientIp);
-      if (!duplicate) {
-        // Fire-and-forget so tracking stays fast
-        void notifyIPhone17ProView({
-          page: page || "/",
-          ip: clientIp,
-          confidence: detection.confidence || "medium",
-          label: detection.label,
-          reason: detection.reason,
-          timezone,
-          language,
-        });
-      }
+    if (!ua.isBot) {
+      void notifyNewView({
+        page: pagePath,
+        device: deviceLabel,
+        browser: browserLabel,
+      });
     }
 
     return NextResponse.json({
       success: true,
       message: "View tracked successfully",
-      iphone17Pro: detection.match
-        ? { confidence: detection.confidence, label: detection.label }
-        : null,
     });
   } catch (error: unknown) {
     const message =
