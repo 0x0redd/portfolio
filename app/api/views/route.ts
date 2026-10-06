@@ -1,5 +1,5 @@
 import { NextResponse, userAgent } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { appendView, getViewCount } from "@/lib/google-sheets";
 import { sendWebhooky } from "@/lib/webhooky";
 
 export const dynamic = "force-dynamic";
@@ -51,24 +51,8 @@ async function notifyNewView(opts: {
 
 export async function GET() {
   try {
-    const supabase = createSupabaseServerClient();
-
-    const { count, error: countError } = await supabase
-      .from("page_views")
-      .select("*", { count: "exact", head: true });
-
-    if (countError) throw countError;
-
-    const { data: offsetRow } = await supabase
-      .from("stats")
-      .select("value")
-      .eq("key", "site_views_offset")
-      .maybeSingle();
-
-    const offset = Number(offsetRow?.value ?? 0);
-    const viewCount = (count ?? 0) + offset;
-
-    return NextResponse.json({ viewCount, rawCount: count ?? 0, offset });
+    const { viewCount, rawCount, offset } = await getViewCount();
+    return NextResponse.json({ viewCount, rawCount, offset });
   } catch (error: unknown) {
     const message =
       error instanceof Error ? error.message : "Failed to fetch view count";
@@ -140,7 +124,6 @@ export async function POST(request: Request) {
 
     const rawUserAgent = clientUA || headers.get("user-agent") || "Unknown";
 
-    // Prefer client-reported UA for parsing (matches stored user_agent).
     const uaRequest =
       clientUA && clientUA !== headers.get("user-agent")
         ? new Request(request.url, {
@@ -167,12 +150,8 @@ export async function POST(request: Request) {
     const acceptEncoding = headers.get("accept-encoding");
 
     const pagePath = page || "/";
-    const deviceLabel = formatDeviceLabel(ua);
-    const browserLabel = formatBrowserLabel(ua);
 
-    const supabase = createSupabaseServerClient();
-
-    const { error } = await supabase.from("page_views").insert({
+    await appendView({
       ip: clientIp,
       user_agent: rawUserAgent,
       page: pagePath,
@@ -220,13 +199,11 @@ export async function POST(request: Request) {
       color_scheme: colorScheme ?? null,
     });
 
-    if (error) throw error;
-
     if (!ua.isBot) {
       void notifyNewView({
         page: pagePath,
-        device: deviceLabel,
-        browser: browserLabel,
+        device: formatDeviceLabel(ua),
+        browser: formatBrowserLabel(ua),
       });
     }
 

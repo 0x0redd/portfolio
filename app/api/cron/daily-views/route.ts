@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { fetchViewRows, getViewCount } from "@/lib/google-sheets";
 import { isAuthorizedCron } from "@/lib/cron-auth";
 import { sendWebhooky } from "@/lib/webhooky";
 
@@ -8,41 +8,18 @@ export const runtime = "nodejs";
 
 /** 22:00 Africa/Casablanca (UTC+1) → cron `0 21 * * *` UTC */
 async function buildDailyDigest() {
-  const supabase = createSupabaseServerClient();
-  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const since = Date.now() - 24 * 60 * 60 * 1000;
+  const rows = await fetchViewRows();
+  const { viewCount: totalViews } = await getViewCount();
 
-  const { count: views24h, error: viewsError } = await supabase
-    .from("page_views")
-    .select("*", { count: "exact", head: true })
-    .gte("created_at", since)
-    .or("is_bot.eq.false,is_bot.is.null");
-
-  if (viewsError) throw viewsError;
-
-  const { count: totalRaw, error: totalError } = await supabase
-    .from("page_views")
-    .select("*", { count: "exact", head: true });
-
-  if (totalError) throw totalError;
-
-  const { data: offsetRow } = await supabase
-    .from("stats")
-    .select("value")
-    .eq("key", "site_views_offset")
-    .maybeSingle();
-
-  const offset = Number(offsetRow?.value ?? 0);
-  const totalViews = (totalRaw ?? 0) + offset;
-
-  const { data: topPages } = await supabase
-    .from("page_views")
-    .select("page")
-    .gte("created_at", since)
-    .or("is_bot.eq.false,is_bot.is.null")
-    .limit(500);
+  const last24h = rows.filter((row) => {
+    if (row.isBot) return false;
+    const t = Date.parse(row.timestamp);
+    return Number.isFinite(t) && t >= since;
+  });
 
   const pageCounts = new Map<string, number>();
-  for (const row of topPages || []) {
+  for (const row of last24h) {
     const key = row.page || "/";
     pageCounts.set(key, (pageCounts.get(key) || 0) + 1);
   }
@@ -59,7 +36,7 @@ async function buildDailyDigest() {
   }).format(new Date());
 
   const message = [
-    `${views24h ?? 0} vues (24h)`,
+    `${last24h.length} vues (24h)`,
     `Total: ${totalViews.toLocaleString("fr-FR")}`,
     top ? `Top: ${top}` : null,
     dateLabel,
@@ -69,7 +46,7 @@ async function buildDailyDigest() {
     .slice(0, 500);
 
   return {
-    views24h: views24h ?? 0,
+    views24h: last24h.length,
     totalViews,
     message,
   };

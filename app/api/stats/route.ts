@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getViewCount } from "@/lib/google-sheets";
 import {
   UNSPLASH_API_BASE,
   UNSPLASH_FALLBACK,
@@ -25,29 +26,37 @@ async function fetchUnsplash<T>(path: string) {
 }
 
 async function readStatsMap(): Promise<StatMap> {
-  const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase.from("stats").select("key, value");
-  if (error) throw error;
-  const map: StatMap = {};
-  for (const row of data || []) {
-    map[row.key] = Number(row.value) || 0;
+  try {
+    const supabase = createSupabaseServerClient();
+    const { data, error } = await supabase.from("stats").select("key, value");
+    if (error) throw error;
+    const map: StatMap = {};
+    for (const row of data || []) {
+      map[row.key] = Number(row.value) || 0;
+    }
+    return map;
+  } catch {
+    return {};
   }
-  return map;
 }
 
 async function upsertStats(
   entries: Array<{ key: string; value: number; label?: string; hint?: string }>
 ) {
-  const supabase = createSupabaseServerClient();
-  const now = new Date().toISOString();
-  const { error } = await supabase.from("stats").upsert(
-    entries.map((entry) => ({
-      ...entry,
-      updated_at: now,
-    })),
-    { onConflict: "key" }
-  );
-  if (error) throw error;
+  try {
+    const supabase = createSupabaseServerClient();
+    const now = new Date().toISOString();
+    const { error } = await supabase.from("stats").upsert(
+      entries.map((entry) => ({
+        ...entry,
+        updated_at: now,
+      })),
+      { onConflict: "key" }
+    );
+    if (error) throw error;
+  } catch (error) {
+    console.warn("Stats upsert skipped:", error);
+  }
 }
 
 function profileFromStats(
@@ -68,12 +77,21 @@ function profileFromStats(
   };
 }
 
+async function siteViewsFromSheets(): Promise<number> {
+  try {
+    const { viewCount } = await getViewCount();
+    return viewCount;
+  } catch (error) {
+    console.warn("Sheets view count failed:", error);
+    return 2000;
+  }
+}
+
 export async function GET() {
   try {
-    const supabase = createSupabaseServerClient();
     const stats = await readStatsMap();
+    const siteViews = await siteViewsFromSheets();
 
-    // Refresh Unsplash numbers into the stats table when possible
     try {
       const [user, statistics] = await Promise.all([
         fetchUnsplash<Parameters<typeof mapUnsplashProfile>[0]>(
@@ -119,17 +137,10 @@ export async function GET() {
           },
         ]);
 
-        const { count } = await supabase
-          .from("page_views")
-          .select("*", { count: "exact", head: true });
-
-        const siteViews =
-          (count ?? 0) + (stats.site_views_offset ?? 2000);
-
         return NextResponse.json({
           ...profile,
           siteViews,
-          source: "supabase+unsplash",
+          source: "sheets+unsplash",
         });
       }
     } catch (syncError) {
@@ -137,15 +148,10 @@ export async function GET() {
     }
 
     const fresh = await readStatsMap();
-    const { count } = await supabase
-      .from("page_views")
-      .select("*", { count: "exact", head: true });
-    const siteViews = (count ?? 0) + (fresh.site_views_offset ?? 2000);
-
     return NextResponse.json({
       ...profileFromStats(fresh),
       siteViews,
-      source: "supabase",
+      source: "sheets",
     });
   } catch (error: unknown) {
     const message =
