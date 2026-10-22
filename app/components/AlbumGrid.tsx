@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -11,7 +11,6 @@ import {
   MorphingDialogContainer,
 } from "@/components/ui/morphing-dialog";
 import { XIcon } from "lucide-react";
-import { getAlbumImages } from "@/lib/images";
 
 interface ImageDimensions {
   src: string;
@@ -20,18 +19,16 @@ interface ImageDimensions {
 }
 
 type AlbumGridProps = {
-  album: string;
+  images: string[];
   altPrefix: string;
 };
 
-export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
-  const images = useMemo(() => getAlbumImages(album), [album]);
+export default function AlbumGrid({ images, altPrefix }: AlbumGridProps) {
   const [dimensions, setDimensions] = useState<Record<string, ImageDimensions>>({});
   const [mediaLoaded, setMediaLoaded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    images.forEach((image) => {
-      const src = image.url;
+    images.forEach((src) => {
       if (/\.(webm|mp4|mov)(\?|$)/i.test(src)) {
         setDimensions((prev) => ({
           ...prev,
@@ -66,8 +63,6 @@ export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
     );
   }
 
-  const urls = images.map((image) => image.url);
-
   return (
     <div className="px-2 sm:px-4 md:px-6 lg:px-8 container mx-auto max-w-7xl">
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
@@ -75,9 +70,8 @@ export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
           <div key={colIndex} className="flex flex-col gap-3 sm:gap-4 md:gap-6 flex-1">
             {images
               .filter((_, index) => index % 3 === colIndex)
-              .map((image) => {
-                const src = image.url;
-                const globalIndex = urls.findIndex((item) => item === src);
+              .map((src) => {
+                const globalIndex = images.indexOf(src);
                 const imageDim = dimensions[src];
                 const isReady = mediaLoaded[src] === true;
                 const aspectRatio =
@@ -87,7 +81,7 @@ export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
 
                 return (
                   <MorphingDialog
-                    key={image.id}
+                    key={src}
                     transition={{
                       duration: 0.4,
                       ease: "easeInOut",

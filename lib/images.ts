@@ -1,5 +1,3 @@
-import galleryManifest from "@/lib/gallery-manifest.json";
-
 export type PortfolioImage = {
   id: string;
   path: string;
@@ -24,21 +22,4 @@ export function albumFromPath(storagePath: string): string {
   const slash = normalized.indexOf("/");
   if (slash === -1) return "root";
   return normalized.slice(0, slash);
-}
-
-/** Album images from the local gallery manifest (served from /public). */
-export function getAlbumImages(album: string): PortfolioImage[] {
-  const paths = (galleryManifest as Record<string, string[]>)[album] || [];
-  return paths.map((storagePath, index) => {
-    const path = normalizeStoragePath(storagePath);
-    return {
-      id: `${album}-${index}`,
-      path,
-      album,
-      filename: path.split("/").pop() || path,
-      sort_order: index + 1,
-      featured: false,
-      url: imagePublicUrl(path),
-    };
-  });
 }

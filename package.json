@@ -8,10 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "upload:media": "node scripts/upload-public-to-supabase.mjs",
-    "db:setup": "node scripts/setup-supabase-db.mjs",
-    "db:seed": "node scripts/seed-supabase-db.mjs",
-    "db:migrate-comments": "node scripts/migrate-comments-from-sheets.mjs"
+    "gallery:manifest": "node scripts/build-gallery-manifest.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
