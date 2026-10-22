@@ -1,4 +1,4 @@
-import { mediaUrl } from "@/lib/media";
+import galleryManifest from "@/lib/gallery-manifest.json";
 
 export type PortfolioImage = {
   id: string;
@@ -10,9 +10,9 @@ export type PortfolioImage = {
   featured: boolean;
 };
 
-/** Build public URL for a storage-relative path like `Fes/IMG.jpg`. */
+/** Build public URL for a path under /public, e.g. `Fes/IMG.jpg` → `/Fes/IMG.jpg`. */
 export function imagePublicUrl(storagePath: string): string {
-  return mediaUrl(storagePath.startsWith("/") ? storagePath : `/${storagePath}`);
+  return storagePath.startsWith("/") ? storagePath : `/${storagePath}`;
 }
 
 export function normalizeStoragePath(path: string): string {
@@ -24,4 +24,21 @@ export function albumFromPath(storagePath: string): string {
   const slash = normalized.indexOf("/");
   if (slash === -1) return "root";
   return normalized.slice(0, slash);
+}
+
+/** Album images from the local gallery manifest (served from /public). */
+export function getAlbumImages(album: string): PortfolioImage[] {
+  const paths = (galleryManifest as Record<string, string[]>)[album] || [];
+  return paths.map((storagePath, index) => {
+    const path = normalizeStoragePath(storagePath);
+    return {
+      id: `${album}-${index}`,
+      path,
+      album,
+      filename: path.split("/").pop() || path,
+      sort_order: index + 1,
+      featured: false,
+      url: imagePublicUrl(path),
+    };
+  });
 }

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, Users } from "lucide-react";
 import { about } from "@/lib/about-content";
-import { mediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
 import { IosCard, IosSectionTitle } from "@/components/about/AboutShell";
 
@@ -200,7 +199,7 @@ export function AboutLeadership() {
                                     }}
                                   >
                                     <Image
-                                      src={mediaUrl(src)}
+                                      src={src}
                                       alt={`${item.org} — club photography`}
                                       fill
                                       sizes="(max-width: 768px) 160px, 240px"

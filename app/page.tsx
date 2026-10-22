@@ -14,7 +14,6 @@ import { ProjectCard } from '@/components/project-card';
 import { NumbersSection } from '@/components/numbers-section';
 import { projects } from '@/lib/projects';
 import { AnimatedCarousel } from './components/animated-carousel';
-import { mediaUrl } from '@/lib/media';
 
 // Lazy load components that are below the fold
 const GridPinned = dynamic(() => import('./components/gridPinned'), {
@@ -83,7 +82,7 @@ function LazySection({ children }: { children: React.ReactNode }) {
 export default function Home() {
   // Video files from /VIDEO folder
   const videos = [
-    mediaUrl('/VIDEO/Untitled-1story_2.webm'),
+    '/VIDEO/Untitled-1story_2.webm',
   ];
 
   // Ref for project cards scroll container
@@ -174,7 +173,7 @@ export default function Home() {
           <section id="about" className="pt-8 flex justify-start items-center">
             <AvatarLabelGroup
               size="xl"
-              src={mediaUrl("/Pined/IMG_9846-Pano.jpg")}
+              src="/Pined/IMG_9846-Pano.jpg"
               alt="Othmane Ferrah"
               title="Othmane Ferrah"
               subtitle="Photographer · Designer · Developer · AI & Data Science"
@@ -237,7 +236,7 @@ export default function Home() {
             <Link href="/afcon">
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg group cursor-pointer">
                 <Image 
-                  src={mediaUrl("/Afcon/IMG_1682.jpg")} 
+                  src="/Afcon/IMG_1682.jpg" 
                   alt="Current Project : AFCON 25" 
                   fill
                   sizes="100vw"

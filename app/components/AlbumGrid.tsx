@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -11,7 +11,7 @@ import {
   MorphingDialogContainer,
 } from "@/components/ui/morphing-dialog";
 import { XIcon } from "lucide-react";
-import type { PortfolioImage } from "@/lib/images";
+import { getAlbumImages } from "@/lib/images";
 
 interface ImageDimensions {
   src: string;
@@ -25,32 +25,9 @@ type AlbumGridProps = {
 };
 
 export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
-  const [images, setImages] = useState<PortfolioImage[]>([]);
-  const [loading, setLoading] = useState(true);
+  const images = useMemo(() => getAlbumImages(album), [album]);
   const [dimensions, setDimensions] = useState<Record<string, ImageDimensions>>({});
   const [mediaLoaded, setMediaLoaded] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/images?album=${encodeURIComponent(album)}`);
-        const data = await res.json();
-        if (!cancelled && res.ok && Array.isArray(data.images)) {
-          setImages(data.images);
-        }
-      } catch (error) {
-        console.error(`Failed to load album ${album}:`, error);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [album]);
 
   useEffect(() => {
     images.forEach((image) => {
@@ -79,14 +56,6 @@ export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
     });
   }, [images]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="h-10 w-10 animate-pulse rounded-full bg-white/10" />
-      </div>
-    );
-  }
-
   if (!images.length) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
@@ -106,7 +75,7 @@ export default function AlbumGrid({ album, altPrefix }: AlbumGridProps) {
           <div key={colIndex} className="flex flex-col gap-3 sm:gap-4 md:gap-6 flex-1">
             {images
               .filter((_, index) => index % 3 === colIndex)
-              .map((image, indexInColumn) => {
+              .map((image) => {
                 const src = image.url;
                 const globalIndex = urls.findIndex((item) => item === src);
                 const imageDim = dimensions[src];
