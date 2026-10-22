@@ -92,5 +92,5 @@ const images = [
 ] as const;
 
 export default function GridMeknes() {
-  return <AlbumGrid images={[...images]} altPrefix="Meknes Photo" />;
+  return <AlbumGrid images={images} altPrefix="Meknes Photo" />;
 }

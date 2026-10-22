@@ -28,5 +28,5 @@ const images = [
 ] as const;
 
 export default function GridCSC() {
-  return <AlbumGrid images={[...images]} altPrefix="CSC Photo" />;
+  return <AlbumGrid images={images} altPrefix="CSC Photo" />;
 }

@@ -86,5 +86,5 @@ const images = [
 ] as const;
 
 export default function GridAfcon() {
-  return <AlbumGrid images={[...images]} altPrefix="AFCON Photo" />;
+  return <AlbumGrid images={images} altPrefix="AFCON Photo" />;
 }

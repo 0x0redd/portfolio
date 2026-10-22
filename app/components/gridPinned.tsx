@@ -48,5 +48,5 @@ const images = [
 ] as const;
 
 export default function GridPinned() {
-  return <AlbumGrid images={[...images]} altPrefix="Pinned Photo" />;
+  return <AlbumGrid images={images} altPrefix="Pinned Photo" />;
 }

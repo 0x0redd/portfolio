@@ -9,5 +9,5 @@ const images = [
 ] as const;
 
 export default function GridCandid() {
-  return <AlbumGrid images={[...images]} altPrefix="Candid Photo" />;
+  return <AlbumGrid images={images} altPrefix="Candid Photo" />;
 }

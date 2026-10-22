@@ -95,5 +95,5 @@ const images = [
 ] as const;
 
 export default function GridRabat() {
-  return <AlbumGrid images={[...images]} altPrefix="Rabat Photo" />;
+  return <AlbumGrid images={images} altPrefix="Rabat Photo" />;
 }

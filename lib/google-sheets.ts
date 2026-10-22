@@ -8,6 +8,10 @@ export const VIEWS_SPREADSHEET_ID =
 
 export const VIEWS_SHEET_NAME = process.env.GOOGLE_VIEWS_SHEET_NAME || "views";
 
+/** Testimonials tab (same spreadsheet as views). */
+export const COMMENTS_SHEET_NAME =
+  process.env.GOOGLE_COMMENTS_SHEET_NAME || "Feuille 1";
+
 /** Added to raw sheet rows for display (legacy portfolio offset). */
 export const SITE_VIEWS_OFFSET = Number(
   process.env.SITE_VIEWS_OFFSET ?? 2000
@@ -281,4 +285,60 @@ export async function appendView(record: PageViewRecord): Promise<void> {
       values: [recordToRow(record)],
     },
   });
+}
+
+export type SheetComment = {
+  id: string;
+  name: string;
+  comment: string;
+  createdAt: string;
+};
+
+export async function fetchComments(): Promise<SheetComment[]> {
+  const sheets = await getSheetsClient();
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: VIEWS_SPREADSHEET_ID,
+    range: `'${COMMENTS_SHEET_NAME}'!A:B`,
+  });
+
+  const rows = response.data.values || [];
+  if (rows.length <= 1) return [];
+
+  return rows
+    .slice(1)
+    .map((row, index) => {
+      const name = String(row[0] || "").trim();
+      const comment = String(row[1] || "").trim();
+      if (!name || !comment) return null;
+      return {
+        id: `sheet-${index + 2}`,
+        name,
+        comment,
+        createdAt: new Date(0).toISOString(),
+      };
+    })
+    .filter((row): row is SheetComment => row !== null)
+    .reverse();
+}
+
+export async function appendComment(
+  name: string,
+  comment: string
+): Promise<SheetComment> {
+  const sheets = await getSheetsClient();
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: VIEWS_SPREADSHEET_ID,
+    range: `'${COMMENTS_SHEET_NAME}'!A:B`,
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [[name, comment]],
+    },
+  });
+
+  return {
+    id: `sheet-${Date.now()}`,
+    name,
+    comment,
+    createdAt: new Date().toISOString(),
+  };
 }

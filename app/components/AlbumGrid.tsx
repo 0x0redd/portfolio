@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -19,9 +19,69 @@ interface ImageDimensions {
 }
 
 type AlbumGridProps = {
-  images: string[];
+  images: readonly string[];
   altPrefix: string;
 };
+
+function isVideoSrc(src: string) {
+  return /\.(webm|mp4|mov)(\?|$)/i.test(src);
+}
+
+function GridVideo({
+  src,
+  className,
+  onReady,
+  onDimensions,
+}: {
+  src: string;
+  className?: string;
+  onReady: () => void;
+  onDimensions: (width: number, height: number) => void;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { rootMargin: "100px", threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const reportSize = () => {
+    const el = ref.current;
+    if (el && el.videoWidth > 0 && el.videoHeight > 0) {
+      onDimensions(el.videoWidth, el.videoHeight);
+    }
+    onReady();
+  };
+
+  return (
+    <video
+      ref={ref}
+      className={className}
+      src={src}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      onLoadedMetadata={reportSize}
+      onLoadedData={reportSize}
+      onError={onReady}
+    />
+  );
+}
 
 export default function AlbumGrid({ images, altPrefix }: AlbumGridProps) {
   const [dimensions, setDimensions] = useState<Record<string, ImageDimensions>>({});
@@ -29,10 +89,11 @@ export default function AlbumGrid({ images, altPrefix }: AlbumGridProps) {
 
   useEffect(() => {
     images.forEach((src) => {
-      if (/\.(webm|mp4|mov)(\?|$)/i.test(src)) {
+      if (isVideoSrc(src)) {
+        // Real size comes from <video> onLoadedMetadata — keep a portrait-friendly placeholder.
         setDimensions((prev) => ({
           ...prev,
-          [src]: prev[src] || { src, width: 1600, height: 900 },
+          [src]: prev[src] || { src, width: 9, height: 16 },
         }));
         return;
       }
@@ -74,10 +135,13 @@ export default function AlbumGrid({ images, altPrefix }: AlbumGridProps) {
                 const globalIndex = images.indexOf(src);
                 const imageDim = dimensions[src];
                 const isReady = mediaLoaded[src] === true;
+                const video = isVideoSrc(src);
                 const aspectRatio =
                   imageDim && imageDim.width > 0 && imageDim.height > 0
                     ? `${imageDim.width} / ${imageDim.height}`
                     : "4 / 5";
+                const markReady = () =>
+                  setMediaLoaded((prev) => ({ ...prev, [src]: true }));
 
                 return (
                   <MorphingDialog
@@ -96,31 +160,53 @@ export default function AlbumGrid({ images, altPrefix }: AlbumGridProps) {
                           {!isReady && (
                             <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-white/10 to-white/5 z-10" />
                           )}
-                          <Image
-                            className="object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
-                            src={src}
-                            alt={`${altPrefix} ${globalIndex + 1}`}
-                            fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            priority={globalIndex < 6}
-                            onLoad={() =>
-                              setMediaLoaded((prev) => ({ ...prev, [src]: true }))
-                            }
-                            onError={() =>
-                              setMediaLoaded((prev) => ({ ...prev, [src]: true }))
-                            }
-                          />
+                          {video ? (
+                            <GridVideo
+                              src={src}
+                              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                              onReady={markReady}
+                              onDimensions={(width, height) =>
+                                setDimensions((prev) => ({
+                                  ...prev,
+                                  [src]: { src, width, height },
+                                }))
+                              }
+                            />
+                          ) : (
+                            <Image
+                              className="object-contain transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+                              src={src}
+                              alt={`${altPrefix} ${globalIndex + 1}`}
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              priority={globalIndex < 6}
+                              onLoad={markReady}
+                              onError={markReady}
+                            />
+                          )}
                         </div>
                       </article>
                     </MorphingDialogTrigger>
 
                     <MorphingDialogContainer>
                       <MorphingDialogContent className="relative max-w-[95vw] h-[95vh] sm:max-w-[90vw] sm:h-[90vh] flex items-center justify-center">
-                        <MorphingDialogImage
-                          src={src}
-                          alt={`${altPrefix} ${globalIndex + 1}`}
-                          className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
-                        />
+                        {video ? (
+                          <video
+                            src={src}
+                            controls
+                            autoPlay
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                          />
+                        ) : (
+                          <MorphingDialogImage
+                            src={src}
+                            alt={`${altPrefix} ${globalIndex + 1}`}
+                            className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg"
+                          />
+                        )}
                       </MorphingDialogContent>
                       <MorphingDialogClose
                         className="fixed right-3 top-3 sm:right-6 sm:top-6 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-white/90 hover:bg-white p-1.5 sm:p-2 shadow-lg backdrop-blur-sm border border-gray-200/50"

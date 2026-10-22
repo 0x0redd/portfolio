@@ -140,5 +140,5 @@ const images = [
 ] as const;
 
 export default function GridStreet() {
-  return <AlbumGrid images={[...images]} altPrefix="Street Photo" />;
+  return <AlbumGrid images={images} altPrefix="Street Photo" />;
 }

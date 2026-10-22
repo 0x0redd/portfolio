@@ -75,5 +75,5 @@ const images = [
 ] as const;
 
 export default function GridFES() {
-  return <AlbumGrid images={[...images]} altPrefix="FES Photo" />;
+  return <AlbumGrid images={images} altPrefix="FES Photo" />;
 }

@@ -1,31 +1,17 @@
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { appendComment, fetchComments } from "@/lib/google-sheets";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const supabase = createSupabaseServerClient();
-    const { data, error } = await supabase
-      .from("comments")
-      .select("id, name, comment, created_at")
-      .order("created_at", { ascending: false });
-
-    if (error) throw error;
-
-    const testimonials = (data || []).map((row) => ({
-      id: row.id,
-      name: row.name,
-      comment: row.comment,
-      createdAt: row.created_at,
-    }));
-
+    const testimonials = await fetchComments();
     return NextResponse.json({ testimonials });
   } catch (error: unknown) {
     const message =
       error instanceof Error ? error.message : "Failed to fetch testimonials";
     console.error("Error fetching testimonials:", message);
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ testimonials: [], error: message }, { status: 200 });
   }
 }
 
@@ -50,24 +36,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const supabase = createSupabaseServerClient();
-    const { data, error } = await supabase
-      .from("comments")
-      .insert({ name: trimmedName, comment: trimmedComment })
-      .select("id, name, comment, created_at")
-      .single();
-
-    if (error) throw error;
+    const testimonial = await appendComment(trimmedName, trimmedComment);
 
     return NextResponse.json({
       success: true,
       message: "Comment added successfully",
-      testimonial: {
-        id: data.id,
-        name: data.name,
-        comment: data.comment,
-        createdAt: data.created_at,
-      },
+      testimonial,
     });
   } catch (error: unknown) {
     const message =

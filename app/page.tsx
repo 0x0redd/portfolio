@@ -79,12 +79,9 @@ function LazySection({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function Home() {
-  // Video files from /VIDEO folder
-  const videos = [
-    '/VIDEO/Untitled-1story_2.webm',
-  ];
+const HERO_VIDEOS: string[] = ["/VIDEO/Untitled-1story_2.webm"];
 
+export default function Home() {
   // Ref for project cards scroll container
   const projectsScrollRef = useRef<HTMLDivElement>(null);
 
@@ -112,7 +109,7 @@ export default function Home() {
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0">
           <VideoPlayer
-            videos={videos}
+            videos={HERO_VIDEOS}
             className="w-full h-full object-cover"
             autoPlay={true}
             loop={true}

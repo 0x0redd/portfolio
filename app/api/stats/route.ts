@@ -54,8 +54,8 @@ async function upsertStats(
       { onConflict: "key" }
     );
     if (error) throw error;
-  } catch (error) {
-    console.warn("Stats upsert skipped:", error);
+  } catch {
+    // Supabase optional — site stats still return Unsplash/Sheets fallbacks
   }
 }
 

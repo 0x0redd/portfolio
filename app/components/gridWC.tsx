@@ -91,5 +91,5 @@ const images = [
 ] as const;
 
 export default function GridWC() {
-  return <AlbumGrid images={[...images]} altPrefix="World Cup 2022 Photo" />;
+  return <AlbumGrid images={images} altPrefix="World Cup 2022 Photo" />;
 }
