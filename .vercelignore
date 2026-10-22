@@ -1,5 +1,4 @@
-# Exclude from Vercel deployments once media lives on Supabase.
-# Local files stay on disk for upload script / offline work.
+# Exclude from Vercel deployments (local-only / unused heavy sources)
 
 /out
 
@@ -11,14 +10,6 @@ public/compress.py
 **/*.NEF
 **/*.ARW
 
-# Heavy media — served from Supabase Storage after upload
-public/VIDEO/**
-public/Fes/**
-public/Street/**
-public/meknes/**
-public/rabat/**
-public/Afcon/**
-public/world cup 2022/**
-public/Pined/**
-public/CSC/**
-public/candid/**
+# Unused large video masters (webm gallery clips still deploy)
+public/VIDEO/*.mp4
+public/VIDEO/Untitled
